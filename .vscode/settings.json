@@ -1,0 +1,14 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "stdlib.h": "c",
+        "printcolorful.h": "c",
+        "cleaninputbuffer.h": "c",
+        "cleanscreen.h": "c",
+        "stdio.h": "c",
+        "registercontroller.h": "c",
+        "tenant.h": "c",
+        "signincontroller.h": "c",
+        "residence.h": "c"
+    }
+}

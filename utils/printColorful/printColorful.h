@@ -1,0 +1,1 @@
+void printColorful(char text[], int color);
