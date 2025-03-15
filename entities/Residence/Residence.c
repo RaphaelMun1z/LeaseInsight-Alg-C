@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct {
     double id; // PK
     int propertyType;
@@ -16,3 +19,17 @@ typedef struct {
     char complement[100];
     char dateLastRenovation[11];
 } Residence;
+
+Residence *residences;
+
+void initResidences() {
+    residences = (Residence *) calloc(5, sizeof(Residence));
+
+    if (residences == NULL) {
+        printf("[LOG] Erro ao alocar memória para 'residences'!\n");
+    }
+}
+
+void freeResidences(){
+    free(residences);
+}

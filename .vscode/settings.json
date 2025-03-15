@@ -9,6 +9,7 @@
         "registercontroller.h": "c",
         "tenant.h": "c",
         "signincontroller.h": "c",
-        "residence.h": "c"
+        "residence.h": "c",
+        "contract.h": "c"
     }
 }

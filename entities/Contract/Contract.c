@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct {
     double id;
     int contractStatus;
@@ -6,3 +9,17 @@ typedef struct {
     char contractStartDate[11];
     char contractEndDate[11];
 } Contract;
+
+Contract *contracts;
+
+void initContracts() {
+    contracts = (Contract *) calloc(5, sizeof(Contract));
+
+    if (contracts == NULL) {
+        printf("[LOG] Erro ao alocar memória para 'contracts'!\n");
+    }
+}
+
+void freeContracts(){
+    free(contracts);
+}

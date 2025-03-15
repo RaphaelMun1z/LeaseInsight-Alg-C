@@ -5,7 +5,7 @@
 #include "../../utils/printColorful/printColorful.h"
 
 void signInForm(){
-    char email[100], password[100];
+    char email[255], password[100];
     cleanInputBuffer();
     printColorful("\nOlá, preencha os campos a seguir para acessar o sistema.\n", 3);
     

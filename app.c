@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 // Utils
 #include "utils/cleanScreen/cleanScreen.h"
@@ -21,11 +20,12 @@
 #include "controllers/signInController/signInController.h"
 
 int main(){
-    /* Tenant *tenants = (Tenant *) calloc(5, sizeof(Tenant));
-    Residence *residences = (Residence *) calloc(5, sizeof(Residence));
-    Contract *contracts = (Contract *) calloc(5, sizeof(Contract)); */
-    
     cleanScreen();
+    
+    initTenants();
+    initResidences();
+    initContracts();
+
     startScreen();
     
     printColorful("Seja bem-vindo(a)!\n\n", 2);

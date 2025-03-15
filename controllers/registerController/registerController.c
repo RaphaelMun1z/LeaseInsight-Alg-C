@@ -7,7 +7,7 @@
 #include "../../utils/cleanScreen/cleanScreen.h"
 
 void registerForm(){
-    char nome[100], phone[16], email[100], password[100], confirmPassword[100];    
+    char nome[100], phone[16], email[255], password[100], confirmPassword[100];    
     cleanInputBuffer();
     printColorful("\nPreencha os campos a seguir para registrar-se.\n", 3);
     

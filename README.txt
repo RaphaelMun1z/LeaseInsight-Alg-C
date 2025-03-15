@@ -8,16 +8,16 @@ ____
 1. Para gerar o executável do projeto, siga os seguintes passos:
 1.1. Abra o CMD;
 1.2. Acesse o diretório raíz do projeto;
-1.3. Utilize o seguinte comando: 
+1.3. Utilize o seguinte comando [copie os comandos da linha 12 até 23, de uma só vez, e cole no cmd]:
 gcc app.c ^
 utils/printColorful/printColorful.c ^
 utils/cleanScreen/cleanScreen.c ^
 utils/cleanInputBuffer/cleanInputBuffer.c ^
 views/startScreen/startScreen.c ^
 views/menus/mainMenu/mainMenu.c ^
-entities/Tenant/Tenant.h ^
-entities/Residence/Residence.h ^
-entities/Contract/Contract.h ^
+entities/Tenant/Tenant.c ^
+entities/Residence/Residence.c ^
+entities/Contract/Contract.c ^
 controllers/registerController/registerController.c ^
 controllers/signInController/signInController.c ^
 -o application
