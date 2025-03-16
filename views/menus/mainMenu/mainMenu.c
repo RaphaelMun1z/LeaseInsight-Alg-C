@@ -30,7 +30,7 @@ int mainMenuChoose(){
     switch (mainMenu())
     {
         case 1:
-        registerForm();
+        registerTenantForm();
         return 1;
         break;
         

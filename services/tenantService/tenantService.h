@@ -1,6 +1,3 @@
-#ifndef TENANT_H
-#define TENANT_H
-
 typedef struct {
     char name[100];
     char phone[16];
@@ -13,12 +10,6 @@ typedef struct {
     char registrationDate[11];
 } Tenant;
 
-extern Tenant *tenants;
-extern int registeredTenantsNumber;
-extern int tenantsCurrentLimit;
-
-void initTenants();
-void allocateMoreSpaceTenant();
-void freeTenants();
-
-#endif
+void findAllTenants();
+void createTenant(Tenant Tenant);
+int findTenantByRg(char rg[]);

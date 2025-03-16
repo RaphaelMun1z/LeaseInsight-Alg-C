@@ -25,7 +25,7 @@ int main(){
     initTenants();
     initResidences();
     initContracts();
-
+    
     startScreen();
     
     printColorful("Seja bem-vindo(a)!\n\n", 2);
@@ -35,5 +35,13 @@ int main(){
         notFinished = mainMenuChoose();
     } while(notFinished);
     
+    freeTenants();
+    freeResidences();
+    freeContracts();
+
+    cleanInputBuffer();
+    printColorful("\n\nPressione qualquer tecla para fechar...", 5);
+    getchar();
+
     return 0;
 }

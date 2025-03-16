@@ -1,1 +1,1 @@
-void registerForm();
+void registerTenantForm();
