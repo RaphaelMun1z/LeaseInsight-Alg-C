@@ -6,6 +6,7 @@ utils/cleanScreen/cleanScreen.c ^
 utils/cleanInputBuffer/cleanInputBuffer.c ^
 views/startScreen/startScreen.c ^
 views/menus/mainMenu/mainMenu.c ^
+views/menus/registerMenu/registerMenu.c ^
 entities/Tenant/Tenant.c ^
 entities/Residence/Residence.c ^
 entities/Contract/Contract.c ^
