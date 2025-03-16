@@ -1,17 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
-    char name[100];
-    char phone[16];
-    char email[255];
-    char password[100];
-    char rg[13]; // PK
-    char cpf[15];
-    int tenantStatus;
-    char dateOfBirth[11]; 
-    char registrationDate[11];
-} Tenant;
+// DTOs
+#include "../../dtos/dtos.h"
 
 Tenant *tenants;
 int registeredTenantsNumber = 0;

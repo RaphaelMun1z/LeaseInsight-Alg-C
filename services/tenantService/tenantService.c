@@ -24,18 +24,32 @@ void findAllTenants(){
     }
 }
 
-int findTenantByRg(char rg[]){
+Tenant *findTenantByRg(char rg[]){
     for (int ii = 0; ii < registeredTenantsNumber; ii++){
         if(strcmp(tenants[ii].rg, rg) == 0){
-            return 1;
+            return &tenants[ii];
         }
     }
     
-    return -1;
+    return NULL;
+}
+
+void signInTenant(TenantLogin credentials){
+    Tenant *tenant = findTenantByRg(credentials.rg);
+    
+    if(tenant == NULL)
+    return printColorful("Credenciais inválidas!\n", 1);
+    
+    if(strcmp(credentials.password, tenant->password) != 0)
+    return printColorful("Credenciais inválidas!\n", 1);
+    
+    char message[100];
+    snprintf(message, sizeof(message), "\nOlá %s. \n", tenant->name);
+    printColorful(message, 2);
 }
 
 void createTenant(Tenant tenant){
-    if(findTenantByRg(tenant.rg) != -1)
+    if(findTenantByRg(tenant.rg) != NULL)
     return printColorful("Inquilino já cadastrado!\n", 1);
     
     strcpy(tenants[registeredTenantsNumber].name, tenant.name);
