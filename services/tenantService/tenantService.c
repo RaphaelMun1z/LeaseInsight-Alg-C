@@ -7,6 +7,9 @@
 // Entities
 #include "../../entities/Tenant/Tenant.h"
 
+// Services
+#include "../stateManagerService/stateManagerService.h"
+
 void findAllTenants(){
     if(registeredTenantsNumber == 0)
     return printColorful("Não há inquilinos registrados.\n", 4);
@@ -24,7 +27,27 @@ void findAllTenants(){
     }
 }
 
-Tenant *findTenantByRg(char rg[]){
+Tenant* findTenantById(double id){
+    for (int ii = 0; ii < registeredTenantsNumber; ii++){
+        if(tenants[ii].id == id){
+            return &tenants[ii];
+        }
+    }
+    
+    return NULL;
+}
+
+Tenant* findTenantByEmail(char email[]){
+    for (int ii = 0; ii < registeredTenantsNumber; ii++){
+        if(strcmp(tenants[ii].email, email) == 0){
+            return &tenants[ii];
+        }
+    }
+    
+    return NULL;
+}
+
+Tenant* findTenantByRg(char rg[]){
     for (int ii = 0; ii < registeredTenantsNumber; ii++){
         if(strcmp(tenants[ii].rg, rg) == 0){
             return &tenants[ii];
@@ -35,7 +58,7 @@ Tenant *findTenantByRg(char rg[]){
 }
 
 void signInTenant(TenantLogin credentials){
-    Tenant *tenant = findTenantByRg(credentials.rg);
+    Tenant *tenant = findTenantByEmail(credentials.email);
     
     if(tenant == NULL)
     return printColorful("Credenciais inválidas!\n", 1);
@@ -43,15 +66,18 @@ void signInTenant(TenantLogin credentials){
     if(strcmp(credentials.password, tenant->password) != 0)
     return printColorful("Credenciais inválidas!\n", 1);
     
-    char message[100];
-    snprintf(message, sizeof(message), "\nOlá %s. \n", tenant->name);
-    printColorful(message, 2);
+    AuthUser user;
+    user.id = tenant->id;
+    user.userType = 3;
+
+    setAuthUser(tenant->name, user);
 }
 
 void createTenant(Tenant tenant){
-    if(findTenantByRg(tenant.rg) != NULL)
+    if(findTenantByEmail(tenant.email) != NULL)
     return printColorful("Inquilino já cadastrado!\n", 1);
     
+    tenants[registeredTenantsNumber].id = registeredTenantsNumber + 1;
     strcpy(tenants[registeredTenantsNumber].name, tenant.name);
     strcpy(tenants[registeredTenantsNumber].phone, tenant.phone);
     strcpy(tenants[registeredTenantsNumber].email, tenant.email);
@@ -73,4 +99,10 @@ void createTenant(Tenant tenant){
     
     if(registeredTenantsNumber == tenantsCurrentLimit)
     allocateMoreSpaceTenant();
+
+    TenantLogin credentials;
+    strcpy(credentials.email, tenant.email);
+    strcpy(credentials.password, tenant.password);
+
+    signInTenant(credentials);
 }

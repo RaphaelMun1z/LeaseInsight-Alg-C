@@ -22,4 +22,5 @@ void initContracts() {
 
 void freeContracts(){
     free(contracts);
+    contracts = NULL;
 }

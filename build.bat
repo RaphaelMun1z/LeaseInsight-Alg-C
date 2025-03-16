@@ -5,14 +5,17 @@ utils/printColorful/printColorful.c ^
 utils/cleanScreen/cleanScreen.c ^
 utils/cleanInputBuffer/cleanInputBuffer.c ^
 views/startScreen/startScreen.c ^
+views/menus/menuHandler/menuHandler.c ^
 views/menus/mainMenu/mainMenu.c ^
+views/menus/homeMenu/homeMenu.c ^
 views/menus/registerMenu/registerMenu.c ^
+entities/AuthUser/AuthUser.c ^
 entities/Tenant/Tenant.c ^
 entities/Residence/Residence.c ^
 entities/Contract/Contract.c ^
 controllers/registerController/registerController.c ^
 controllers/signInController/signInController.c ^
-services/registerService/registerService.c ^
+services/stateManagerService/stateManagerService.c ^
 services/tenantService/tenantService.c ^
 -o application
 

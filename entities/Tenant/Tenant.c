@@ -31,4 +31,5 @@ void allocateMoreSpaceTenant(){
 
 void freeTenants(){
     free(tenants);
+    tenants = NULL;
 }

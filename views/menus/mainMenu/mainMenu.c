@@ -6,6 +6,7 @@
 #include "../../../utils/printColorful/printColorful.h"
 
 // Views
+#include "../homeMenu/homeMenu.h"
 #include "../registerMenu/registerMenu.h"
 
 // Controllers
@@ -28,39 +29,12 @@ int mainMenu(){
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
     } while(option < 1 || option > 3);
+    //cleanScreen();
     return option;
 }
 
-int registerMenuChoose(){
-    cleanScreen();
-    switch (registerMenu())
-    {
-        case 1:
-        registerTenantForm();
-        return 1;
-        break;
-        
-        case 2:
-        printf("Registro de proprietário...\n");
-        return 1;
-        break;
-        
-        case 3:
-        return 0;
-        break;
-        
-        default:
-        cleanScreen();
-        printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n\n", 4);
-        return 1;
-        break;
-    }
-}
-
 int mainMenuChoose(){
-    cleanScreen();
-    switch (mainMenu())
-    {
+    switch (mainMenu()){
         case 1:
         registerMenuChoose();
         return 1;
@@ -73,7 +47,6 @@ int mainMenuChoose(){
         
         case 3:
         printColorful("\nAté mais!\n", 0);
-        printColorful("Saindo...", 1);
         return 0;
         break;
         

@@ -1,3 +1,6 @@
+#ifndef RESIDENCE_H
+#define RESIDENCE_H
+
 typedef struct {
     double id; // PK
     int propertyType;
@@ -18,5 +21,8 @@ typedef struct {
 } Residence;
 
 extern Residence *residences;
+
 void initResidences();
 void freeResidences();
+
+#endif

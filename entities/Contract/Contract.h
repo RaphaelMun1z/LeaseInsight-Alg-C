@@ -1,3 +1,6 @@
+#ifndef CONTRACT_H
+#define CONTRACT_H
+
 typedef struct {
     double id;
     int contractStatus;
@@ -8,5 +11,8 @@ typedef struct {
 } Contract;
 
 extern Contract *contracts;
+
 void initContracts();
 void freeContracts();
+
+#endif

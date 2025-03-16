@@ -7,10 +7,11 @@
 #include "utils/cleanInputBuffer/cleanInputBuffer.h"
 
 // Views
-#include "views/menus/mainMenu/mainMenu.h"
 #include "views/startScreen/startScreen.h"
+#include "views/menus/menuHandler/menuHandler.h"
 
 // Entities
+#include "entities/AuthUser/AuthUser.h"
 #include "entities/Tenant/Tenant.h"
 #include "entities/Residence/Residence.h"
 #include "entities/Contract/Contract.h"
@@ -22,6 +23,7 @@
 int main(){
     cleanScreen();
     
+    initAuthUser();
     initTenants();
     initResidences();
     initContracts();
@@ -32,7 +34,7 @@ int main(){
     
     int notFinished = 1;
     do{
-        notFinished = mainMenuChoose();
+        notFinished = redirectToMenu();
     } while(notFinished);
     
     freeTenants();

@@ -12,6 +12,12 @@
         "residence.h": "c",
         "contract.h": "c",
         "typeinfo": "c",
-        "registerservice.h": "c"
+        "registerservice.h": "c",
+        "conio.h": "c",
+        "dtos.h": "c",
+        "authuser.h": "c",
+        "statemanagerservice.h": "c",
+        "mainmenu.h": "c",
+        "homemenu.h": "c"
     }
 }

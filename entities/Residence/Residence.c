@@ -32,4 +32,5 @@ void initResidences() {
 
 void freeResidences(){
     free(residences);
+    residences = NULL;
 }

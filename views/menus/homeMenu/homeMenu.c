@@ -5,16 +5,22 @@
 #include "../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../utils/printColorful/printColorful.h"
 
-// Controllers
-#include "../../../controllers/registerController/registerController.h"
+// Views
 
-int registerMenu(){
+// Controllers
+
+// Services
+#include "../../../services/stateManagerService/stateManagerService.h"
+
+int homeMenu(){
     int option;
     do{
-        printColorful("\nQual tipo de conta você gostaria de criar? \n", 3);
-        printColorful("1 -> Gostaria de criar uma conta como INQUILINO\n", 5);
-        printColorful("2 -> Gostaria de criar uma conta como PROPRIETÁRIO.\n", 5);
-        printColorful("3 -> Voltar para o menu principal.\n", 5);
+        char message[100];
+        snprintf(message, sizeof(message), "\n%s, de que forma posso auxiliar? \n", getAuthUserName());
+        printColorful(message, 3);
+        printColorful("1 -> Opção 1.\n", 5);
+        printColorful("2 -> Opção 2.\n", 5);
+        printColorful("3 -> Opção 3.\n", 5);
         
         option = getch();
         option -= '0';
@@ -28,27 +34,27 @@ int registerMenu(){
     return option;
 }
 
-int registerMenuChoose(){
-    switch (registerMenu())
+void homeMenuChoose(){
+    switch (homeMenu())
     {
         case 1:
-        registerTenantForm();
-        return 1;
+        printf("Opção 1\n");
+        // Opção 1
         break;
         
         case 2:
-        printf("Registro de proprietário...\n");
-        return 1;
+        printf("Opção 2\n");
+        // Opção 2
         break;
         
         case 3:
-        return 0;
+        printf("Opção 3\n");
+        // Opção 3
         break;
         
         default:
         cleanScreen();
         printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n\n", 4);
-        return 1;
         break;
     }
 }

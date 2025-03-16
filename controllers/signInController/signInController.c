@@ -16,15 +16,15 @@ void signInForm(){
     
     do{
         cleanInputBuffer();
-        printColorful("RG: ", 5);
-        fgets(credentials.rg, 13, stdin);
-        credentials.rg[strcspn(credentials.rg, "\n")] = 0;
+        printColorful("E-mail: ", 5);
+        fgets(credentials.email, 13, stdin);
+        credentials.email[strcspn(credentials.email, "\n")] = 0;
         
-        if(credentials.rg[0] == '\0'){
+        if(credentials.email[0] == '\0'){
             cleanScreen();
-            printColorful("\nO Campo 'RG' é obrigatório. Tente novamente.\n\n", 4);
+            printColorful("\nO Campo 'E-mail' é obrigatório. Tente novamente.\n\n", 4);
         }
-    } while (credentials.rg[0] == '\0');
+    } while (credentials.email[0] == '\0');
     
     do{
         cleanInputBuffer();
