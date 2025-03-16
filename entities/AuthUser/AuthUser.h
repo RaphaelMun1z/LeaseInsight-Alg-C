@@ -7,6 +7,9 @@
 extern AuthUser *authUser;
 
 void initAuthUser();
+void allocateAuthUserMemory(double id, int userType);
+void setDefaultValuesToAuthUser(double id, int userType);
+void deallocateAuthUserMemory();
 void freeAuthUser();
 
 #endif

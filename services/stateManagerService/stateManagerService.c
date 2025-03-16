@@ -40,8 +40,7 @@ char* getAuthUserName(){
 }
 
 void setAuthUser(char name[], AuthUser user){
-    authUser->id = user.id;
-    authUser->userType = user.userType;
+    allocateAuthUserMemory(user.id, user.userType);
     
     char message[100];
     snprintf(message, sizeof(message), "\nLogado como %s. \n", name);
@@ -49,8 +48,7 @@ void setAuthUser(char name[], AuthUser user){
 }
 
 void removeAuthUser(){
-    authUser->id = -1;
-    authUser->userType = -1;
-    freeAuthUser(authUser);
+    deallocateAuthUserMemory();
+    
     printColorful("\nVocê saiu da sua conta!\n", 0);
 }

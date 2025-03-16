@@ -6,33 +6,36 @@
 
 AuthUser *authUser;
 
-void initAuthUser() {
-    authUser = (AuthUser *) calloc(1, sizeof(AuthUser));
-    
-    if (authUser == NULL) {
-        printf("[LOG] Erro ao alocar memória para 'authUser'!\n");
-        return;
+void setDefaultValuesToAuthUser(double id, int userType){
+    if (authUser == NULL){
+        printf("[LOG] Erro ao definir valores para 'authUser'!\n");
+        return; 
     }
     
-    authUser->id = -1;
-    authUser->userType = -1;
+    authUser->id = id;
+    authUser->userType = userType;
 }
 
-// Ao realizar login
-void allocateAuthUserMemory(){
-
-}
-
-// Ao realizar logout
-void deallocateAuthUserMemory(){
+void allocateAuthUserMemory(double id, int userType){
+    authUser = (AuthUser *) calloc(1, sizeof(AuthUser));
     
+    if (authUser == NULL){
+        printf("[LOG] Erro ao alocar memória para 'authUser'!\n");
+        return; 
+    }
+    
+    setDefaultValuesToAuthUser(id, userType);
 }
 
-// Usar apenas ao fechar app
+void initAuthUser() {
+    allocateAuthUserMemory(-1, -1);
+}
+
 void freeAuthUser(){
     free(authUser);
     authUser = NULL;
 }
 
-// Alterar esquema de alocação de memória, ideia: desalocar memoria ao sair da conta, 
-// e alocar memoria ao realizar login
+void deallocateAuthUserMemory(){
+    freeAuthUser();
+}
