@@ -20,7 +20,7 @@ int homeMenu(){
         printColorful(message, 3);
         printColorful("1 -> Opção 1.\n", 5);
         printColorful("2 -> Opção 2.\n", 5);
-        printColorful("3 -> Opção 3.\n", 5);
+        printColorful("3 -> Gostaria de sair do sistema.\n", 1);
         
         option = getch();
         option -= '0';
@@ -34,27 +34,31 @@ int homeMenu(){
     return option;
 }
 
-void homeMenuChoose(){
+int homeMenuChoose(){
     switch (homeMenu())
     {
         case 1:
         printf("Opção 1\n");
+        return 1;
         // Opção 1
         break;
         
         case 2:
         printf("Opção 2\n");
+        return 1;
         // Opção 2
         break;
         
         case 3:
         printf("Opção 3\n");
+        return 0;
         // Opção 3
         break;
         
         default:
         cleanScreen();
         printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n\n", 4);
+        return 1;
         break;
     }
 }

@@ -9,8 +9,7 @@
 
 int redirectToMenu(){
     if(getAuthUser() != NULL){
-        homeMenu();
-        return 1;
+        return homeMenuChoose();
     }else{
         return mainMenuChoose();
     }

@@ -19,7 +19,7 @@ int mainMenu(){
         printColorful("\nComo posso ajudar? \n", 3);
         printColorful("1 -> Gostaria de me registrar.\n", 5);
         printColorful("2 -> Gostaria de acessar o sistema.\n", 5);
-        printColorful("3 -> Gostaria de sair do sistema.\n", 5);
+        printColorful("3 -> Gostaria de sair do sistema.\n", 1);
         
         option = getch();
         option -= '0';
