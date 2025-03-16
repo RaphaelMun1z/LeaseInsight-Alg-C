@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <conio.h>
+#include <string.h>
 
 // Utils
 #include "../../../utils/cleanScreen/cleanScreen.h"
@@ -15,11 +16,12 @@
 int homeMenu(){
     int option;
     do{
-        char message[100];
-        snprintf(message, sizeof(message), "\n%s, de que forma posso auxiliar? \n", getAuthUserName());
+        char message[100], name[100];
+        (getAuthUserName() != NULL) ? strcpy(name, getAuthUserName()) : strcpy(name, "Não foi possível carregar.");
+        snprintf(message, sizeof(message), "\n%s, de que forma posso auxiliar? \n", name);
         printColorful(message, 3);
-        printColorful("1 -> Opção 1.\n", 5);
-        printColorful("2 -> Opção 2.\n", 5);
+        printColorful("1 -> Gostaria de acessar meus contratos.\n", 5); // Consulta de Contrato
+        printColorful("2 -> Gostaria de cancelar um contrato.\n", 5); // Remoção de Contrato
         printColorful("3 -> Gostaria de sair do sistema.\n", 1);
         
         option = getch();
@@ -34,31 +36,26 @@ int homeMenu(){
     return option;
 }
 
-int homeMenuChoose(){
+void homeMenuChoose(){
     switch (homeMenu())
     {
         case 1:
         printf("Opção 1\n");
-        return 1;
         // Opção 1
         break;
         
         case 2:
         printf("Opção 2\n");
-        return 1;
         // Opção 2
         break;
         
         case 3:
-        printf("Opção 3\n");
-        return 0;
-        // Opção 3
+        removeAuthUser();
         break;
         
         default:
         cleanScreen();
         printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n\n", 4);
-        return 1;
         break;
     }
 }

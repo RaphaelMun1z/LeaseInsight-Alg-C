@@ -2,6 +2,6 @@
 #define HOME_MENU_H
 
 int homeMenu();
-int homeMenuChoose();
+void homeMenuChoose();
 
 #endif

@@ -7,9 +7,17 @@
 // Services
 #include "../../../services/stateManagerService/stateManagerService.h"
 
+void initMenuHandler(){
+    int notFinished = 1;
+    do{
+        notFinished = redirectToMenu();
+    } while(notFinished);
+}
+
 int redirectToMenu(){
     if(getAuthUser() != NULL){
-        return homeMenuChoose();
+        homeMenuChoose();
+        return 1;
     }else{
         return mainMenuChoose();
     }

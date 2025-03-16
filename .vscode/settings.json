@@ -18,6 +18,7 @@
         "authuser.h": "c",
         "statemanagerservice.h": "c",
         "mainmenu.h": "c",
-        "homemenu.h": "c"
+        "homemenu.h": "c",
+        "system_error": "c"
     }
 }

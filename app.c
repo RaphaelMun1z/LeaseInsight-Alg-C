@@ -32,10 +32,7 @@ int main(){
     
     printColorful("Seja bem-vindo(a)!\n\n", 2);
     
-    int notFinished = 1;
-    do{
-        notFinished = redirectToMenu();
-    } while(notFinished);
+    initMenuHandler();
     
     freeTenants();
     freeResidences();

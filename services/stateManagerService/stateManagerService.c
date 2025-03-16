@@ -15,14 +15,17 @@
 #include "../tenantService/tenantService.h"
 
 AuthUser *getAuthUser(){
+    if(authUser == NULL)
+    return NULL;
+    
     if(authUser->id == -1 || authUser->userType == -1)
     return NULL;
     
     return authUser;
 }
 
-/* char* getAuthUserName() {
-    char name[100];
+char* getAuthUserName(){ 
+    static char name[100]; 
     
     if(getAuthUser() == NULL)
     return NULL;
@@ -30,15 +33,10 @@ AuthUser *getAuthUser(){
     if(getAuthUser()->userType == 3){
         Tenant *tenant = findTenantById(getAuthUser()->id);
         strcpy(name, tenant->name);
-        return &name;
+        return name;
     }
     
     return NULL;
-} */
-
-char* getAuthUserName(){ 
-    static char name[100] = "Olá mundo!"; 
-    return name;
 }
 
 void setAuthUser(char name[], AuthUser user){
@@ -54,4 +52,5 @@ void removeAuthUser(){
     authUser->id = -1;
     authUser->userType = -1;
     freeAuthUser(authUser);
+    printColorful("\nVocê saiu da sua conta!\n", 0);
 }
