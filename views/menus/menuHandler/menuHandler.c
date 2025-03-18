@@ -2,7 +2,8 @@
 
 // Views
 #include "../mainMenu/mainMenu.h"
-#include "../homeMenu/homeMenu.h"
+#include "../tenantMenu/tenantMenu.h"
+#include "../ownerMenu/ownerMenu.h"
 
 // Services
 #include "../../../services/stateManagerService/stateManagerService.h"
@@ -16,7 +17,12 @@ void initMenuHandler(){
 
 int redirectToMenu(){
     if(getAuthUser() != NULL){
-        homeMenuChoose();
+        AuthUser user = *getAuthUser();
+        if(user.userType == 3){
+            tenantMenuChoose();
+        }else if(user.userType == 2){
+            ownerMenuChoose();
+        }
         return 1;
     }else{
         return mainMenuChoose();

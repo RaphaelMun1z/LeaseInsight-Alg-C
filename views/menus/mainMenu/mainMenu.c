@@ -6,7 +6,6 @@
 #include "../../../utils/printColorful/printColorful.h"
 
 // Views
-#include "../homeMenu/homeMenu.h"
 #include "../registerMenu/registerMenu.h"
 
 // Controllers

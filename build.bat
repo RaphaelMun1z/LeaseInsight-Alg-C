@@ -7,7 +7,8 @@ utils/cleanInputBuffer/cleanInputBuffer.c ^
 views/startScreen/startScreen.c ^
 views/menus/menuHandler/menuHandler.c ^
 views/menus/mainMenu/mainMenu.c ^
-views/menus/homeMenu/homeMenu.c ^
+views/menus/tenantMenu/tenantMenu.c ^
+views/menus/ownerMenu/ownerMenu.c ^
 views/menus/registerMenu/registerMenu.c ^
 entities/AuthUser/AuthUser.c ^
 entities/Tenant/Tenant.c ^
