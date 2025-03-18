@@ -19,6 +19,8 @@
         "statemanagerservice.h": "c",
         "mainmenu.h": "c",
         "homemenu.h": "c",
-        "system_error": "c"
+        "system_error": "c",
+        "tenantservice.h": "c",
+        "ownerservice.h": "c"
     }
 }

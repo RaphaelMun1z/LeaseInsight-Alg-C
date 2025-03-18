@@ -22,7 +22,7 @@ int homeMenu(){
         printColorful(message, 3);
         printColorful("1 -> Gostaria de acessar meus contratos.\n", 5); // Consulta de Contrato
         printColorful("2 -> Gostaria de cancelar um contrato.\n", 5); // Remoção de Contrato
-        printColorful("3 -> Gostaria de sair do sistema.\n", 1);
+        printColorful("3 -> Gostaria de sair da minha conta.\n", 1);
         
         option = getch();
         option -= '0';
@@ -32,7 +32,7 @@ int homeMenu(){
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
     } while(option < 1 || option > 3);
-    //cleanScreen();
+    cleanScreen();
     return option;
 }
 
@@ -50,7 +50,7 @@ void homeMenuChoose(){
         break;
         
         case 3:
-        removeAuthUser();
+        logoutAuthUser();
         break;
         
         default:

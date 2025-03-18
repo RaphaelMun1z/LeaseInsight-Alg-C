@@ -25,13 +25,14 @@ AuthUser *getAuthUser(){
 }
 
 char* getAuthUserName(){ 
+    AuthUser *user = getAuthUser();
     static char name[100]; 
     
-    if(getAuthUser() == NULL)
+    if(user == NULL)
     return NULL;
     
-    if(getAuthUser()->userType == 3){
-        Tenant *tenant = findTenantById(getAuthUser()->id);
+    if(user->userType == 3){
+        Tenant *tenant = findTenantById(user->id);
         strcpy(name, tenant->name);
         return name;
     }
@@ -39,16 +40,28 @@ char* getAuthUserName(){
     return NULL;
 }
 
-void setAuthUser(char name[], AuthUser user){
-    allocateAuthUserMemory(user.id, user.userType);
+void setAuthUser(AuthUserResponse user){   
+    if(authUser == NULL){
+        printf("[LOG] 'authUser' não tem espaço alocado!\n");
+        return;
+    }
     
-    char message[100];
-    snprintf(message, sizeof(message), "\nLogado como %s. \n", name);
-    printColorful(message, 2);
+    authUser->id = user.id;
+    authUser->userType = user.userType;
+    
+    char message[100], level[100] = "Não foi possível carregar.";
+    
+    if(user.userType == 1) strcpy(level, "Administrador");
+    else if(user.userType == 2) strcpy(level, "Proprietário");
+    else if(user.userType == 3) strcpy(level, "Inquilino");
+    else strcpy(level, "Erro ao carregar.");
+    
+    snprintf(message, sizeof(message), "=== %s ===\n", level);
+    printColorful(message, 5);
 }
 
-void removeAuthUser(){
-    deallocateAuthUserMemory();
-    
+void logoutAuthUser(){
+    authUser->id = -1;
+    authUser->userType = -1;
     printColorful("\nVocê saiu da sua conta!\n", 0);
 }

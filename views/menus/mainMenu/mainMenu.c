@@ -29,7 +29,7 @@ int mainMenu(){
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
     } while(option < 1 || option > 3);
-    //cleanScreen();
+    cleanScreen();
     return option;
 }
 

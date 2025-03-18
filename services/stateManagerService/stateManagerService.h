@@ -6,7 +6,7 @@
 
 AuthUser *getAuthUser();
 char* getAuthUserName();
-void setAuthUser(char name[], AuthUser user);
-void removeAuthUser();
+void setAuthUser(AuthUserResponse userResponse);
+void logoutAuthUser();
 
 #endif

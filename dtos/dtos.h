@@ -17,12 +17,25 @@ typedef struct {
 typedef struct {
     char email[255];
     char password[100];
-} TenantLogin;
+} LoginCredentials;
+
+typedef struct {
+    double id; // PK
+    char name[100];
+    char phone[16]; // Unique
+    char email[255]; // Unique
+    char password[100];
+} Owner;
 
 typedef struct {
     double id;
     int userType; // 1 = ADM, 2 = OWNER, 3 = TENANT
 } AuthUser;
 
-#endif
+typedef struct {
+    double id;
+    int userType; // 1 = ADM, 2 = OWNER, 3 = TENANT
+    char name[100];
+} AuthUserResponse;
 
+#endif

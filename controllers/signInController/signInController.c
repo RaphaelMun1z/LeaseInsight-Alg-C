@@ -7,10 +7,10 @@
 #include "../../utils/cleanScreen/cleanScreen.h"
 
 // Services
-#include "../../services/tenantService/tenantService.h"
+#include "../../services/authService/authService.h"
 
 void signInForm(){
-    TenantLogin credentials;
+    LoginCredentials credentials;
 
     printColorful("\nOlá, preencha os campos a seguir para acessar o sistema.\n", 3);
     
@@ -39,5 +39,5 @@ void signInForm(){
     } while (credentials.password[0] == '\0');
 
     cleanScreen();
-    signInTenant(credentials);
+    signInUser(credentials);
 }

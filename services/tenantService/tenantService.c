@@ -9,6 +9,7 @@
 
 // Services
 #include "../stateManagerService/stateManagerService.h"
+#include "../authService/authService.h"
 
 void findAllTenants(){
     if(registeredTenantsNumber == 0)
@@ -27,7 +28,7 @@ void findAllTenants(){
     }
 }
 
-Tenant* findTenantById(double id){
+Tenant *findTenantById(double id){
     for (int ii = 0; ii < registeredTenantsNumber; ii++){
         if(tenants[ii].id == id){
             return &tenants[ii];
@@ -37,7 +38,7 @@ Tenant* findTenantById(double id){
     return NULL;
 }
 
-Tenant* findTenantByEmail(char email[]){
+Tenant *findTenantByEmail(char email[]){
     for (int ii = 0; ii < registeredTenantsNumber; ii++){
         if(strcmp(tenants[ii].email, email) == 0){
             return &tenants[ii];
@@ -47,7 +48,7 @@ Tenant* findTenantByEmail(char email[]){
     return NULL;
 }
 
-Tenant* findTenantByRg(char rg[]){
+Tenant *findTenantByRg(char rg[]){
     for (int ii = 0; ii < registeredTenantsNumber; ii++){
         if(strcmp(tenants[ii].rg, rg) == 0){
             return &tenants[ii];
@@ -55,22 +56,6 @@ Tenant* findTenantByRg(char rg[]){
     }
     
     return NULL;
-}
-
-void signInTenant(TenantLogin credentials){
-    Tenant *tenant = findTenantByEmail(credentials.email);
-    
-    if(tenant == NULL)
-    return printColorful("Credenciais inválidas!\n", 1);
-    
-    if(strcmp(credentials.password, tenant->password) != 0)
-    return printColorful("Credenciais inválidas!\n", 1);
-    
-    AuthUser user;
-    user.id = tenant->id;
-    user.userType = 3;
-
-    setAuthUser(tenant->name, user);
 }
 
 void createTenant(Tenant tenant){
@@ -99,10 +84,10 @@ void createTenant(Tenant tenant){
     
     if(registeredTenantsNumber == tenantsCurrentLimit)
     allocateMoreSpaceTenant();
-
-    TenantLogin credentials;
+    
+    LoginCredentials credentials;
     strcpy(credentials.email, tenant.email);
     strcpy(credentials.password, tenant.password);
-
-    signInTenant(credentials);
+    
+    signInUser(credentials);
 }

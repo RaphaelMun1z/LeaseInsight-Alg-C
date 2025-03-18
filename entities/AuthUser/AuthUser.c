@@ -18,12 +18,12 @@ void setDefaultValuesToAuthUser(double id, int userType){
 
 void allocateAuthUserMemory(double id, int userType){
     authUser = (AuthUser *) calloc(1, sizeof(AuthUser));
-    
+
     if (authUser == NULL){
         printf("[LOG] Erro ao alocar memória para 'authUser'!\n");
         return; 
     }
-    
+
     setDefaultValuesToAuthUser(id, userType);
 }
 
@@ -34,8 +34,4 @@ void initAuthUser() {
 void freeAuthUser(){
     free(authUser);
     authUser = NULL;
-}
-
-void deallocateAuthUserMemory(){
-    freeAuthUser();
 }

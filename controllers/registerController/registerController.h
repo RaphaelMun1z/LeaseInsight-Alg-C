@@ -3,5 +3,6 @@
 
 int cancelOperationWithString(char value[]);
 void registerTenantForm();
+void registerOwnerForm();
 
 #endif

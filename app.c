@@ -13,6 +13,7 @@
 // Entities
 #include "entities/AuthUser/AuthUser.h"
 #include "entities/Tenant/Tenant.h"
+#include "entities/Owner/Owner.h"
 #include "entities/Residence/Residence.h"
 #include "entities/Contract/Contract.h"
 
@@ -20,27 +21,40 @@
 #include "controllers/registerController/registerController.h"
 #include "controllers/signInController/signInController.h"
 
+void initEntities(){
+    initAuthUser();
+    initTenants();
+    initOwners();
+    initResidences();
+    initContracts();
+}
+
+void freeEntities(){
+    freeTenants();
+    freeOwners();
+    freeAuthUser();
+    freeResidences();
+    freeContracts();
+}
+
+void exitScreen(){
+    cleanInputBuffer();
+    printColorful("\nPressione qualquer tecla para fechar...", 5);
+    getchar();
+}
+
 int main(){
     cleanScreen();
     
-    initAuthUser();
-    initTenants();
-    initResidences();
-    initContracts();
+    initEntities();
     
     startScreen();
-    
-    printColorful("Seja bem-vindo(a)!\n\n", 2);
-    
+    printColorful("Seja bem-vindo(a)!\n", 0);
     initMenuHandler();
     
-    freeTenants();
-    freeResidences();
-    freeContracts();
-
-    cleanInputBuffer();
-    printColorful("\n\nPressione qualquer tecla para fechar...", 5);
-    getchar();
+    freeEntities();
+    
+    exitScreen();    
 
     return 0;
 }
