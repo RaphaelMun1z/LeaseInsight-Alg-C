@@ -4,6 +4,13 @@
 typedef struct {
     double id; // PK
     char name[100];
+    char email[255]; // Unique
+    char password[100];
+} Adm;
+
+typedef struct {
+    double id; // PK
+    char name[100];
     char phone[16];
     char email[255]; // Unique
     char password[100];

@@ -14,6 +14,7 @@ views/menus/ownerMenu/contractManager/contractManager.c ^
 views/menus/registerMenu/registerMenu.c ^
 entities/GenericUser/GenericUser.c ^
 entities/AuthUser/AuthUser.c ^
+entities/Adm/Adm.c ^
 entities/Tenant/Tenant.c ^
 entities/Owner/Owner.c ^
 entities/Residence/Residence.c ^
@@ -22,6 +23,7 @@ controllers/registerController/registerController.c ^
 controllers/signInController/signInController.c ^
 services/stateManagerService/stateManagerService.c ^
 services/userService/userService.c ^
+services/admService/admService.c ^
 services/tenantService/tenantService.c ^
 services/ownerService/ownerService.c ^
 services/authService/authService.c ^

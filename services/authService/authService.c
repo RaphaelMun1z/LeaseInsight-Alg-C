@@ -8,13 +8,33 @@
 #include "../../dtos/dtos.h"
 
 // Entities
+#include "../../entities/Adm/Adm.h"
 #include "../../entities/Tenant/Tenant.h"
 #include "../../entities/Owner/Owner.h"
 
 // Services
 #include "../stateManagerService/stateManagerService.h"
+#include "../admService/admService.h"
 #include "../tenantService/tenantService.h"
 #include "../ownerService/ownerService.h"
+
+void signInAdm(LoginCredentials credentials, AuthUserResponse *userResponse){
+    Adm *adm = findAdmByEmail(credentials.email);
+    
+    if(adm == NULL){
+        userResponse = NULL;
+        return;
+    }
+    
+    if(strcmp(credentials.password, adm->password) != 0){
+        userResponse = NULL;
+        return;
+    }
+    
+    userResponse->id = adm->id;
+    userResponse->userType = 1;
+    strcpy(userResponse->name, adm->name);
+}
 
 void signInTenant(LoginCredentials credentials, AuthUserResponse *userResponse){
     Tenant *tenant = findTenantByEmail(credentials.email);
@@ -55,6 +75,12 @@ void signInOwner(LoginCredentials credentials, AuthUserResponse *userResponse){
 void signInUser(LoginCredentials credentials){
     AuthUserResponse possibleUser;
     possibleUser.id = -1;
+
+    signInAdm(credentials, &possibleUser);
+    if(possibleUser.id != -1){
+        setAuthUser(possibleUser);
+        return;
+    }
     
     signInTenant(credentials, &possibleUser);
     if(possibleUser.id != -1){
