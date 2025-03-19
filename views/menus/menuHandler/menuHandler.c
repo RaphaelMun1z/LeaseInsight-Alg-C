@@ -22,6 +22,8 @@ int redirectToMenu(){
             tenantMenuChoose();
         }else if(user.userType == 2){
             ownerMenuChoose();
+        } else if(user.userType == 1){
+            printf("teste\n");
         }
         return 1;
     }else{

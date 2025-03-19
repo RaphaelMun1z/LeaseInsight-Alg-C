@@ -20,7 +20,7 @@
 
 void signInAdm(LoginCredentials credentials, AuthUserResponse *userResponse){
     Adm *adm = findAdmByEmail(credentials.email);
-    
+
     if(adm == NULL){
         userResponse = NULL;
         return;

@@ -17,7 +17,7 @@ void signInForm(){
     do{
         cleanInputBuffer();
         printColorful("E-mail: ", 5);
-        fgets(credentials.email, 13, stdin);
+        fgets(credentials.email, 255, stdin);
         credentials.email[strcspn(credentials.email, "\n")] = 0;
         
         if(credentials.email[0] == '\0'){
@@ -39,5 +39,6 @@ void signInForm(){
     } while (credentials.password[0] == '\0');
 
     cleanScreen();
+    printf("Credentials.email: %s\n", credentials.email);
     signInUser(credentials);
 }
