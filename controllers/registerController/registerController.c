@@ -95,20 +95,6 @@ void registerTenantForm(){
         }
     } while (newTenant.cpf[0] == '\0');
     
-    do{
-        cleanInputBuffer();
-        printColorful("Data de Nascimento (Ex.: 01/01/2001: ", 5);
-        fgets(newTenant.dateOfBirth, 11, stdin);
-        newTenant.dateOfBirth[strcspn(newTenant.dateOfBirth, "\n")] = 0;
-        
-        if(cancelOperationWithString(newTenant.dateOfBirth)) return;
-        
-        if(newTenant.dateOfBirth[0] == '\0'){
-            cleanScreen();
-            printColorful("\nO Campo 'Data de Nascimento' é obrigatório. Tente novamente.\n\n", 4);
-        }
-    } while (newTenant.dateOfBirth[0] == '\0');
-    
     do {
         do{
             cleanInputBuffer();

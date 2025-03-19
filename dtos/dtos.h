@@ -4,14 +4,13 @@
 typedef struct {
     double id; // PK
     char name[100];
-    char phone[16]; // Unique
+    char phone[16];
     char email[255]; // Unique
     char password[100];
-    char rg[13]; // Unique
-    char cpf[15]; // Unique
+    char rg[13];
+    char cpf[15];
     int tenantStatus;
-    char dateOfBirth[11]; //Desnecessário
-    char registrationDate[11]; //Desnecessário
+    int contractId;
 } Tenant;
 
 typedef struct {
@@ -19,12 +18,23 @@ typedef struct {
     char password[100];
 } LoginCredentials;
 
+typedef struct 
+{
+    double id;
+    int propertyType; 
+    int occupancyStatus; 
+    double rentalValue;
+    // Address
+    int ownerId;
+} Residence;
+
 typedef struct {
     double id; // PK
     char name[100];
-    char phone[16]; // Unique
-    char email[255]; // Unique
+    char phone[16];
+    char email[255];
     char password[100];
+    Residence residences[10];
 } Owner;
 
 typedef struct {
@@ -37,16 +47,6 @@ typedef struct {
     int userType; // 1 = ADM, 2 = OWNER, 3 = TENANT
     char name[100];
 } AuthUserResponse;
-
-typedef struct 
-{
-    double id;
-    int propertyType; 
-    int occupancyStatus; 
-    double rentalValue;
-    // Address
-    Owner owner;
-} Residence;
 
 typedef struct{
     double id;

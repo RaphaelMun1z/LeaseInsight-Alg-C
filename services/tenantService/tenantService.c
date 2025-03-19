@@ -24,8 +24,6 @@ void findAllTenants(){
         printf("RG: %s\n", tenants[ii].rg);
         printf("CPF: %s\n", tenants[ii].cpf);
         printf("Status: %d\n", tenants[ii].tenantStatus);
-        printf("Data de Nascimento: %s\n", tenants[ii].dateOfBirth);
-        printf("Data de Registro: %s\n", tenants[ii].registrationDate);
         printf("\n____\n");
     }
 }
@@ -71,8 +69,7 @@ void createTenant(Tenant tenant){
     strcpy(tenants[registeredTenantsNumber].rg, tenant.rg);
     strcpy(tenants[registeredTenantsNumber].cpf, tenant.cpf);
     tenants[registeredTenantsNumber].tenantStatus = 1;
-    strcpy(tenants[registeredTenantsNumber].dateOfBirth, tenant.dateOfBirth);
-    strcpy(tenants[registeredTenantsNumber].registrationDate, "15/03/2025");
+    tenants[registeredTenantsNumber].contractId = -1;
     registeredTenantsNumber++;
     registeredUsersNumber++;
     

@@ -9,6 +9,10 @@
 // Services
 #include "../../../services/stateManagerService/stateManagerService.h"
 
+// Views
+#include "./residenceManager/residenceManager.h"
+#include "./contractManager/contractManager.h"
+
 int ownerMenu(){
     int option;
     do{
@@ -16,19 +20,18 @@ int ownerMenu(){
         (getAuthUserName() != NULL) ? strcpy(name, getAuthUserName()) : strcpy(name, "Não foi possível carregar.");
         snprintf(message, sizeof(message), "\n%s, de que forma posso auxiliar? \n", name);
         printColorful(message, 3);
-        printColorful("1 -> Gostaria de acessar minhas propriedades.\n", 5);
-        printColorful("2 -> Gostaria de acessar detalhes de uma propriedade.\n", 5);
-        printColorful("3 -> Gostaria de remover uma propriedade.\n", 5);
-        printColorful("4 -> Gostaria de sair da minha conta.\n", 1);
+        printColorful("1 -> Gostaria de gerenciar propriedades.\n", 5);
+        printColorful("2 -> Gostaria de gerenciar contratos.\n", 5);
+        printColorful("3 -> Gostaria de sair da minha conta.\n", 1);
         
         option = getch();
         option -= '0';
         
-        if(option < 1 || option > 4){
+        if(option < 1 || option > 3){
             cleanScreen();
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
-    } while(option < 1 || option > 4);
+    } while(option < 1 || option > 3);
     cleanScreen();
     return option;
 }
@@ -37,21 +40,14 @@ void ownerMenuChoose(){
     switch (ownerMenu())
     {
         case 1:
-        printf("Opção 1\n");
-        // Opção 1
+        residenceManagerMenu();
         break;
         
         case 2:
-        printf("Opção 2\n");
-        // Opção 2
-        break;
-
-        case 3:
-        printf("Opção 3\n");
-        // Opção 3
+        contractManagerMenu();
         break;
         
-        case 4:
+        case 3:
         logoutAuthUser();
         break;
         

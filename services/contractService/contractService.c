@@ -24,7 +24,6 @@ void findAllContracts(){
         printf("Dia de vencimento: %d\n", contracts[ii].invoiceDueDate);
         printf("\n____\n");
     }
-    
 }
 
 Contract *findContractById(double id){

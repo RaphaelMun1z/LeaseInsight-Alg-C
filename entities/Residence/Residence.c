@@ -21,6 +21,7 @@ typedef struct {
 } Residence;
 
 Residence *residences;
+int residencesLength = 0;
 
 void initResidences() {
     residences = (Residence *) calloc(5, sizeof(Residence));
