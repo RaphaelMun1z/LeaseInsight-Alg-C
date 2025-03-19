@@ -10,8 +10,8 @@ typedef struct {
     char rg[13]; // Unique
     char cpf[15]; // Unique
     int tenantStatus;
-    char dateOfBirth[11]; 
-    char registrationDate[11];
+    char dateOfBirth[11]; //Desnecessário
+    char registrationDate[11]; //Desnecessário
 } Tenant;
 
 typedef struct {
@@ -37,5 +37,26 @@ typedef struct {
     int userType; // 1 = ADM, 2 = OWNER, 3 = TENANT
     char name[100];
 } AuthUserResponse;
+
+typedef struct 
+{
+    double id;
+    int propertyType; 
+    int occupancyStatus; 
+    double rentalValue;
+    // Address
+    Owner owner;
+} Residence;
+
+typedef struct{
+    double id;
+    char contractStartDate[11];
+    char contractEndDate[11];
+    double defaultRentalValue;
+    int contractStatus;
+    int invoiceDueDate;
+    Residence residence;
+    Tenant tenant;
+} Contract;
 
 #endif

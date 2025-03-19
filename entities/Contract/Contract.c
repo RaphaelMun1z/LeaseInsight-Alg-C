@@ -11,6 +11,7 @@ typedef struct {
 } Contract;
 
 Contract *contracts;
+int contractsLength = 0;
 
 void initContracts() {
     contracts = (Contract *) calloc(5, sizeof(Contract));
