@@ -5,11 +5,13 @@
 #include "../../utils/printColorful/printColorful.h"
 
 // Entities
+#include "../../entities/GenericUser/GenericUser.h"
 #include "../../entities/Owner/Owner.h"
 
 // Services
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
+#include "../userService/userService.h"
 
 void findAllOwners(){
     if(registeredOwnersNumber == 0)
@@ -44,15 +46,15 @@ Owner *findOwnerByEmail(char email[]){
 }
 
 void createOwner(Owner owner){
-    if(findOwnerByEmail(owner.email) != NULL)
-    return printColorful("Proprietário já cadastrado!\n", 1);
+    if(userAlreadyRegistered(owner.email)) return;
     
-    owners[registeredOwnersNumber].id = registeredOwnersNumber + 1;
+    owners[registeredOwnersNumber].id = registeredUsersNumber + 1;
     strcpy(owners[registeredOwnersNumber].name, owner.name);
     strcpy(owners[registeredOwnersNumber].phone, owner.phone);
     strcpy(owners[registeredOwnersNumber].email, owner.email);
     strcpy(owners[registeredOwnersNumber].password, owner.password);
     registeredOwnersNumber++;
+    registeredUsersNumber++;
     
     char tempName[100];
     strncpy(tempName, owner.name, strcspn(owner.name, "\n"));

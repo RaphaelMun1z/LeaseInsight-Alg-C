@@ -5,11 +5,13 @@
 #include "../../utils/printColorful/printColorful.h"
 
 // Entities
+#include "../../entities/GenericUser/GenericUser.h"
 #include "../../entities/Tenant/Tenant.h"
 
 // Services
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
+#include "../userService/userService.h"
 
 void findAllTenants(){
     if(registeredTenantsNumber == 0)
@@ -59,10 +61,9 @@ Tenant *findTenantByRg(char rg[]){
 }
 
 void createTenant(Tenant tenant){
-    if(findTenantByEmail(tenant.email) != NULL)
-    return printColorful("Inquilino já cadastrado!\n", 1);
+    if(userAlreadyRegistered(tenant.email)) return;
     
-    tenants[registeredTenantsNumber].id = registeredTenantsNumber + 1;
+    tenants[registeredTenantsNumber].id = registeredUsersNumber + 1;
     strcpy(tenants[registeredTenantsNumber].name, tenant.name);
     strcpy(tenants[registeredTenantsNumber].phone, tenant.phone);
     strcpy(tenants[registeredTenantsNumber].email, tenant.email);
@@ -73,6 +74,7 @@ void createTenant(Tenant tenant){
     strcpy(tenants[registeredTenantsNumber].dateOfBirth, tenant.dateOfBirth);
     strcpy(tenants[registeredTenantsNumber].registrationDate, "15/03/2025");
     registeredTenantsNumber++;
+    registeredUsersNumber++;
     
     char tempName[100];
     strncpy(tempName, tenant.name, strcspn(tenant.name, "\n"));
