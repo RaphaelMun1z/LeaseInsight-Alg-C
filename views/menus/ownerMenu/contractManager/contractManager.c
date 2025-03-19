@@ -6,6 +6,9 @@
 #include "../../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../../utils/printColorful/printColorful.h"
 
+// Controllers
+#include "../../../../controllers/registerContractController/registerContractController.h"
+
 // Services
 #include "../../../../services/stateManagerService/stateManagerService.h"
 
@@ -33,16 +36,18 @@ int contractManagerMenu(){
 }
 
 void contractManagerMenuChoose(){
+    printf("Teste: %d\n", contractManagerMenu());
+    return;
     switch (contractManagerMenu())
     {
         case 1:
-        printf("Opção 1\n");
+        printf("Opção 1 teste\n");
         // Opção 1
         break;
         
         case 2:
-        printf("Opção 2\n");
-        // Opção 2
+        printf("chegou aq contract\n");
+        registerContractForm();
         break;
         
         case 3:

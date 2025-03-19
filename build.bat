@@ -4,6 +4,7 @@ gcc app.c ^
 utils/printColorful/printColorful.c ^
 utils/cleanScreen/cleanScreen.c ^
 utils/cleanInputBuffer/cleanInputBuffer.c ^
+utils/cancelOperation/cancelOperation.c ^
 views/startScreen/startScreen.c ^
 views/menus/menuHandler/menuHandler.c ^
 views/menus/mainMenu/mainMenu.c ^
@@ -22,11 +23,13 @@ entities/Residence/Residence.c ^
 entities/Contract/Contract.c ^
 controllers/registerController/registerController.c ^
 controllers/signInController/signInController.c ^
+controllers/registerContractController/registerContractController.c ^
 services/stateManagerService/stateManagerService.c ^
 services/userService/userService.c ^
 services/admService/admService.c ^
 services/tenantService/tenantService.c ^
 services/ownerService/ownerService.c ^
+services/contractService/contractService.c ^
 services/authService/authService.c ^
 -o application
 

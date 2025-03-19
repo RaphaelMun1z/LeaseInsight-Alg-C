@@ -62,8 +62,8 @@ typedef struct{
     double defaultRentalValue;
     int contractStatus;
     int invoiceDueDate;
-    Residence residence;
-    Tenant tenant;
+    Residence *residence;
+    Tenant *tenant;
 } Contract;
 
 #endif

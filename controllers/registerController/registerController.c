@@ -5,18 +5,11 @@
 #include "../../utils/cleanInputBuffer/cleanInputBuffer.h"
 #include "../../utils/printColorful/printColorful.h"
 #include "../../utils/cleanScreen/cleanScreen.h"
+#include "../../utils/cancelOperation/cancelOperation.h"
 
 // Services
 #include "../../services/tenantService/tenantService.h"
 #include "../../services/ownerService/ownerService.h"
-
-int cancelOperationWithString(char value[]){
-    if(strcasecmp(value, "sair") == 0){
-        printColorful("\nCancelando operação...\n", 5);
-        return 1;
-    }
-    return 0;
-}
 
 void registerTenantForm(){
     Tenant newTenant;
