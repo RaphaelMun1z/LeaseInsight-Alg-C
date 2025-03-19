@@ -14,19 +14,20 @@ int residenceManagerMenu(){
     do{
         printColorful("Gerenciando propriedades. Você pode: \n", 3);
         printColorful("1 -> Acessar minhas propriedades.\n", 5);
-        printColorful("2 -> Acessar detalhes de uma propriedade.\n", 5);
-        printColorful("3 -> Alterar uma propriedade.\n", 5);
-        printColorful("4 -> Remover uma propriedade.\n", 5);
-        printColorful("5 -> Voltar.\n", 1);
+        printColorful("2 -> Cadastrar propriedade.\n", 5);
+        printColorful("3 -> Acessar detalhes de uma propriedade.\n", 5);
+        printColorful("4 -> Alterar uma propriedade.\n", 5);
+        printColorful("5 -> Remover uma propriedade.\n", 5);
+        printColorful("6 -> Voltar.\n", 1);
         
         option = getch();
         option -= '0';
         
-        if(option < 1 || option > 5){
+        if(option < 1 || option > 6){
             cleanScreen();
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
-    } while(option < 1 || option > 5);
+    } while(option < 1 || option > 6);
     cleanScreen();
     return option;
 }

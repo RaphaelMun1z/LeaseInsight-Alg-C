@@ -39,6 +39,5 @@ void signInForm(){
     } while (credentials.password[0] == '\0');
 
     cleanScreen();
-    printf("Credentials.email: %s\n", credentials.email);
     signInUser(credentials);
 }

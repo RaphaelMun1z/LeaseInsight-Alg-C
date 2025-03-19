@@ -51,6 +51,14 @@ void exitScreen(){
     getchar();
 }
 
+void mockRegisterAdm(){
+    Adm adm;
+    strcpy(adm.email, "teste@gmail.com");
+    strcpy(adm.name, "irineu");
+    strcpy(adm.password, "teste123");
+    createAdm(adm);
+}
+
 int main(){
     cleanScreen();
     
@@ -59,11 +67,7 @@ int main(){
     startScreen();
     printColorful("Seja bem-vindo(a)!\n", 0);
 
-    Adm adm;
-    strcpy(adm.email, "teste@gmail.com");
-    strcpy(adm.name, "irineu");
-    strcpy(adm.password, "teste123");
-    createAdm(adm);
+    mockRegisterAdm();
     
     initMenuHandler();
     

@@ -54,14 +54,6 @@ void createAdm(Adm adm){
     registeredAdmsNumber++;
     registeredUsersNumber++;
     
-    char tempName[100];
-    strncpy(tempName, adm.name, strcspn(adm.name, "\n"));
-    tempName[strcspn(adm.name, "\n")] = '\0'; 
-    
-    char welcomeText[200];
-    snprintf(welcomeText, sizeof(welcomeText), "\n%s, você foi registrado como ADMINISTRADOR!\n", tempName);
-    printColorful(welcomeText, 2);
-    
     if(registeredAdmsNumber == admsCurrentLimit)
     allocateMoreSpaceAdm();
 }

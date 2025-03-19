@@ -14,19 +14,20 @@ int contractManagerMenu(){
     do{
         printColorful("Gerenciando contratos. Você pode: \n", 3);
         printColorful("1 -> Acessar meus contratos.\n", 5);
-        printColorful("2 -> Acessar detalhes de um contrato.\n", 5);
-        printColorful("3 -> Alterar um contrato.\n", 5);
-        printColorful("4 -> Remover um contrato.\n", 5);
-        printColorful("5 -> Voltar.\n", 1);
+        printColorful("2 -> Cadastrar contrato.\n", 5);
+        printColorful("3 -> Acessar detalhes de um contrato.\n", 5);
+        printColorful("4 -> Alterar um contrato.\n", 5);
+        printColorful("5 -> Remover um contrato.\n", 5);
+        printColorful("6 -> Voltar.\n", 1);
         
         option = getch();
         option -= '0';
         
-        if(option < 1 || option > 5){
+        if(option < 1 || option > 6){
             cleanScreen();
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
-    } while(option < 1 || option > 5);
+    } while(option < 1 || option > 6);
     cleanScreen();
     return option;
 }
