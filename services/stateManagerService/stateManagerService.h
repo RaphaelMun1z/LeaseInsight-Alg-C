@@ -5,7 +5,7 @@
 #include "../../dtos/dtos.h"
 
 AuthUser *getAuthUser();
-char* getAuthUserName();
+char *getAuthUserName();
 void setAuthUser(AuthUserResponse userResponse);
 void logoutAuthUser();
 

@@ -45,7 +45,6 @@ void exitScreen(){
 
 int main(){
     // Erros:
-    // Deve-se mudar o esquema de atribuição de ID's para as entidades, nesse momento, dois tipos de entidades distintos podem conter o mesmo ID, o que quebra o programa
     // Não apareçe o nome do Owner no menu
     cleanScreen();
     

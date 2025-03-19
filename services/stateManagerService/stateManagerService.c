@@ -13,6 +13,7 @@
 
 // Services
 #include "../tenantService/tenantService.h"
+#include "../ownerService/ownerService.h"
 
 AuthUser *getAuthUser(){
     if(authUser == NULL)
@@ -24,7 +25,7 @@ AuthUser *getAuthUser(){
     return authUser;
 }
 
-char* getAuthUserName(){ 
+char *getAuthUserName(){ 
     AuthUser *user = getAuthUser();
     static char name[100]; 
     
@@ -34,6 +35,12 @@ char* getAuthUserName(){
     if(user->userType == 3){
         Tenant *tenant = findTenantById(user->id);
         strcpy(name, tenant->name);
+        return name;
+    }
+
+    if(user->userType == 2){
+        Owner *owner = findOwnerById(user->id);
+        strcpy(name, owner->name);
         return name;
     }
     
