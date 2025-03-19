@@ -4,6 +4,7 @@
 #include "../mainMenu/mainMenu.h"
 #include "../tenantMenu/tenantMenu.h"
 #include "../ownerMenu/ownerMenu.h"
+#include "../admMenu/admMenu.h"
 
 // Services
 #include "../../../services/stateManagerService/stateManagerService.h"
@@ -23,7 +24,7 @@ int redirectToMenu(){
         }else if(user.userType == 2){
             ownerMenuChoose();
         } else if(user.userType == 1){
-            printf("teste\n");
+            admMenuChoose();
         }
         return 1;
     }else{

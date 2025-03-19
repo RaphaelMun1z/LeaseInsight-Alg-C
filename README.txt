@@ -19,6 +19,7 @@ views/menus/menuHandler/menuHandler.c ^
 views/menus/mainMenu/mainMenu.c ^
 views/menus/tenantMenu/tenantMenu.c ^
 views/menus/ownerMenu/ownerMenu.c ^
+views/menus/admMenu/admMenu.c ^
 views/menus/ownerMenu/residenceManager/residenceManager.c ^
 views/menus/ownerMenu/contractManager/contractManager.c ^
 views/menus/registerMenu/registerMenu.c ^
