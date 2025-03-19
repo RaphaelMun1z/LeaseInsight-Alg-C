@@ -1,14 +1,8 @@
 #ifndef CONTRACT_H
 #define CONTRACT_H
 
-typedef struct {
-    double id;
-    int contractStatus;
-    double defaultRentalValue;
-    int invoiceDueDate;
-    char contractStartDate[11];
-    char contractEndDate[11];
-} Contract;
+// DTOs
+#include "../../dtos/dtos.h"
 
 extern Contract *contracts;
 extern int contractsLength;
