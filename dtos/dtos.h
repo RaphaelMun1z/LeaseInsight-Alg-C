@@ -31,17 +31,15 @@ typedef struct
     int propertyType; 
     int occupancyStatus; 
     double rentalValue;
-    // Address
     int ownerId;
 } Residence;
 
-typedef struct {
+typedef struct Owner {
     double id; // PK
     char name[100];
     char phone[16];
     char email[255];
     char password[100];
-    Residence residences[10];
 } Owner;
 
 typedef struct {
