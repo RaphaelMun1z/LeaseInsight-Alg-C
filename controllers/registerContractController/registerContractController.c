@@ -10,6 +10,7 @@
 // Services
 #include "../../services/contractService/contractService.h"
 #include "../../services/tenantService/tenantService.h"
+#include "../../services/residenceService/residenceService.h"
 
 void registerContractForm(){
     Contract newContract;
@@ -97,7 +98,7 @@ void registerContractForm(){
             cleanScreen();
             printColorful("\nO Campo 'Código da propriedade' é obrigatório. Tente novamente.\n\n", 4);
         }else{
-            // Verificar se propriedade existe aqui!!!
+            propertyFound = findResidenceById(propertyId);
             if(propertyFound == NULL){
                 cleanScreen();
                 printColorful("\nO código informado é inválido. Tente novamente.\n\n", 4);

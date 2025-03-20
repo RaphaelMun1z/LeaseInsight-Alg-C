@@ -6,6 +6,9 @@
 #include "../../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../../utils/printColorful/printColorful.h"
 
+// Controllers
+#include "../../../../controllers/registerResidenceController/registerResidenceController.h"
+
 // Services
 #include "../../../../services/stateManagerService/stateManagerService.h"
 
@@ -41,8 +44,7 @@ void residenceManagerMenuChoose(){
         break;
         
         case 2:
-        printf("Opção 2\n");
-        // Opção 2
+        registerResidenceForm();
         break;
         
         case 3:

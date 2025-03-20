@@ -24,12 +24,14 @@ entities/Contract/Contract.c ^
 controllers/registerController/registerController.c ^
 controllers/signInController/signInController.c ^
 controllers/registerContractController/registerContractController.c ^
+controllers/registerResidenceController/registerResidenceController.c ^
 services/stateManagerService/stateManagerService.c ^
 services/userService/userService.c ^
 services/admService/admService.c ^
 services/tenantService/tenantService.c ^
 services/ownerService/ownerService.c ^
 services/contractService/contractService.c ^
+services/residenceService/residenceService.c ^
 services/authService/authService.c ^
 -o application
 

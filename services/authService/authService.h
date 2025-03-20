@@ -4,8 +4,9 @@
 // DTOs
 #include "../../dtos/dtos.h"
 
-void signInTenant(LoginCredentials credentials, AuthUserResponse userResponse);
-void signInOwner(LoginCredentials credentials, AuthUserResponse userResponse);
+void signInAdm(LoginCredentials credentials, AuthUserResponse *userResponse);
+void signInTenant(LoginCredentials credentials, AuthUserResponse *userResponse);
+void signInOwner(LoginCredentials credentials, AuthUserResponse *userResponse);
 void signInUser(LoginCredentials credentials);
 
 #endif
