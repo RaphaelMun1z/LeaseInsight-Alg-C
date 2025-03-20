@@ -10,8 +10,8 @@
 #include "../../../services/stateManagerService/stateManagerService.h"
 
 // Views
-#include "./residenceManager/residenceManager.h"
-#include "./contractManager/contractManager.h"
+#include "./residenceManagerMenu/residenceManagerMenu.h"
+#include "./contractManagerMenu/contractManagerMenu.h"
 
 int ownerMenu(){
     int option;

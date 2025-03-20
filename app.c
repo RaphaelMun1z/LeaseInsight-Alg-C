@@ -47,7 +47,7 @@ void freeEntities(){
 
 void exitScreen(){
     cleanInputBuffer();
-    printColorful("\nPressione qualquer tecla para fechar...", 5);
+    printColorful("\nPressione enter para fechar...", 5);
     getchar();
 }
 
