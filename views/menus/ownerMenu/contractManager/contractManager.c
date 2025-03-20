@@ -36,8 +36,6 @@ int contractManagerMenu(){
 }
 
 void contractManagerMenuChoose(){
-    printf("Teste: %d\n", contractManagerMenu());
-    return;
     switch (contractManagerMenu())
     {
         case 1:
@@ -46,7 +44,6 @@ void contractManagerMenuChoose(){
         break;
         
         case 2:
-        printf("chegou aq contract\n");
         registerContractForm();
         break;
         

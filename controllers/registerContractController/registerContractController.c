@@ -61,7 +61,7 @@ void registerContractForm(){
     do {
         cleanInputBuffer();
         printColorful("Status [1 - Ativo | 2 - Inativo | 3 - Aprovação pendente]: ", 5);
-        scanf("%lf", &newContract.contractStatus);
+        scanf("%d", &newContract.contractStatus);
         
         if(cancelOperationWithInt(newContract.contractStatus)) return;
         
@@ -74,7 +74,7 @@ void registerContractForm(){
     do {
         cleanInputBuffer();
         printColorful("Dia de vencimento da mensalidade: ", 5);
-        scanf("%lf", &newContract.invoiceDueDate);
+        scanf("%d", &newContract.invoiceDueDate);
         
         if(cancelOperationWithInt(newContract.invoiceDueDate)) return;
         

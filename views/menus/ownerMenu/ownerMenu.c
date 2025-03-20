@@ -40,13 +40,13 @@ void ownerMenuChoose(){
     switch (ownerMenu())
     {
         case 1:
-        residenceManagerMenu();
+        residenceManagerMenuChoose();
         break;
         
         case 2:
-        contractManagerMenu();
+        contractManagerMenuChoose();
         break;
-        
+
         case 3:
         logoutAuthUser();
         break;

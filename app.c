@@ -60,6 +60,7 @@ void mockRegisterAdm(){
 }
 
 int main(){
+    // Falta completar o servico de criação de contrato (nesse momento o service de encontrar Residence pelo id nao existe)
     cleanScreen();
     
     initEntities();
