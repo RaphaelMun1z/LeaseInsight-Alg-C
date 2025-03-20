@@ -101,12 +101,13 @@ void registerContractForm(){
             propertyFound = findResidenceById(propertyId);
             if(propertyFound == NULL){
                 cleanScreen();
-                printColorful("\nO código informado é inválido. Tente novamente.\n\n", 4);
+                printColorful("\nO código informado é inválido. Tente novamente.\n", 4);
+                printColorful("\n[DICA] Para cancelar operação, digite: '-1'\n\n", 5);
             }
         }
     } while (propertyId < 1 || propertyFound == NULL);
     newContract.residence = propertyFound;
-
+    
     double tenantId;
     Tenant *tenantFound = NULL;
     do {
@@ -123,7 +124,8 @@ void registerContractForm(){
             tenantFound = findTenantById(tenantId);
             if(tenantFound == NULL){
                 cleanScreen();
-                printColorful("\nO código informado é inválido. Tente novamente.\n\n", 4);
+                printColorful("\nO código informado é inválido. Tente novamente.\n", 4);
+                printColorful("\n[DICA] Para cancelar operação, digite: '-1'\n\n", 5);
             }
         }
     } while (tenantId < 1 || tenantFound == NULL);

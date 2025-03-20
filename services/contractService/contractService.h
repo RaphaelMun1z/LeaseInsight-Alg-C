@@ -9,4 +9,6 @@ Contract *findContractById(double id);
 void changeContractStatus(double id, int status);
 void createContract(Contract contract); 
 
+void findContractsByOwner(double id);
+
 #endif

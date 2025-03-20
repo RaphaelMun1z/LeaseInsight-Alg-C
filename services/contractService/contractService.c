@@ -17,13 +17,43 @@ void findAllContracts(){
 	
 	for (int ii = 0; ii < contractsLength; ii++){
 		printf("\nID: %.0lf\n", contracts[ii].id);
-		printf("Status: %d\n", contracts[ii].contractStatus);
+		printf("Status: ", contracts[ii].contractStatus);
+		if (contracts[ii].contractStatus == 1) printColorful("Ativo\n", 2);
+		else if (contracts[ii].contractStatus == 2) printColorful("Inativo\n", 1);
+		else if (contracts[ii].contractStatus == 3) printColorful("Aprovação pendente\n", 4);
+		else printColorful("Desconhecido\n", 5); 
 		printf("Valor do aluguel: %.2lf\n", contracts[ii].defaultRentalValue);
 		printf("Data de início: %s\n", contracts[ii].contractStartDate);
 		printf("Data de término: %s\n", contracts[ii].contractEndDate);
 		printf("Dia de vencimento: %d\n", contracts[ii].invoiceDueDate);
 		printf("\n____\n");
 	}
+}
+
+void findContractsByOwner(double ownerId){
+	int contractsFound = 0;
+	
+	for (int ii = 0; ii < contractsLength; ii++){
+		if(contracts[ii].residence->ownerId == ownerId){
+			printf("\nID: %.0lf\n", contracts[ii].id);
+			printf("Status: ", contracts[ii].contractStatus);
+			if (contracts[ii].contractStatus == 1) printColorful("Ativo\n", 2);
+			else if (contracts[ii].contractStatus == 2) printColorful("Inativo\n", 1);
+			else if (contracts[ii].contractStatus == 3) printColorful("Aprovação pendente\n", 4);
+			else printColorful("Desconhecido\n", 5); 
+			printf("Valor do aluguel: %.2lf\n", contracts[ii].defaultRentalValue);
+			printf("Data de início: %s\n", contracts[ii].contractStartDate);
+			printf("Data de término: %s\n", contracts[ii].contractEndDate);
+			printf("Dia de vencimento: %d\n", contracts[ii].invoiceDueDate);
+			printf("Nome do Inquilino: %s\n", contracts[ii].tenant->name);
+			printf("E-mail do Inquilino: %s\n", contracts[ii].tenant->email);
+			printf("Código da propriedade: %.0lf\n", contracts[ii].residence->id);
+			printf("\n____\n");
+		}
+	}
+	
+	if(contractsFound == 0)
+	return printColorful("Não há contratos registrados.\n", 4);
 }
 
 Contract *findContractById(double id){

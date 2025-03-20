@@ -69,7 +69,6 @@ void createTenant(Tenant tenant){
     strcpy(tenants[registeredTenantsNumber].rg, tenant.rg);
     strcpy(tenants[registeredTenantsNumber].cpf, tenant.cpf);
     tenants[registeredTenantsNumber].tenantStatus = 1;
-    tenants[registeredTenantsNumber].contractId = -1;
     registeredTenantsNumber++;
     registeredUsersNumber++;
     

@@ -17,7 +17,6 @@ typedef struct {
     char rg[13];
     char cpf[15];
     int tenantStatus;
-    int contractId;
 } Tenant;
 
 typedef struct {

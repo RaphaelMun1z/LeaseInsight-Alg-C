@@ -1,14 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct {
-    double id;
-    int contractStatus;
-    double defaultRentalValue;
-    int invoiceDueDate;
-    char contractStartDate[11];
-    char contractEndDate[11];
-} Contract;
+// DTOs
+#include "../../dtos/dtos.h"
 
 Contract *contracts;
 int contractsLength = 0;

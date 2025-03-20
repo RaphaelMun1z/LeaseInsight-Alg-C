@@ -6,11 +6,15 @@
 #include "../../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../../utils/printColorful/printColorful.h"
 
+// Entities
+#include "../../../../entities/AuthUser/AuthUser.h"
+
 // Controllers
 #include "../../../../controllers/registerContractController/registerContractController.h"
 
 // Services
 #include "../../../../services/stateManagerService/stateManagerService.h"
+#include "../../../../services/ContractService/ContractService.h"
 
 int contractManagerMenu(){
     int option;
@@ -39,8 +43,7 @@ void contractManagerMenuChoose(){
     switch (contractManagerMenu())
     {
         case 1:
-        printf("Opção 1 teste\n");
-        // Opção 1
+        findContractsByOwner(authUser->id);
         break;
         
         case 2:
