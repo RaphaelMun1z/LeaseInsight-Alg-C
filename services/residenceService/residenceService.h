@@ -9,4 +9,6 @@ Residence *findResidenceById(double id);
 void changeResidenceOccupancyStatus(double id, int status);
 void createResidence(Residence residence); 
 
+void findResidencesByOwner(double id);
+
 #endif

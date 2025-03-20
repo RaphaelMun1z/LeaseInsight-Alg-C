@@ -6,11 +6,15 @@
 #include "../../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../../utils/printColorful/printColorful.h"
 
+// Entities
+#include "../../../../entities/AuthUser/AuthUser.h"
+
 // Controllers
 #include "../../../../controllers/registerResidenceController/registerResidenceController.h"
 
 // Services
 #include "../../../../services/stateManagerService/stateManagerService.h"
+#include "../../../../services/residenceService/residenceService.h"
 
 int residenceManagerMenu(){
     int option;
@@ -39,8 +43,7 @@ void residenceManagerMenuChoose(){
     switch (residenceManagerMenu())
     {
         case 1:
-        printf("Opção 1\n");
-        // Opção 1
+        findResidencesByOwner(authUser->id);
         break;
         
         case 2:
