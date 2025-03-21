@@ -19,6 +19,7 @@ void deleteContract(double id);
 void printContract(Contract c);
 void printContractById(double id);
 void findContractsByOwner(double id);
+void findContractsByTenant(double id);
 void changeContractStatus(double id, int status);
 
 void findAllContracts(){
@@ -119,6 +120,20 @@ void findContractsByOwner(double ownerId){
 	return printColorful("Não há contratos registrados.\n", 4);
 }
 
+void findContractsByTenant(double tenantId){
+	int contractsFound = 0;
+	
+	for (int ii = 0; ii < contractsLength; ii++){
+		if(contracts[ii].tenant->id == tenantId){
+			contractsFound++;
+			printContract(contracts[ii]);
+		}
+	}
+	
+	if(contractsFound == 0)
+	return printColorful("Não há contratos registrados.\n", 4);
+}
+
 void changeContractStatus(double id, int newStatus){
 	if(newStatus < 1 || newStatus > 3)
 	return printColorful("Valor de status desconhecido.\n", 1);
@@ -132,4 +147,3 @@ void changeContractStatus(double id, int newStatus){
 
 	printColorful("Contrato atualizado com sucesso!\n", 2);
 }
-

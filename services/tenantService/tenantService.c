@@ -12,6 +12,7 @@
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
 #include "../userService/userService.h"
+#include "../contractService/contractService.h"
 
 void findAllTenants(){
     if(registeredTenantsNumber == 0)
@@ -88,4 +89,14 @@ void createTenant(Tenant tenant){
     strcpy(credentials.password, tenant.password);
     
     signInUser(credentials);
+}
+
+int isTenantAssociatedToContract(int tenantId, int contractId){
+    Contract *c = findContractById(contractId);
+    
+    if(c->tenant->id != tenantId){
+        return 0;
+    }
+    
+    return 1;
 }

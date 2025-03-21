@@ -6,8 +6,13 @@
 #include "../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../utils/printColorful/printColorful.h"
 
+// Entities
+#include "../../../entities/AuthUser/AuthUser.h"
+
 // Services
 #include "../../../services/stateManagerService/stateManagerService.h"
+#include "../../../services/contractService/contractService.h"
+#include "../../../services/tenantService/tenantService.h"
 
 int tenantMenu(){
     int option;
@@ -37,15 +42,32 @@ void tenantMenuChoose(){
     switch (tenantMenu())
     {
         case 1:
-        printf("Opção 1\n");
-        // Opção 1
+        findContractsByTenant(authUser->id);
+        tenantMenuChoose();
         break;
         
-        case 2:
-        printf("Opção 2\n");
-        // Opção 2
-        break;
+        case 2: {
+            double contractId;
+            printColorful("Informe o ID do contrato: ", 3);
+            scanf("%lf", &contractId);
+            
+            if(!contractExistsById(contractId)){
+                printColorful("Contrato não encontrado.\n\n", 1);
+                tenantMenuChoose();
+                return;
+            }
 
+            if(!isTenantAssociatedToContract(authUser->id, contractId)){
+                printColorful("Contrato não encontrado.\n\n", 1);
+                tenantMenuChoose();
+                return;
+            }
+            
+            printContractById(contractId);
+            tenantMenuChoose();
+            break;
+        }
+        
         case 3:
         printf("Opção 3\n");
         // Opção 3

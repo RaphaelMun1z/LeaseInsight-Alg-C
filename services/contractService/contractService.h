@@ -13,6 +13,7 @@ void printContract(Contract c);
 void printContractById(double id);
 int contractExistsById(double id);
 void findContractsByOwner(double id);
+void findContractsByTenant(double id);
 void changeContractStatus(double id, int status);
 
 #endif

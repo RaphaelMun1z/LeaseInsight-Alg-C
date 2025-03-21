@@ -10,6 +10,9 @@ int contractsCurrentLimit = 5;
 
 void initContracts() {
     contracts = (Contract *) calloc(5, sizeof(Contract));
+    
+    contracts->residence = (Residence *) calloc(1, sizeof(Residence));
+    contracts->tenant = (Tenant *) calloc(1, sizeof(Tenant));
 
     if (contracts == NULL) {
         printf("[LOG] Erro ao alocar memória para 'contracts'!\n");
