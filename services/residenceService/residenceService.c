@@ -13,55 +13,31 @@
 #include "../authService/authService.h"
 #include "../ownerService/ownerService.h"
 
+void printResidence(Residence r){
+	printf("\nID: %.0lf\n", r.id);
+	printf("Valor locação: R$%.2lf\n", r.rentalValue);
+	int tipo = r.propertyType;
+	printf("Tipo de imóvel: ");
+	if (tipo == 1) printf("Casa\n");
+	else if (tipo == 2) printf("Apartamento\n");
+	else if (tipo == 3) printf("Outros\n");
+	else printf("Inválido\n");
+	printf("Status: ");
+	int status = r.occupancyStatus;
+	if (status == 1) printf("Ocupado\n");
+	else if (status == 2) printf("Livre\n");
+	else if (status == 3) printf("Saída pendente\n");
+	else printf("Inválido\n");
+	printf("\n____\n");
+}
+
 void findAllResidences(){
 	if(residencesLength == 0)
 	return printColorful("Não há residencias registradas.\n", 4);
 	
 	for (int ii = 0; ii < residencesLength; ii++){
-		printf("\nID: %.0lf\n", residences[ii].id);
-		printf("Valor locação: R$%.2lf\n", residences[ii].rentalValue);
-		int tipo = residences[ii].propertyType;
-		printf("Tipo de imóvel: ");
-		if (tipo == 1) printf("Casa\n");
-		else if (tipo == 2) printf("Apartamento\n");
-		else if (tipo == 3) printf("Outros\n");
-		else printf("Inválido\n");
-		printf("Status: ");
-		int status = residences[ii].occupancyStatus;
-		if (status == 1) printf("Ocupado\n");
-		else if (status == 2) printf("Livre\n");
-		else if (status == 3) printf("Saída pendente\n");
-		else printf("Inválido\n");
-		printf("\n____\n");
+		printResidence(residences[ii]);
 	}
-}
-
-// Falta limitar para os imoveis do owner
-void findResidencesByOwner(double ownerId){
-	int residencesFound = 0;
-	for (int ii = 0; ii < residencesLength; ii++){
-		if(residences[ii].ownerId == ownerId){
-			residencesFound++;
-			printf("\nID: %.0lf\n", residences[ii].id);
-			printf("Valor locação: R$%.2lf\n", residences[ii].rentalValue);
-			int tipo = residences[ii].propertyType;
-			printf("Tipo de imóvel: ");
-			if (tipo == 1) printf("Casa\n");
-			else if (tipo == 2) printf("Apartamento\n");
-			else if (tipo == 3) printf("Outros\n");
-			else printf("Inválido\n");
-			printf("Status: ");
-			int status = residences[ii].occupancyStatus;
-			if (status == 1) printf("Ocupado\n");
-			else if (status == 2) printf("Livre\n");
-			else if (status == 3) printf("Saída pendente\n");
-			else printf("Inválido\n");
-			printf("\n____\n");
-		}
-	}
-
-	if(residencesFound == 0)
-	return printColorful("Não há residencias registradas.\n", 4);
 }
 
 Residence *findResidenceById(double id){
@@ -92,4 +68,17 @@ void createResidence(Residence residence){
 
 void changeResidenceOccupancyStatus(double id, int status){
 	
+}
+
+void findResidencesByOwner(double ownerId){
+	int residencesFound = 0;
+	for (int ii = 0; ii < residencesLength; ii++){
+		if(residences[ii].ownerId == ownerId){
+			residencesFound++;
+			printResidence(residences[ii]);
+		}
+	}
+	
+	if(residencesFound == 0)
+	return printColorful("Não há residencias registradas.\n", 4);
 }

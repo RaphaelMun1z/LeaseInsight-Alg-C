@@ -4,6 +4,7 @@
 // DTOs
 #include "../../dtos/dtos.h"
 
+void printResidence(Residence r);
 void findAllResidences();
 Residence *findResidenceById(double id);
 void changeResidenceOccupancyStatus(double id, int status);

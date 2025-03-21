@@ -11,53 +11,46 @@
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
 
+void printContract(Contract c){
+	printf("\nID: %.0lf\n", c.id);
+	printf("Status: ", c.contractStatus);
+	if (c.contractStatus == 1) printColorful("Ativo\n", 2);
+	else if (c.contractStatus == 2) printColorful("Inativo\n", 1);
+	else if (c.contractStatus == 3) printColorful("Aprovação pendente\n", 4);
+	else printColorful("Desconhecido\n", 5); 
+	printf("Valor do aluguel: %.2lf\n", c.defaultRentalValue);
+	printf("Data de início: %s\n", c.contractStartDate);
+	printf("Data de término: %s\n", c.contractEndDate);
+	printf("Dia de vencimento: %d\n", c.invoiceDueDate);
+	printf("\n____\n");
+}
+
 void findAllContracts(){
 	if(contractsLength == 0)
 	return printColorful("Não há contratos registrados.\n", 4);
 	
 	for (int ii = 0; ii < contractsLength; ii++){
-		printf("\nID: %.0lf\n", contracts[ii].id);
-		printf("Status: ", contracts[ii].contractStatus);
-		if (contracts[ii].contractStatus == 1) printColorful("Ativo\n", 2);
-		else if (contracts[ii].contractStatus == 2) printColorful("Inativo\n", 1);
-		else if (contracts[ii].contractStatus == 3) printColorful("Aprovação pendente\n", 4);
-		else printColorful("Desconhecido\n", 5); 
-		printf("Valor do aluguel: %.2lf\n", contracts[ii].defaultRentalValue);
-		printf("Data de início: %s\n", contracts[ii].contractStartDate);
-		printf("Data de término: %s\n", contracts[ii].contractEndDate);
-		printf("Dia de vencimento: %d\n", contracts[ii].invoiceDueDate);
-		printf("\n____\n");
+		printContract(contracts[ii]);
 	}
-}
-
-void findContractsByOwner(double ownerId){
-	int contractsFound = 0;
-	
-	for (int ii = 0; ii < contractsLength; ii++){
-		if(contracts[ii].residence->ownerId == ownerId){
-			printf("\nID: %.0lf\n", contracts[ii].id);
-			printf("Status: ", contracts[ii].contractStatus);
-			if (contracts[ii].contractStatus == 1) printColorful("Ativo\n", 2);
-			else if (contracts[ii].contractStatus == 2) printColorful("Inativo\n", 1);
-			else if (contracts[ii].contractStatus == 3) printColorful("Aprovação pendente\n", 4);
-			else printColorful("Desconhecido\n", 5); 
-			printf("Valor do aluguel: %.2lf\n", contracts[ii].defaultRentalValue);
-			printf("Data de início: %s\n", contracts[ii].contractStartDate);
-			printf("Data de término: %s\n", contracts[ii].contractEndDate);
-			printf("Dia de vencimento: %d\n", contracts[ii].invoiceDueDate);
-			printf("Nome do Inquilino: %s\n", contracts[ii].tenant->name);
-			printf("E-mail do Inquilino: %s\n", contracts[ii].tenant->email);
-			printf("Código da propriedade: %.0lf\n", contracts[ii].residence->id);
-			printf("\n____\n");
-		}
-	}
-	
-	if(contractsFound == 0)
-	return printColorful("Não há contratos registrados.\n", 4);
 }
 
 Contract *findContractById(double id){
-	
+	for (int ii = 0; ii < contractsLength; ii++){
+		if(contracts[ii].id == id){
+			return &contracts[ii];
+		}
+	}
+
+	return NULL;
+}
+
+void printContractById(double id){
+	Contract *c = findContractById(id);
+
+	if(c == NULL)
+	return printColorful("Contrato não encontrado.\n", 1);
+
+	printContract(*c);
 }
 
 void createContract(Contract contract){
@@ -81,4 +74,18 @@ void createContract(Contract contract){
 
 void changeContractStatus(double id, int status){
 	
+}
+
+void findContractsByOwner(double ownerId){
+	int contractsFound = 0;
+	
+	for (int ii = 0; ii < contractsLength; ii++){
+		if(contracts[ii].residence->ownerId == ownerId){
+			contractsFound++;
+			printContract(contracts[ii]);
+		}
+	}
+	
+	if(contractsFound == 0)
+	return printColorful("Não há contratos registrados.\n", 4);
 }

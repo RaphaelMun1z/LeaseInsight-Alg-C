@@ -50,10 +50,13 @@ void contractManagerMenuChoose(){
         registerContractForm();
         break;
         
-        case 3:
-        printf("Opção 3\n");
-        // Opção 3
-        break;
+        case 3: {
+            double contractId;
+            printColorful("Informe o ID do contrato: ", 3);
+            scanf("%lf", &contractId);
+            printContractById(contractId);
+            break;
+        }
         
         case 4:
         printf("Opção 4\n");
