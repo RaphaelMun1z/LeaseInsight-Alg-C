@@ -4,13 +4,15 @@
 // DTOs
 #include "../../dtos/dtos.h"
 
-void printContract(Contract c);
 void findAllContracts();
 Contract *findContractById(double id);
-void printContractById(double id);
 void createContract(Contract contract); 
-void changeContractStatus(double id, int status);
+void deleteContract(double id); 
 
+void printContract(Contract c);
+void printContractById(double id);
+int contractExistsById(double id);
 void findContractsByOwner(double id);
+void changeContractStatus(double id, int status);
 
 #endif

@@ -44,29 +44,66 @@ void contractManagerMenuChoose(){
     {
         case 1:
         findContractsByOwner(authUser->id);
+        contractManagerMenuChoose();
         break;
         
         case 2:
         registerContractForm();
+        contractManagerMenuChoose();
         break;
         
         case 3: {
             double contractId;
             printColorful("Informe o ID do contrato: ", 3);
             scanf("%lf", &contractId);
+            
+            if(!contractExistsById(contractId)){
+                printColorful("Contrato não encontrado.\n\n", 1);
+                contractManagerMenuChoose();
+                return;
+            }
+            
             printContractById(contractId);
+            contractManagerMenuChoose();
             break;
         }
         
-        case 4:
-        printf("Opção 4\n");
-        // Opção 4
-        break;
+        case 4:{
+            double contractId;
+            int contractStatus;
+            
+            printColorful("Informe o ID do contrato: ", 3);
+            scanf("%lf", &contractId);
+            
+            if(!contractExistsById(contractId)){
+                printColorful("Contrato não encontrado.\n\n", 1);
+                contractManagerMenuChoose();
+                return;
+            }
+            
+            printColorful("Informe o novo status [1 - Ativo | 2 - Inativo | 3 - Aprovação pendente]: ", 3);
+            scanf("%d", &contractStatus);
+            
+            changeContractStatus(contractId, contractStatus);
+            contractManagerMenuChoose();
+            break;
+        }
         
-        case 5:
-        printf("Opção 5\n");
-        // Opção 5
-        break;
+        case 5: {
+            double contractId;
+            printColorful("Informe o ID do contrato: ", 3);
+            scanf("%lf", &contractId);
+            
+            if(!contractExistsById(contractId)){
+                printColorful("Contrato não encontrado.\n\n", 1);
+                contractManagerMenuChoose();
+                return;
+            }
+            
+            deleteContract(contractId);
+            contractManagerMenuChoose();
+            break;
+        }
         
         default:
         cleanScreen();
