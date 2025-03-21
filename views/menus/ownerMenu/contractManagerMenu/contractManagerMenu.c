@@ -104,6 +104,10 @@ void contractManagerMenuChoose(){
             contractManagerMenuChoose();
             break;
         }
+
+        case 6: {
+            break;
+        }
         
         default:
         cleanScreen();

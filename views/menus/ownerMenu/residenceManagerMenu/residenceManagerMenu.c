@@ -44,26 +44,70 @@ void residenceManagerMenuChoose(){
     {
         case 1:
         findResidencesByOwner(authUser->id);
+        residenceManagerMenuChoose();
         break;
         
         case 2:
         registerResidenceForm();
+        residenceManagerMenuChoose();
         break;
         
-        case 3:
-        printf("Opção 3\n");
-        // Opção 3
-        break;
+        case 3: {
+            double residenceId;
+            printColorful("Informe o ID da residência: ", 3);
+            scanf("%lf", &residenceId);
+            
+            if(!residenceExistsById(residenceId)){
+                printColorful("Residencia não encontrada.\n\n", 1);
+                residenceManagerMenuChoose();
+                return;
+            }
+            
+            printResidenceById(residenceId);
+            residenceManagerMenuChoose();
+            break;
+        }
         
-        case 4:
-        printf("Opção 4\n");
-        // Opção 4
-        break;
+        case 4:{
+            double residenceId;
+            int residenceStatus;
+            
+            printColorful("Informe o ID da residencia: ", 3);
+            scanf("%lf", &residenceId);
+            
+            if(!residenceExistsById(residenceId)){
+                printColorful("Residencia não encontrada.\n\n", 1);
+                residenceManagerMenuChoose();
+                return;
+            }
+            
+            printColorful("Informe o novo status [1 - Ativo | 2 - Inativo | 3 - Aprovação pendente]: ", 3);
+            scanf("%d", &residenceStatus);
+            
+            changeResidenceOccupancyStatus(residenceId, residenceStatus);
+            residenceManagerMenuChoose();
+            break;
+        }
         
-        case 5:
-        printf("Opção 5\n");
-        // Opção 5
-        break;
+        case 5: {
+            double residenceId;
+            printColorful("Informe o ID da residencia: ", 3);
+            scanf("%lf", &residenceId);
+            
+            if(!residenceExistsById(residenceId)){
+                printColorful("Residencia não encontrada.\n\n", 1);
+                residenceManagerMenuChoose();
+                return;
+            }
+            
+            deleteResidence(residenceId);
+            residenceManagerMenuChoose();
+            break;
+        }
+
+        case 6: {
+            break;
+        }
         
         default:
         cleanScreen();

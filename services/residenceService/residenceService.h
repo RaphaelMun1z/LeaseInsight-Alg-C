@@ -4,12 +4,15 @@
 // DTOs
 #include "../../dtos/dtos.h"
 
-void printResidence(Residence r);
 void findAllResidences();
 Residence *findResidenceById(double id);
-void changeResidenceOccupancyStatus(double id, int status);
 void createResidence(Residence residence); 
+void deleteResidence(double id); 
 
+void printResidence(Residence r);
+void printResidenceById(double id);
+int residenceExistsById(double id);
 void findResidencesByOwner(double id);
+void changeResidenceOccupancyStatus(double id, int status);
 
 #endif
