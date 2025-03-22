@@ -14,7 +14,8 @@ views/menus/admMenu/admMenu.c ^
 views/menus/admMenu/contractManagerAdmMenu/contractManagerAdmMenu.c ^
 views/menus/admMenu/residenceManagerAdmMenu/residenceManagerAdmMenu.c ^
 views/menus/admMenu/usersManagerMenu/usersManagerMenu.c ^
-views/menus/admMenu/usersManagerMenu/tenantManagerMenu/tenantManagerMenu.c ^
+views/menus/admMenu/usersManagerMenu/tenantManagerAdmMenu/tenantManagerAdmMenu.c ^
+views/menus/admMenu/usersManagerMenu/ownerManagerAdmMenu/ownerManagerAdmMenu.c ^
 views/menus/ownerMenu/residenceManagerMenu/residenceManagerMenu.c ^
 views/menus/ownerMenu/contractManagerMenu/contractManagerMenu.c ^
 views/menus/registerMenu/registerMenu.c ^

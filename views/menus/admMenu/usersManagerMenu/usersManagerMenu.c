@@ -14,7 +14,8 @@
 #include "../../../../services/stateManagerService/stateManagerService.h"
 
 // Views
-#include "./tenantManagerMenu/tenantManagerMenu.h"
+#include "./tenantManagerAdmMenu/tenantManagerAdmMenu.h"
+#include "./ownerManagerAdmMenu/ownerManagerAdmMenu.h"
 
 int usersManagerMenu(){
     int option;
@@ -40,12 +41,12 @@ void usersManagerMenuChoose(){
     switch (usersManagerMenu())
     {
         case 1:
-        tenantManagerMenuChoose();
+        tenantManagerAdmMenuChoose();
         usersManagerMenuChoose();
         break;
         
         case 2:
-        //ownerManagerMenuChoose();
+        ownerManagerAdmMenuChoose();
         usersManagerMenuChoose();
         break;
         

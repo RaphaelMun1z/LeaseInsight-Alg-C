@@ -13,15 +13,23 @@
 #include "../authService/authService.h"
 #include "../userService/userService.h"
 
+void findAllOwners();
+Owner *findOwnerById(double id);
+Owner *findOwnerByEmail(char email[]);
+void createOwner(Owner Owner);
+void deleteOwner(double id); 
+
+void printOwner(Owner o);
+void printOwnerById(double id);
+int ownerExistsById(double id);
+void changeOwnerDetails(double id, char newName[]);
+
 void findAllOwners(){
     if(registeredOwnersNumber == 0)
     return printColorful("Não há proprietários registrados.\n", 4);
     
     for (int ii = 0; ii < registeredOwnersNumber; ii++){
-        printf("\nNome: %s\n", owners[ii].name);
-        printf("Telefone: %s\n", owners[ii].phone);
-        printf("E-mail: %s\n", owners[ii].email);
-        printf("\n____\n");
+        printOwner(owners[ii]);
     }
 }
 
@@ -72,4 +80,55 @@ void createOwner(Owner owner){
     strcpy(credentials.password, owner.password);
     
     signInUser(credentials);
+}
+
+void deleteOwner(double id){
+    if(!ownerExistsById(id)){
+        printColorful("Proprietário não encontrado.\n", 1);
+        return;
+    }
+    
+    for (int ii = 0; ii < registeredOwnersNumber; ii++){
+        if(owners[ii].id == id){			
+            int indLastItemOfOwners = registeredOwnersNumber-1;
+            owners[ii] = owners[indLastItemOfOwners];
+            registeredOwnersNumber--;
+            printColorful("Proprietário deletado com sucesso!\n", 2);
+            return;
+        }
+    }
+    
+    return printColorful("Proprietário não encontrado.\n", 1);
+}
+
+void printOwner(Owner o){
+    printf("\nNome: %s\n", o.name);
+    printf("Telefone: %s\n", o.phone);
+    printf("E-mail: %s\n", o.email);
+    printf("\n____\n");
+}
+
+void printOwnerById(double id){
+    Owner *o = findOwnerById(id);
+    
+    if(o == NULL)
+    return printColorful("Proprietário não encontrado.\n", 1);
+    
+    printOwner(*o);
+}
+
+int ownerExistsById(double id){
+    return findOwnerById(id) == NULL ? 0 : 1;
+}
+
+void changeOwnerDetails(double id, char newName[]){
+    if(!ownerExistsById(id)){
+        return printColorful("Proprietário não encontrado.\n", 1);
+    }
+    
+    Owner *o = findOwnerById(id);
+    if(!(strcmp(newName, "-1") == 0))
+    strcpy(o->name, newName);
+    
+    printColorful("Proprietário atualizado com sucesso!\n", 2);
 }

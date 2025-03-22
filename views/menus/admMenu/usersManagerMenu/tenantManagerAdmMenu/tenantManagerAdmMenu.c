@@ -7,14 +7,11 @@
 #include "../../../../../utils/printColorful/printColorful.h"
 #include "../../../../../utils/cleanInputBuffer/cleanInputBuffer.h"
 
-// Entities
-#include "../../../../../entities/AuthUser/AuthUser.h"
-
 // Services
 #include "../../../../../services/stateManagerService/stateManagerService.h"
 #include "../../../../../services/tenantService/tenantService.h"
 
-int tenantManagerMenu(){
+int tenantManagerAdmMenu(){
     int option;
     do{
         printColorful("Gerenciando inquilinos. Você pode: \n", 3);
@@ -36,12 +33,12 @@ int tenantManagerMenu(){
     return option;
 }
 
-void tenantManagerMenuChoose(){
-    switch (tenantManagerMenu())
+void tenantManagerAdmMenuChoose(){
+    switch (tenantManagerAdmMenu())
     {
         case 1:
         findAllTenants();
-        tenantManagerMenuChoose();
+        tenantManagerAdmMenuChoose();
         break;
         
         case 2: {
@@ -55,12 +52,12 @@ void tenantManagerMenuChoose(){
             
             if(t == NULL){
                 printColorful("Inquilino não encontrado.\n\n", 1);
-                tenantManagerMenuChoose();
+                tenantManagerAdmMenuChoose();
                 return;
             }
             
             printTenantByRg(tenantRg);
-            tenantManagerMenuChoose();
+            tenantManagerAdmMenuChoose();
             break;
         }
         
@@ -75,7 +72,7 @@ void tenantManagerMenuChoose(){
             
             if(!tenantExistsByRg(tenantRg)){
                 printColorful("Inquilino não encontrado.\n\n", 1);
-                tenantManagerMenuChoose();
+                tenantManagerAdmMenuChoose();
                 return;
             }
             
@@ -83,7 +80,7 @@ void tenantManagerMenuChoose(){
             scanf("%d", &tenantStatus);
             
             changeTenantStatus(tenantRg, tenantStatus);
-            tenantManagerMenuChoose();
+            tenantManagerAdmMenuChoose();
             break;
         }
         
@@ -97,12 +94,12 @@ void tenantManagerMenuChoose(){
 
             if(!tenantExistsByRg(tenantRg)){
                 printColorful("Inquilino não encontrado.\n\n", 1);
-                tenantManagerMenuChoose();
+                tenantManagerAdmMenuChoose();
                 return;
             }
             
             deleteTenant(tenantRg);
-            tenantManagerMenuChoose();
+            tenantManagerAdmMenuChoose();
             break;
         }
         

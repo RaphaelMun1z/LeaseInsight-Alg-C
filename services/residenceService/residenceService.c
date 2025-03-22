@@ -146,5 +146,4 @@ void changeResidenceDetails(double id, double newRentalValue, int newOccupancySt
 	r->occupancyStatus = newOccupancyStatus;
 	
 	printColorful("Residencia atualizada com sucesso!\n", 2);
-	
 }

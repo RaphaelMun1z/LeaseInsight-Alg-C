@@ -77,7 +77,7 @@ void residenceManagerAdmMenuChoose(){
             
             do {
                 cleanInputBuffer();
-                printColorful("\n[DICA] Caso não queira alterar o atributo, digite: '-1'.\n\n", 5);
+                printColorful("\n[DICA] Caso não queira alterar o atributo, digite: '-1'.\n", 5);
                 printColorful("Novo Valor de aluguel: ", 5);
                 scanf("%lf", &newRentalValue);
                 
@@ -89,7 +89,7 @@ void residenceManagerAdmMenuChoose(){
 
             do {
                 cleanInputBuffer();
-                printColorful("\n[DICA] Caso não queira alterar o atributo, digite: '-1'.\n\n", 5);
+                printColorful("\n[DICA] Caso não queira alterar o atributo, digite: '-1'.\n", 5);
                 printColorful("Status [1 - Ocupado | 2 - Livre | 3 - Saída pendente]: ", 5);
                 scanf("%d", &newOccupancyStatus);
                 
