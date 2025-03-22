@@ -79,7 +79,7 @@ void deleteResidence(double id){
 			return;
 		}
 	}
-
+	
 	return printColorful("Residencia não encontrada.\n", 1);
 }
 
@@ -103,10 +103,10 @@ void printResidence(Residence r){
 
 void printResidenceById(double id){
 	Residence *r = findResidenceById(id);
-
+	
 	if(r == NULL)
 	return printColorful("Residencia não encontrada.\n", 1);
-
+	
 	printResidence(*r);
 }
 
@@ -127,8 +127,24 @@ void changeResidenceOccupancyStatus(double id, int status){
 	if(!residenceExistsById(id)){
 		return printColorful("Residencia não encontrada.\n", 1);
 	}
-
+	
 	Residence *r = findResidenceById(id);
 	r->occupancyStatus = status;
 	printColorful("Residencia atualizada com sucesso!\n", 2);
+}
+
+void changeResidenceDetails(double id, double newRentalValue, int newOccupancyStatus){
+	if(!residenceExistsById(id)){
+		return printColorful("Residencia não encontrada.\n", 1);
+	}
+	
+	Residence *r = findResidenceById(id);
+	if(newRentalValue != -1)
+	r->rentalValue = newRentalValue;
+
+	if(newOccupancyStatus != -1)
+	r->occupancyStatus = newOccupancyStatus;
+	
+	printColorful("Residencia atualizada com sucesso!\n", 2);
+	
 }

@@ -60,14 +60,15 @@ void mockRegisterAdm(){
 }
 
 int main(){
-    // Falta completar o servico de criação de contrato (nesse momento o service de encontrar Residence pelo id nao existe)
+    // importante!!!
+    // verificar se há algum contrato vinculado a residencia antes de remover
     cleanScreen();
     
     initEntities();
     
     startScreen();
     printColorful("Seja bem-vindo(a)!\n", 0);
-
+    
     mockRegisterAdm();
     
     initMenuHandler();

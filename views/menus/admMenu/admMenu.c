@@ -11,6 +11,8 @@
 
 // Views
 #include "./usersManagerMenu/usersManagerMenu.h"
+#include "./contractManagerAdmMenu/contractManagerAdmMenu.h"
+#include "./residenceManagerAdmMenu/residenceManagerAdmMenu.h"
 
 int admMenu(){
     int option;
@@ -40,11 +42,11 @@ void admMenuChoose(){
     switch (admMenu())
     {
         case 1:
-        printf("Opt 1\n");
+        residenceManagerAdmMenuChoose();
         break;
         
         case 2:
-        printf("Opt 2\n");
+        contractManagerAdmMenuChoose();
         break;
 
         case 3:

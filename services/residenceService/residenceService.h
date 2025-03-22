@@ -14,5 +14,6 @@ void printResidenceById(double id);
 int residenceExistsById(double id);
 void findResidencesByOwner(double id);
 void changeResidenceOccupancyStatus(double id, int status);
+void changeResidenceDetails(double id, double newRentalValue, int newOccupancyStatus);
 
 #endif
