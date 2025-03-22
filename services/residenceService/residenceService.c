@@ -47,7 +47,7 @@ int residenceExistsById(double id){
 }
 
 void createResidence(Residence residence){
-	// Verifica se ja existe
+	// Verifica se ja existe (apos criar struct address)
 	
 	residences[residencesLength].id = residencesLength + 1;
 	residences[residencesLength].propertyType = residence.propertyType;
@@ -72,6 +72,12 @@ void deleteResidence(double id){
 	
 	for (int ii = 0; ii < residencesLength; ii++){
 		if(residences[ii].id == id){
+			if(residencesLength == 1){
+				residencesLength--;
+				printColorful("Residencia deletado com sucesso!\n", 2);
+				return;
+			}
+
 			int indLastItemOfResidences = residencesLength-1;
 			residences[ii] = residences[indLastItemOfResidences];
 			residencesLength--;
@@ -124,5 +130,11 @@ void findResidencesByOwner(double ownerId){
 }
 
 void changeResidenceOccupancyStatus(double id, int status){
-	
+	if(!residenceExistsById(id)){
+		return printColorful("Residencia não encontrada.\n", 1);
+	}
+
+	Residence *r = findResidenceById(id);
+	r->occupancyStatus = status;
+	printColorful("Residencia atualizada com sucesso!\n", 2);
 }

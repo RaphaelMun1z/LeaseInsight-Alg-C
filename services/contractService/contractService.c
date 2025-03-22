@@ -72,6 +72,12 @@ void deleteContract(double id){
 	
 	for (int ii = 0; ii < contractsLength; ii++){
 		if(contracts[ii].id == id){
+			if(contractsLength == 1){
+				contractsLength--;
+				printColorful("Contrato deletado com sucesso!\n", 2);
+				return;
+			}
+			
 			int indLastItemOfContracts = contractsLength-1;
 			contracts[ii] = contracts[indLastItemOfContracts];
 			contractsLength--;

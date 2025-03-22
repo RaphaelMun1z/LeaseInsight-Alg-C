@@ -56,7 +56,7 @@ void tenantMenuChoose(){
                 tenantMenuChoose();
                 return;
             }
-
+            
             if(!isTenantAssociatedToContract(authUser->id, contractId)){
                 printColorful("Contrato não encontrado.\n\n", 1);
                 tenantMenuChoose();
@@ -68,10 +68,27 @@ void tenantMenuChoose(){
             break;
         }
         
-        case 3:
-        printf("Opção 3\n");
-        // Opção 3
-        break;
+        case 3: {
+            double contractId;
+            printColorful("Informe o ID do contrato: ", 3);
+            scanf("%lf", &contractId);
+            
+            if(!contractExistsById(contractId)){
+                printColorful("Contrato não encontrado.\n\n", 1);
+                tenantMenuChoose();
+                return;
+            }
+            
+            if(!isTenantAssociatedToContract(authUser->id, contractId)){
+                printColorful("Contrato não encontrado.\n\n", 1);
+                tenantMenuChoose();
+                return;
+            }
+
+            deleteContract(contractId);
+            tenantMenuChoose();
+            break;
+        }
         
         case 4:
         logoutAuthUser();
