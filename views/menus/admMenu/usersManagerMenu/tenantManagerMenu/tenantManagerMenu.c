@@ -65,18 +65,48 @@ void tenantManagerMenuChoose(){
         }
         
         case 3: {
-            // Alterar um inquilino.
+            char tenantRg[100];
+            int tenantStatus;
+            
+            cleanInputBuffer();
+            printColorful("Informe o RG do inquilino: ", 3);
+            fgets(tenantRg, 13, stdin);
+            tenantRg[strcspn(tenantRg, "\n")] = 0;
+            
+            if(!tenantExistsByRg(tenantRg)){
+                printColorful("Inquilino não encontrado.\n\n", 1);
+                tenantManagerMenuChoose();
+                return;
+            }
+            
+            printColorful("Informe o novo status [1 - Ativo | 2 - Inativo | 3 - Suspenso]: ", 3);
+            scanf("%d", &tenantStatus);
+            
+            changeTenantStatus(tenantRg, tenantStatus);
             tenantManagerMenuChoose();
             break;
         }
         
         case 4:{
-            // Remover um inquilino
+            char tenantRg[100];
+            
+            cleanInputBuffer();
+            printColorful("Informe o RG do inquilino: ", 3);
+            fgets(tenantRg, 13, stdin);
+            tenantRg[strcspn(tenantRg, "\n")] = 0;
+
+            if(!tenantExistsByRg(tenantRg)){
+                printColorful("Inquilino não encontrado.\n\n", 1);
+                tenantManagerMenuChoose();
+                return;
+            }
+            
+            deleteTenant(tenantRg);
             tenantManagerMenuChoose();
             break;
         }
         
-        case 6: {
+        case 5: {
             break;
         }
         

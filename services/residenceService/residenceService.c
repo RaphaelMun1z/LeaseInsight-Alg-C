@@ -72,12 +72,6 @@ void deleteResidence(double id){
 	
 	for (int ii = 0; ii < residencesLength; ii++){
 		if(residences[ii].id == id){
-			if(residencesLength == 1){
-				residencesLength--;
-				printColorful("Residencia deletado com sucesso!\n", 2);
-				return;
-			}
-
 			int indLastItemOfResidences = residencesLength-1;
 			residences[ii] = residences[indLastItemOfResidences];
 			residencesLength--;

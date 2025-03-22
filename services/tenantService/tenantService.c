@@ -63,8 +63,17 @@ Tenant *findTenantByRg(char rg[]){
     return NULL;
 }
 
+int tenantExistsByRg(char rg[]){
+	return findTenantByRg(rg) == NULL ? 0 : 1;
+}
+
 void createTenant(Tenant tenant){
     if(userAlreadyRegistered(tenant.email)) return;
+
+    if(findTenantByRg(tenant.rg) != NULL){
+        printColorful("Usuário já cadastrado!\n", 1);
+        return;
+    }
     
     tenants[registeredTenantsNumber].id = registeredUsersNumber + 1;
     strcpy(tenants[registeredTenantsNumber].name, tenant.name);
@@ -95,6 +104,25 @@ void createTenant(Tenant tenant){
     signInUser(credentials);
 }
 
+void deleteTenant(char tenantRg[]){
+    if(!tenantExistsByRg(tenantRg)){
+		printColorful("Inquilino não encontrado.\n", 1);
+		return;
+	}
+	
+	for (int ii = 0; ii < registeredTenantsNumber; ii++){
+		if(strcmp(tenants[ii].rg, tenantRg) == 0){
+			int indLastItemOfTenants = registeredTenantsNumber-1;
+			tenants[ii] = tenants[indLastItemOfTenants];
+			registeredTenantsNumber--;
+			printColorful("Inquilino deletado com sucesso!\n", 2);
+			return;
+		}
+	}
+
+	return printColorful("Inquilino não encontrado.\n", 1);
+}
+
 void printTenant(Tenant t){
     printf("\nNome: %s\n", t.name);
     printf("Telefone: %s\n", t.phone);
@@ -122,4 +150,14 @@ int isTenantAssociatedToContract(int tenantId, int contractId){
     }
     
     return 1;
+}
+
+void changeTenantStatus(char rg[], int status){
+	if(!tenantExistsByRg(rg)){
+		return printColorful("Inquilino não encontrado.\n", 1);
+	}
+
+	Tenant *t = findTenantByRg(rg);
+	t->tenantStatus = status;
+	printColorful("Inquilino atualizado com sucesso!\n", 2);
 }
