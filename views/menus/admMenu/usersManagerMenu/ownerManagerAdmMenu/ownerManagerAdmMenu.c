@@ -24,11 +24,11 @@ int ownerManagerAdmMenu(){
         option = getch();
         option -= '0';
         
-        if(option < 1 || option > 3){
+        if(option < 1 || option > 5){
             cleanScreen();
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
-    } while(option < 1 || option > 3);
+    } while(option < 1 || option > 5);
     cleanScreen();
     return option;
 }
