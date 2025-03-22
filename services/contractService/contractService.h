@@ -5,6 +5,7 @@
 #include "../../dtos/dtos.h"
 
 void findAllContracts();
+void findContractsByTenantRg(char tenantRg[]);
 Contract *findContractById(double id);
 void createContract(Contract contract); 
 void deleteContract(double id); 

@@ -12,26 +12,28 @@
 
 // Services
 #include "../../../../services/stateManagerService/stateManagerService.h"
-#include "../../../../services/ContractService/ContractService.h"
+#include "../../../../services/contractService/contractService.h"
+#include "../../../../services/tenantService/tenantService.h"
 
 int contractManagerAdmMenu(){
     int option;
     do{
         printColorful("Gerenciando contratos. Você pode: \n", 3);
         printColorful("1 -> Acessar todos contratos.\n", 5);
-        printColorful("2 -> Acessar detalhes de um contrato.\n", 5);
-        printColorful("3 -> Alterar um contrato.\n", 5);
-        printColorful("4 -> Remover um contrato.\n", 5);
-        printColorful("5 -> Voltar.\n", 1);
+        printColorful("2 -> Acessar detalhes de um contrato pelo ID.\n", 5);
+        printColorful("3 -> Acessar contratos pelo RG do Inquilino.\n", 5);
+        printColorful("4 -> Alterar um contrato.\n", 5);
+        printColorful("5 -> Remover um contrato.\n", 5);
+        printColorful("6 -> Voltar.\n", 1);
         
         option = getch();
         option -= '0';
         
-        if(option < 1 || option > 5){
+        if(option < 1 || option > 6){
             cleanScreen();
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
-    } while(option < 1 || option > 5);
+    } while(option < 1 || option > 6);
     cleanScreen();
     return option;
 }
@@ -59,8 +61,28 @@ void contractManagerAdmMenuChoose(){
             contractManagerAdmMenuChoose();
             break;
         }
-        
+
         case 3:{
+            char tenantRg[100];
+            cleanInputBuffer();
+            printColorful("Informe o RG do inquilino: ", 3);
+            fgets(tenantRg, 13, stdin);
+            tenantRg[strcspn(tenantRg, "\n")] = 0;
+            
+            Tenant *t = findTenantByRg(tenantRg);
+            
+            if(t == NULL){
+                printColorful("Inquilino não encontrado.\n\n", 1);
+                contractManagerAdmMenuChoose();
+                return;
+            }
+            
+            findContractsByTenantRg(tenantRg);
+            contractManagerAdmMenuChoose();
+            break;
+        }
+        
+        case 4:{
             double contractId;
             int contractStatus;
             
@@ -89,7 +111,7 @@ void contractManagerAdmMenuChoose(){
             break;
         }
         
-        case 4: {
+        case 5: {
             double contractId;
             printColorful("Informe o ID do contrato: ", 3);
             scanf("%lf", &contractId);
@@ -105,7 +127,7 @@ void contractManagerAdmMenuChoose(){
             break;
         }
         
-        case 5: {
+        case 6: {
             break;
         }
         

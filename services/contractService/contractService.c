@@ -31,13 +31,29 @@ void findAllContracts(){
 	}
 }
 
+void findContractsByTenantRg(char tenantRg[]){
+	if(contractsLength == 0)
+	return printColorful("Não há contratos registrados.\n", 4);
+	
+	int contractsFound = 0;
+	for (int ii = 0; ii < contractsLength; ii++){
+		if(strcmp(contracts[ii].tenant->rg, tenantRg) == 0){
+			contractsFound++;
+			printContract(contracts[ii]);
+		}
+	}
+	
+	if(contractsFound == 0)
+	printColorful("Não foram encontrados contratos.\n", 4);
+}
+
 Contract *findContractById(double id){
 	for (int ii = 0; ii < contractsLength; ii++){
 		if(contracts[ii].id == id){
 			return &contracts[ii];
 		}
 	}
-
+	
 	return NULL;
 }
 
@@ -79,7 +95,7 @@ void deleteContract(double id){
 			return;
 		}
 	}
-
+	
 	return printColorful("Contrato não encontrado.\n", 1);
 }
 
@@ -99,10 +115,10 @@ void printContract(Contract c){
 
 void printContractById(double id){
 	Contract *c = findContractById(id);
-
+	
 	if(c == NULL)
 	return printColorful("Contrato não encontrado.\n", 1);
-
+	
 	printContract(*c);
 }
 
@@ -137,13 +153,13 @@ void findContractsByTenant(double tenantId){
 void changeContractStatus(double id, int newStatus){
 	if(newStatus < 1 || newStatus > 3)
 	return printColorful("Valor de status desconhecido.\n", 1);
-
+	
 	Contract *c = findContractById(id);
-
+	
 	if(c == NULL)
 	return printColorful("Contrato não encontrado.\n", 1);
-
+	
 	c->contractStatus = newStatus;
-
+	
 	printColorful("Contrato atualizado com sucesso!\n", 2);
 }
