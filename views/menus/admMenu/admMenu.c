@@ -10,6 +10,7 @@
 #include "../../../services/stateManagerService/stateManagerService.h"
 
 // Views
+#include "./usersManagerMenu/usersManagerMenu.h"
 
 int admMenu(){
     int option;
@@ -21,17 +22,16 @@ int admMenu(){
         printColorful("1 -> Gostaria de gerenciar propriedades.\n", 5);
         printColorful("2 -> Gostaria de gerenciar contratos.\n", 5);
         printColorful("3 -> Gostaria de gerenciar usuários.\n", 5);
-        printColorful("4 -> Gostaria de gerenciar propriedades.\n", 5);
-        printColorful("5 -> Gostaria de sair da minha conta.\n", 1);
+        printColorful("4 -> Gostaria de sair da minha conta.\n", 1);
         
         option = getch();
         option -= '0';
         
-        if(option < 1 || option > 5){
+        if(option < 1 || option > 4){
             cleanScreen();
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
-    } while(option < 1 || option > 5);
+    } while(option < 1 || option > 4);
     cleanScreen();
     return option;
 }
@@ -48,14 +48,10 @@ void admMenuChoose(){
         break;
 
         case 3:
-        printf("Opt 2\n");
-        break;
-
-        case 4:
-        printf("Opt 2\n");
+        usersManagerMenuChoose();
         break;
         
-        case 5:
+        case 4:
         logoutAuthUser();
         break;
         

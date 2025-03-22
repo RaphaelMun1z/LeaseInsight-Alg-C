@@ -14,18 +14,22 @@
 #include "../userService/userService.h"
 #include "../contractService/contractService.h"
 
+void findAllTenants();
+Tenant *findTenantById(double id);
+Tenant *findTenantByEmail(char email[]);
+Tenant *findTenantByRg(char rg[]);
+void createTenant(Tenant Tenant);
+
+void printTenant(Tenant t);
+void printTenantByRg(char rg[]);
+int isTenantAssociatedToContract(int tenantId, int contractId);
+
 void findAllTenants(){
     if(registeredTenantsNumber == 0)
     return printColorful("Não há inquilinos registrados.\n", 4);
     
     for (int ii = 0; ii < registeredTenantsNumber; ii++){
-        printf("\nNome: %s\n", tenants[ii].name);
-        printf("Telefone: %s\n", tenants[ii].phone);
-        printf("E-mail: %s\n", tenants[ii].email);
-        printf("RG: %s\n", tenants[ii].rg);
-        printf("CPF: %s\n", tenants[ii].cpf);
-        printf("Status: %d\n", tenants[ii].tenantStatus);
-        printf("\n____\n");
+        printTenant(tenants[ii]);
     }
 }
 
@@ -89,6 +93,25 @@ void createTenant(Tenant tenant){
     strcpy(credentials.password, tenant.password);
     
     signInUser(credentials);
+}
+
+void printTenant(Tenant t){
+    printf("\nNome: %s\n", t.name);
+    printf("Telefone: %s\n", t.phone);
+    printf("E-mail: %s\n", t.email);
+    printf("RG: %s\n", t.rg);
+    printf("CPF: %s\n", t.cpf);
+    printf("Status: %d\n", t.tenantStatus);
+    printf("\n____\n");
+}
+
+void printTenantByRg(char rg[]){
+    Tenant *t = findTenantByRg(rg);
+
+	if(t == NULL)
+	return printColorful("Inquilino não encontrado.\n", 1);
+
+	printTenant(*t);
 }
 
 int isTenantAssociatedToContract(int tenantId, int contractId){

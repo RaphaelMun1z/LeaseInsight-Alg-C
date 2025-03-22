@@ -53,9 +53,9 @@ void exitScreen(){
 
 void mockRegisterAdm(){
     Adm adm;
-    strcpy(adm.email, "teste@gmail.com");
-    strcpy(adm.name, "irineu");
-    strcpy(adm.password, "teste123");
+    strcpy(adm.email, "adm@gmail.com");
+    strcpy(adm.name, "adm");
+    strcpy(adm.password, "adm123");
     createAdm(adm);
 }
 
