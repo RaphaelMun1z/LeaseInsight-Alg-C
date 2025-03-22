@@ -9,6 +9,7 @@
 #include "../../entities/Tenant/Tenant.h"
 
 // Services
+#include "../dataPersistenceService/dataPersistenceService.h"
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
 #include "../userService/userService.h"
@@ -85,6 +86,8 @@ void createTenant(Tenant tenant){
     tenants[registeredTenantsNumber].tenantStatus = 1;
     registeredTenantsNumber++;
     registeredUsersNumber++;
+
+    saveTenantsData();
     
     char tempName[100];
     strncpy(tempName, tenant.name, strcspn(tenant.name, "\n"));

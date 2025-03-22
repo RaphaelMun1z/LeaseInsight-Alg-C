@@ -6,27 +6,47 @@
 
 Tenant *tenants;
 int registeredTenantsNumber = 0;
-int tenantsCurrentLimit = 5;
+int tenantsCurrentLimit;
+const int incrementAmount = 5;
 
 void initTenants() {
-    tenants = (Tenant *) calloc(5, sizeof(Tenant));
+    tenantsCurrentLimit = 15;
+    tenants = (Tenant *) calloc(tenantsCurrentLimit, sizeof(Tenant));
     
     if (tenants == NULL) {
         printf("[LOG] Erro ao alocar memória para 'tenants'!\n");
+        return;
     }
+
+    printf("[LOG] Memória padrão alocada para 'tenants'\n");
+}
+
+void allocateSpaceTenantForFile(int numberOfTenants){
+    registeredTenantsNumber = numberOfTenants;
+    tenantsCurrentLimit = ((numberOfTenants / 5) + 1) * 5;
+
+    tenants = (Tenant *) calloc(tenantsCurrentLimit, sizeof(Tenant));
+    
+    if (tenants == NULL) {
+        printf("[LOG] Erro ao alocar memória para 'tenants'!\n");
+        return;
+    }
+
+    printf("[LOG] Memória alocada para 'tenants' com base nos %d registros do arquivo!\n", numberOfTenants);
 }
 
 void allocateMoreSpaceTenant(){
-    tenantsCurrentLimit += 5;
+    tenantsCurrentLimit += incrementAmount;
     
     Tenant *temp = realloc(tenants, sizeof(Tenant) * tenantsCurrentLimit);
     if (temp == NULL){
         printf("[LOG] Erro ao realocar memória para 'tenants'!\n");
-        tenantsCurrentLimit -= 5;
+        tenantsCurrentLimit -= incrementAmount;
         return;
     }
     
     tenants = temp;
+    printf("[LOG] Mais memória alocada para 'tenants'\n");
 }
 
 void freeTenants(){

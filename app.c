@@ -25,12 +25,15 @@
 #include "controllers/signInController/signInController.h"
 
 // Services
+#include "services/dataPersistenceService/dataPersistenceService.h"
 #include "services/admService/admService.h"
 
 void initEntities(){
     initAuthUser();
     initAdms();
-    initTenants();
+    
+    getTenantsData();
+
     initOwners();
     initResidences();
     initContracts();

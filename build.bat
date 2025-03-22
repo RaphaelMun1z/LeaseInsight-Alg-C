@@ -30,6 +30,7 @@ controllers/registerController/registerController.c ^
 controllers/signInController/signInController.c ^
 controllers/registerContractController/registerContractController.c ^
 controllers/registerResidenceController/registerResidenceController.c ^
+services/dataPersistenceService/dataPersistenceService.c ^
 services/stateManagerService/stateManagerService.c ^
 services/userService/userService.c ^
 services/admService/admService.c ^

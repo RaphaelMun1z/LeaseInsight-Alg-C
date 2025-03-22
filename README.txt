@@ -9,7 +9,7 @@ ____
 1. Para gerar o executável do projeto, siga os seguintes passos:
 1.1. Abra o CMD;
 1.2. Acesse o diretório raíz do projeto;
-1.3. Utilize o seguinte comando [copie os comandos da linha 13 até 46, de uma só vez, e cole no cmd]:
+1.3. Utilize o seguinte comando [copie os comandos da linha 13 até 52, de uma só vez, e cole no cmd]:
 gcc app.c ^
 utils/printColorful/printColorful.c ^
 utils/cleanScreen/cleanScreen.c ^
@@ -21,6 +21,11 @@ views/menus/mainMenu/mainMenu.c ^
 views/menus/tenantMenu/tenantMenu.c ^
 views/menus/ownerMenu/ownerMenu.c ^
 views/menus/admMenu/admMenu.c ^
+views/menus/admMenu/contractManagerAdmMenu/contractManagerAdmMenu.c ^
+views/menus/admMenu/residenceManagerAdmMenu/residenceManagerAdmMenu.c ^
+views/menus/admMenu/usersManagerMenu/usersManagerMenu.c ^
+views/menus/admMenu/usersManagerMenu/tenantManagerAdmMenu/tenantManagerAdmMenu.c ^
+views/menus/admMenu/usersManagerMenu/ownerManagerAdmMenu/ownerManagerAdmMenu.c ^
 views/menus/ownerMenu/residenceManagerMenu/residenceManagerMenu.c ^
 views/menus/ownerMenu/contractManagerMenu/contractManagerMenu.c ^
 views/menus/registerMenu/registerMenu.c ^
@@ -35,6 +40,7 @@ controllers/registerController/registerController.c ^
 controllers/signInController/signInController.c ^
 controllers/registerContractController/registerContractController.c ^
 controllers/registerResidenceController/registerResidenceController.c ^
+services/dataPersistenceService/dataPersistenceService.c ^
 services/stateManagerService/stateManagerService.c ^
 services/userService/userService.c ^
 services/admService/admService.c ^
