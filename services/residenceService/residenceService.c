@@ -49,10 +49,10 @@ int residenceExistsById(int id){
 
 void createResidence(Residence residence){
 	residences[registeredResidencesNumber].id = registeredResidencesNumber + 1;
-	printf("ID: %d\n", residences[registeredResidencesNumber].id);
 	residences[registeredResidencesNumber].propertyType = residence.propertyType;
 	residences[registeredResidencesNumber].occupancyStatus = residence.occupancyStatus;
 	residences[registeredResidencesNumber].rentalValue = residence.rentalValue;
+	residences[registeredResidencesNumber].address = residence.address;
 	residences[registeredResidencesNumber].ownerId = authUser->id;
 	registeredResidencesNumber++;
 	saveResidencesData();
@@ -100,6 +100,7 @@ void printResidence(Residence r){
 	else if (status == 2) printf("Livre\n");
 	else if (status == 3) printf("Saída pendente\n");
 	else printf("Inválido\n");
+	printf("Endereço: %s, %d, %s, %s, %s, %s\n", r.address.street, r.address.number, r.address.complement, r.address.district, r.address.city, r.address.state);
 	printf("\n____\n");
 }
 

@@ -24,6 +24,16 @@ typedef struct {
     char password[100];
 } LoginCredentials;
 
+typedef struct {
+    int number;
+    char complement[100];
+    char street[100];
+    char district[100];
+    char city[100];
+    char state[100];
+    char cep[10];
+} Address;
+
 typedef struct 
 {
     int id;
@@ -31,6 +41,7 @@ typedef struct
     int occupancyStatus; 
     double rentalValue;
     int ownerId;
+    Address address;
 } Residence;
 
 typedef struct Owner {

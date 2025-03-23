@@ -1,0 +1,23 @@
+======================================
+===========  LEASEINSIGHT  ===========
+======================================
+
+Administração de locação de imóveis
+Copyright © 2025 LeaseInsight. Todos os direitos reservados.
+Desenvolvido por: Raphael e Ygor
+
+Relatório de Contratos
+Filtrado por Data Inicial: 23/03/2025
+Data e Hora da Criação do Relatório: 2025-03-23 17:24:20
+___________________________________________________________
+
+Código: 1
+Contract Start Date: 23/03/2025
+Contract End Date: 23/09/2025
+Default Rental Value: 1100.00
+Invoice Due Date: 10
+Contract Status: 1
+Tenant Status: 1
+Tenant RG: 2
+Residence ID: 1
+___

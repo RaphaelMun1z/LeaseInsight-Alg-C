@@ -42,9 +42,9 @@ void generateContractsReport(Contract *selectedContracts, int itemsAmount, char 
         
     for (int ii = 0; ii < itemsAmount; ii++){
         fprintf(ptrArq, "\nCódigo: %d\n", selectedContracts[ii].id);
-        fprintf(ptrArq, "Contract Start Date: %s\n", selectedContracts[ii].contractStartDate);
-        fprintf(ptrArq, "Contract End Date: %s\n", selectedContracts[ii].contractEndDate);
-        fprintf(ptrArq, "Default Rental Value: %.2f\n", selectedContracts[ii].defaultRentalValue);
+        fprintf(ptrArq, "Início do contrato: %s\n", selectedContracts[ii].contractStartDate);
+        fprintf(ptrArq, "Fim do contrato: %s\n", selectedContracts[ii].contractEndDate);
+        fprintf(ptrArq, "Valor de locação: %.2f\n", selectedContracts[ii].defaultRentalValue);
         fprintf(ptrArq, "Invoice Due Date: %d\n", selectedContracts[ii].invoiceDueDate);
         fprintf(ptrArq, "Contract Status: %d\n", selectedContracts[ii].contractStatus);
         fprintf(ptrArq, "Tenant Status: %d\n", selectedContracts[ii].tenant.tenantStatus);

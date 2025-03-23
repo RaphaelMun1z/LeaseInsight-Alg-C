@@ -42,7 +42,7 @@ void ownerManagerAdmMenuChoose(){
         break;
         
         case 2: {
-            double ownerId;
+            int ownerId;
             printColorful("Informe o ID do proprietário: ", 3);
             scanf("%d", &ownerId);
             
@@ -62,7 +62,7 @@ void ownerManagerAdmMenuChoose(){
         case 3: {
             char newOwnerName[100];
     
-            double ownerId;
+            int ownerId;
             printColorful("Informe o ID do proprietário: ", 3);
             scanf("%d", &ownerId);
             
@@ -91,7 +91,7 @@ void ownerManagerAdmMenuChoose(){
         }
         
         case 4:{
-            double ownerId;
+            int ownerId;
             printColorful("Informe o ID do proprietário: ", 3);
             scanf("%d", &ownerId);
             
