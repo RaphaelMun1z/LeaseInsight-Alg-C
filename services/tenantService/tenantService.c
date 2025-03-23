@@ -128,6 +128,7 @@ void deleteTenant(char tenantRg[]){
 }
 
 void printTenant(Tenant t){
+    printf("\nCódigo: %d", t.id);
     printf("\nNome: %s\n", t.name);
     printf("Telefone: %s\n", t.phone);
     printf("E-mail: %s\n", t.email);

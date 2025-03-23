@@ -18,6 +18,7 @@ int contractExistsById(int id);
 void findContractsByOwner(int id);
 void findContractsByTenant(int id);
 int getContractsAmountByStartDate(char startDate[]);
+int getContractsAmountByEndDate(char endDate[]);
 void findContractsByStatus(int contractStatus);
 void changeContractStatus(int id, int status);
 

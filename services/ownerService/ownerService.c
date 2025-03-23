@@ -106,6 +106,7 @@ void deleteOwner(int id){
 }
 
 void printOwner(Owner o){
+    printf("\nCódigo: %d", o.id);
     printf("\nNome: %s\n", o.name);
     printf("Telefone: %s\n", o.phone);
     printf("E-mail: %s\n", o.email);

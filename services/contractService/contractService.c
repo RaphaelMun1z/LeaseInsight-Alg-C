@@ -60,16 +60,22 @@ Contract *findContractById(int id){
 
 void findContractsByStartDate(char startDate[], Contract *foundContracts){
 	int aux = 0;
-    for (int ii = 0; ii < registeredContractsNumber; ii++) {
-        if (strcmp(contracts[ii].contractStartDate, startDate) == 0) {
+	for (int ii = 0; ii < registeredContractsNumber; ii++) {
+		if (strcmp(contracts[ii].contractStartDate, startDate) == 0) {
 			foundContracts[aux] = contracts[ii];
-            aux++;
-        }
-    }
+			aux++;
+		}
+	}
 }
 
 void findContractsByEndDate(char endDate[], Contract *foundContracts){
-
+	int aux = 0;
+	for (int ii = 0; ii < registeredContractsNumber; ii++) {
+		if (strcmp(contracts[ii].contractEndDate, endDate) == 0) {
+			foundContracts[aux] = contracts[ii];
+			aux++;
+		}
+	}
 }
 
 int contractExistsById(int id){
@@ -143,7 +149,7 @@ void printContractById(int id){
 
 void findContractsByOwner(int ownerId){
 	int contractsFound = 0;
-
+	
 	for (int ii = 0; ii < registeredContractsNumber; ii++){
 		if(contracts[ii].residence.ownerId == ownerId){
 			contractsFound++;
@@ -174,6 +180,18 @@ int getContractsAmountByStartDate(char startDate[]){
 	
 	for (int ii = 0; ii < registeredContractsNumber; ii++){
 		if(strcmp(contracts[ii].contractStartDate, startDate) == 0){
+			contractsFound++;
+		}
+	}
+	
+	return contractsFound;
+}
+
+int getContractsAmountByEndDate(char endDate[]){
+	int contractsFound = 0;
+	
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
+		if(strcmp(contracts[ii].contractEndDate, endDate) == 0){
 			contractsFound++;
 		}
 	}

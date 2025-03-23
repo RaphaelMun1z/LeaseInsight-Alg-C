@@ -17,7 +17,7 @@
 void saveTenantsData(){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/tenants_data.bin", "wb");
+    ptrArq = fopen("resources/data/tenants_data.bin", "wb");
     
     if(ptrArq == NULL){
         printColorful("Ocorreu um erro ao salvar inquilinos!\n", 1);
@@ -33,7 +33,7 @@ void saveTenantsData(){
 void getTenantsData(){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/tenants_data.bin", "rb");
+    ptrArq = fopen("resources/data/tenants_data.bin", "rb");
     
     if(ptrArq == NULL){
         fclose(ptrArq);
@@ -63,7 +63,7 @@ void getTenantsData(){
 void saveOwnersData(){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/owners_data.bin", "wb");
+    ptrArq = fopen("resources/data/owners_data.bin", "wb");
     
     if(ptrArq == NULL){
         printColorful("Ocorreu um erro ao salvar proprietários!\n", 1);
@@ -79,7 +79,7 @@ void saveOwnersData(){
 void getOwnersData(){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/owners_data.bin", "rb");
+    ptrArq = fopen("resources/data/owners_data.bin", "rb");
     
     if(ptrArq == NULL){
         fclose(ptrArq);
@@ -109,7 +109,7 @@ void getOwnersData(){
 void saveAdmsData(){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/adms_data.bin", "wb");
+    ptrArq = fopen("resources/data/adms_data.bin", "wb");
     
     if(ptrArq == NULL){
         printColorful("Ocorreu um erro ao salvar administradores!\n", 1);
@@ -125,7 +125,7 @@ void saveAdmsData(){
 void getAdmsData(){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/adms_data.bin", "rb");
+    ptrArq = fopen("resources/data/adms_data.bin", "rb");
     
     if(ptrArq == NULL){
         fclose(ptrArq);
@@ -155,7 +155,7 @@ void getAdmsData(){
 void saveContractsData(){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/contracts_data.bin", "wb");
+    ptrArq = fopen("resources/data/contracts_data.bin", "wb");
     
     if(ptrArq == NULL){
         printColorful("Ocorreu um erro ao salvar contratos!\n", 1);
@@ -180,7 +180,7 @@ void saveContractsData(){
 void getContractsData(){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/contracts_data.bin", "rb");
+    ptrArq = fopen("resources/data/contracts_data.bin", "rb");
     
     if(ptrArq == NULL){
         fclose(ptrArq);
@@ -210,7 +210,7 @@ void getContractsData(){
 void saveResidencesData(){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/residences_data.bin", "wb");
+    ptrArq = fopen("resources/data/residences_data.bin", "wb");
     
     if(ptrArq == NULL){
         printColorful("Ocorreu um erro ao salvar residencias!\n", 1);
@@ -226,7 +226,7 @@ void saveResidencesData(){
 void getResidencesData(){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/residences_data.bin", "rb");
+    ptrArq = fopen("resources/data/residences_data.bin", "rb");
     
     if(ptrArq == NULL){
         fclose(ptrArq);

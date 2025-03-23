@@ -125,13 +125,32 @@ void contractManagerAdmMenuChoose(){
             Contract *foundContracts = calloc(contractsAmount, sizeof(Contract));
             findContractsByStartDate(startDate, foundContracts);
 
-            generateContractsReport(foundContracts, contractsAmount);
+            generateContractsReport(foundContracts, contractsAmount, startDate);
             contractManagerAdmMenuChoose();
             break;
         }
         
         case 6:{
-            printf("opt 6\n");
+            char endDate[11];
+            
+            cleanInputBuffer();
+            printColorful("Informe a data final do contrato: ", 3);
+            fgets(endDate, 11, stdin);
+            endDate[strcspn(endDate, "\n")] = 0;
+
+            int contractsAmount = getContractsAmountByEndDate(endDate);
+
+            if(contractsAmount == 0){
+                printColorful("Não foram encontrados contratos.\n\n", 1);
+                contractManagerAdmMenuChoose();
+                return;
+            }
+            
+            Contract *foundContracts = calloc(contractsAmount, sizeof(Contract));
+            findContractsByEndDate(endDate, foundContracts);
+
+            generateContractsReport(foundContracts, contractsAmount, endDate);
+            contractManagerAdmMenuChoose();
             break;
         }
         

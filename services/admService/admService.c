@@ -54,6 +54,7 @@ void createAdm(Adm adm){
     strcpy(adms[registeredAdmsNumber].password, adm.password);
     registeredAdmsNumber++;
     registeredUsersNumber++;
+    
     saveAdmsData();
     
     if(registeredAdmsNumber == admsCurrentLimit)

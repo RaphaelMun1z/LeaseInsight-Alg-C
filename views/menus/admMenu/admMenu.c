@@ -6,6 +6,9 @@
 #include "../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../utils/printColorful/printColorful.h"
 
+// Entities
+#include "../../../entities/AuthUser/AuthUser.h"
+
 // Services
 #include "../../../services/stateManagerService/stateManagerService.h"
 

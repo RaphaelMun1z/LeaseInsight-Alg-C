@@ -4,6 +4,9 @@
 // DTOs
 #include "../../dtos/dtos.h"
 
+// Entities
+#include "../../entities/GenericUser/GenericUser.h"
+
 Owner *owners;
 int registeredOwnersNumber = 0;
 int ownersCurrentLimit = 5;
@@ -20,6 +23,7 @@ void initOwners() {
 }
 
 void allocateSpaceOwnerForFile(int numberOfOwners){
+    registeredUsersNumber += numberOfOwners;
     registeredOwnersNumber = numberOfOwners;
     ownersCurrentLimit = ((numberOfOwners / 5) + 1) * 5;
 

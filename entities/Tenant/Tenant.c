@@ -4,6 +4,9 @@
 // DTOs
 #include "../../dtos/dtos.h"
 
+// Entities
+#include "../../entities/GenericUser/GenericUser.h"
+
 Tenant *tenants;
 int registeredTenantsNumber = 0;
 int tenantsCurrentLimit;
@@ -22,6 +25,7 @@ void initTenants() {
 }
 
 void allocateSpaceTenantForFile(int numberOfTenants){
+    registeredUsersNumber += numberOfTenants;
     registeredTenantsNumber = numberOfTenants;
     tenantsCurrentLimit = ((numberOfTenants / 5) + 1) * 5;
 

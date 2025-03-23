@@ -5,8 +5,8 @@
 // DTOs
 #include "../../dtos/dtos.h"
 
-// Services (test)
-#include "../../services/admService/admService.h"
+// Entities
+#include "../../entities/GenericUser/GenericUser.h"
 
 Adm *adms;
 int registeredAdmsNumber = 0;
@@ -24,6 +24,7 @@ void initAdms() {
 }
 
 void allocateSpaceAdmForFile(int numberOfAdms){
+    registeredUsersNumber += numberOfAdms;
     registeredAdmsNumber = numberOfAdms;
     admsCurrentLimit = ((numberOfAdms / 5) + 1) * 5;
     
