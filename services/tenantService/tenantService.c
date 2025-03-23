@@ -167,3 +167,15 @@ void changeTenantStatus(char rg[], int status){
     saveTenantsData();
 	printColorful("Inquilino atualizado com sucesso!\n", 2);
 }
+
+void changeTenantPhone(int tenantId, char newPhone[]){
+    if(findTenantById(tenantId) == NULL){
+		return printColorful("Inquilino não encontrado.\n", 1);
+	}
+
+	Tenant *t = findTenantById(tenantId);
+	strcpy(t->phone, newPhone);
+    saveTenantsData();
+
+	printColorful("Inquilino atualizado com sucesso!\n", 2);
+}

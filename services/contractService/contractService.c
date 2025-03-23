@@ -83,6 +83,11 @@ int contractExistsById(int id){
 }
 
 void createContract(Contract contract){
+	if(contract.residence.occupancyStatus != 2){
+		printColorful("Imóvel não disponível para locação.\n", 1);
+		return;
+	}
+
 	contracts[registeredContractsNumber].id = registeredContractsNumber + 1;
 	strcpy(contracts[registeredContractsNumber].contractStartDate, contract.contractStartDate);
 	strcpy(contracts[registeredContractsNumber].contractEndDate, contract.contractEndDate);

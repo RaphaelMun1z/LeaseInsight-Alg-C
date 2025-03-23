@@ -134,11 +134,11 @@ void changeResidenceOccupancyStatus(int id, int status){
 	Residence *r = findResidenceById(id);
 	r->occupancyStatus = status;
 	saveResidencesData();
-
+	
 	printColorful("Residencia atualizada com sucesso!\n", 2);
 }
 
-void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatus){
+void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatus, int changeAddress, Address newAddress){
 	if(!residenceExistsById(id)){
 		return printColorful("Residencia não encontrada.\n", 1);
 	}
@@ -146,10 +146,13 @@ void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatu
 	Residence *r = findResidenceById(id);
 	if(newRentalValue != -1)
 	r->rentalValue = newRentalValue;
-
+	
 	if(newOccupancyStatus != -1)
 	r->occupancyStatus = newOccupancyStatus;
-
+	
+	if(changeAddress == 1)
+	r->address = newAddress;
+	
 	saveResidencesData();
 	
 	printColorful("Residencia atualizada com sucesso!\n", 2);

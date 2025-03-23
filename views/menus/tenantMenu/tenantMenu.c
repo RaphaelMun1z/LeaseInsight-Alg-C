@@ -4,6 +4,7 @@
 
 // Utils
 #include "../../../utils/cleanScreen/cleanScreen.h"
+#include "../../../utils/cleanInputBuffer/cleanInputBuffer.h"
 #include "../../../utils/printColorful/printColorful.h"
 
 // Entities
@@ -24,16 +25,17 @@ int tenantMenu(){
         printColorful("1 -> Gostaria de acessar meus contratos.\n", 5);
         printColorful("2 -> Gostaria de acessar detalhes de um contrato.\n", 5);
         printColorful("3 -> Gostaria de cancelar um contrato.\n", 5);
-        printColorful("4 -> Gostaria de sair da minha conta.\n", 1);
+        printColorful("4 -> Gostaria de modificar meu Telefone.\n", 5);
+        printColorful("5 -> Gostaria de sair da minha conta.\n", 1);
         
         option = getch();
         option -= '0';
         
-        if(option < 1 || option > 4){
+        if(option < 1 || option > 5){
             cleanScreen();
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
-    } while(option < 1 || option > 4);
+    } while(option < 1 || option > 5);
     cleanScreen();
     return option;
 }
@@ -89,8 +91,27 @@ void tenantMenuChoose(){
             tenantMenuChoose();
             break;
         }
+
+        case 4: {
+            char newPhone[16];
+            do {
+                cleanInputBuffer();
+                printColorful("Novo Telefone para contato (Ex.: (13) 91234-5678): ", 5);
+                fgets(newPhone, 16, stdin);
+                newPhone[strcspn(newPhone, "\n")] = 0;
+                
+                if(newPhone[0] == '\0'){
+                    cleanScreen();
+                    printColorful("\nO Campo 'Telefone' é obrigatório. Tente novamente.\n\n", 4);
+                }
+            } while (newPhone[0] == '\0');
+
+            changeTenantPhone(authUser->id, newPhone);
+            tenantMenuChoose();
+            break;
+        }
         
-        case 4:
+        case 5:
         logoutAuthUser();
         break;
         

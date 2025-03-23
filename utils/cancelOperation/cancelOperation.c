@@ -19,3 +19,11 @@ int cancelOperationWithInt(int value){
     }
     return 0;
 }
+
+int cancelOperationWithDouble(double value){
+    if(value == -1){
+        printColorful("\nCancelando operação...\n", 5);
+        return 1;
+    }
+    return 0;
+}

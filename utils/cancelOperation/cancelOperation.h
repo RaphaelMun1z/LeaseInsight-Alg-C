@@ -3,5 +3,6 @@
 
 int cancelOperationWithString(char value[]);
 int cancelOperationWithInt(int value);
+int cancelOperationWithDouble(double value);
 
 #endif

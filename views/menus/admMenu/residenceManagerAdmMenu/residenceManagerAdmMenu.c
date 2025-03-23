@@ -6,9 +6,13 @@
 #include "../../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../../utils/printColorful/printColorful.h"
 #include "../../../../utils/cleanInputBuffer/cleanInputBuffer.h"
+#include "../../../../utils/cancelOperation/cancelOperation.h"
 
 // Entities
 #include "../../../../entities/AuthUser/AuthUser.h"
+
+// Controllers
+#include "../../../../controllers/updateResidenceController/updateResidenceController.h"
 
 // Services
 #include "../../../../services/stateManagerService/stateManagerService.h"
@@ -45,7 +49,7 @@ void residenceManagerAdmMenuChoose(){
         break;
         
         case 2: {
-            double residenceId;
+            int residenceId;
             printColorful("Informe o ID da residência: ", 3);
             scanf("%d", &residenceId);
             
@@ -61,10 +65,12 @@ void residenceManagerAdmMenuChoose(){
         }
         
         case 3:{
-            double residenceId;
+            int residenceId;
 
             double newRentalValue;
             int newOccupancyStatus;
+            int changeAddress;
+            Address newAddress;
             
             printColorful("Informe o ID da residencia: ", 3);
             scanf("%d", &residenceId);
@@ -75,37 +81,15 @@ void residenceManagerAdmMenuChoose(){
                 return;
             }
             
-            do {
-                cleanInputBuffer();
-                printColorful("\n[DICA] Caso não queira alterar o atributo, digite: '-1'.\n", 5);
-                printColorful("Novo Valor de aluguel: ", 5);
-                scanf("%lf", &newRentalValue);
-                
-                if(newRentalValue <= 0){
-                    cleanScreen();
-                    printColorful("\nO Campo 'Valor de aluguel' é obrigatório. Tente novamente.\n\n", 4);
-                }
-            } while (newRentalValue <= 0);
-
-            do {
-                cleanInputBuffer();
-                printColorful("\n[DICA] Caso não queira alterar o atributo, digite: '-1'.\n", 5);
-                printColorful("Status [1 - Ocupado | 2 - Livre | 3 - Saída pendente]: ", 5);
-                scanf("%d", &newOccupancyStatus);
-                
-                if(newOccupancyStatus < 1 || newOccupancyStatus > 3){
-                    cleanScreen();
-                    printColorful("\nO Campo 'Status' é obrigatório. Tente novamente.\n\n", 4);
-                }
-            } while (newOccupancyStatus < 1 || newOccupancyStatus > 3);
+            updateResidenceForm(&newRentalValue, &newOccupancyStatus, &changeAddress, &newAddress);
             
-            changeResidenceDetails(residenceId, newRentalValue, newOccupancyStatus);
+            changeResidenceDetails(residenceId, newRentalValue, newOccupancyStatus, changeAddress, newAddress);
             residenceManagerAdmMenuChoose();
             break;
         }
         
         case 4: {
-            double residenceId;
+            int residenceId;
             printColorful("Informe o ID da residencia: ", 3);
             scanf("%d", &residenceId);
             
