@@ -15,6 +15,7 @@ void printContractById(double id);
 int contractExistsById(double id);
 void findContractsByOwner(double id);
 void findContractsByTenant(double id);
+void findContractsByStatus(int contractStatus);
 void changeContractStatus(double id, int status);
 
 #endif

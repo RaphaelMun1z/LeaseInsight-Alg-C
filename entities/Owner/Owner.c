@@ -13,7 +13,24 @@ void initOwners() {
     
     if (owners == NULL) {
         printf("[LOG] Erro ao alocar memória para 'owners'!\n");
+        return;
     }
+
+    printf("[LOG] Memória padrão alocada para 'owners'\n");
+}
+
+void allocateSpaceOwnerForFile(int numberOfOwners){
+    registeredOwnersNumber = numberOfOwners;
+    ownersCurrentLimit = ((numberOfOwners / 5) + 1) * 5;
+
+    owners = (Owner *) calloc(ownersCurrentLimit, sizeof(Owner));
+    
+    if (owners == NULL) {
+        printf("[LOG] Erro ao alocar memória para 'owners'!\n");
+        return;
+    }
+
+    printf("[LOG] Memória alocada para 'owners' com base nos %d registros do arquivo!\n", numberOfOwners);
 }
 
 void allocateMoreSpaceOwner(){

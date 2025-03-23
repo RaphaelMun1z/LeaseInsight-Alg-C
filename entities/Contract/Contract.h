@@ -5,11 +5,12 @@
 #include "../../dtos/dtos.h"
 
 extern Contract *contracts;
-extern int contractsLength;
+extern int registeredContractsNumber;
 extern int contractsCurrentLimit;
 
 void initContracts();
 void allocateMoreSpaceContract();
+void allocateSpaceContractForFile(int numberOfContracts);
 void freeContracts();
 
 #endif

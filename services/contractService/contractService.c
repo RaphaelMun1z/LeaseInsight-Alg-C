@@ -8,6 +8,7 @@
 #include "../../entities/Contract/Contract.h"
 
 // Services
+#include "../dataPersistenceService/dataPersistenceService.h"
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
 
@@ -23,20 +24,20 @@ void findContractsByTenant(double id);
 void changeContractStatus(double id, int status);
 
 void findAllContracts(){
-	if(contractsLength == 0)
+	if(registeredContractsNumber == 0)
 	return printColorful("Não há contratos registrados.\n", 4);
 	
-	for (int ii = 0; ii < contractsLength; ii++){
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
 		printContract(contracts[ii]);
 	}
 }
 
 void findContractsByTenantRg(char tenantRg[]){
-	if(contractsLength == 0)
+	if(registeredContractsNumber == 0)
 	return printColorful("Não há contratos registrados.\n", 4);
 	
 	int contractsFound = 0;
-	for (int ii = 0; ii < contractsLength; ii++){
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
 		if(strcmp(contracts[ii].tenant->rg, tenantRg) == 0){
 			contractsFound++;
 			printContract(contracts[ii]);
@@ -48,7 +49,7 @@ void findContractsByTenantRg(char tenantRg[]){
 }
 
 Contract *findContractById(double id){
-	for (int ii = 0; ii < contractsLength; ii++){
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
 		if(contracts[ii].id == id){
 			return &contracts[ii];
 		}
@@ -62,21 +63,22 @@ int contractExistsById(double id){
 }
 
 void createContract(Contract contract){
-	contracts[contractsLength].id = contractsLength + 1;
-	strcpy(contracts[contractsLength].contractStartDate, contract.contractStartDate);
-	strcpy(contracts[contractsLength].contractEndDate, contract.contractEndDate);
-	contracts[contractsLength].defaultRentalValue = contract.defaultRentalValue;
-	contracts[contractsLength].contractStatus = contract.contractStatus;
-	contracts[contractsLength].invoiceDueDate = contract.invoiceDueDate;
-	contracts[contractsLength].residence = contract.residence;
-	contracts[contractsLength].tenant = contract.tenant;
-	contractsLength++;
+	contracts[registeredContractsNumber].id = registeredContractsNumber + 1;
+	strcpy(contracts[registeredContractsNumber].contractStartDate, contract.contractStartDate);
+	strcpy(contracts[registeredContractsNumber].contractEndDate, contract.contractEndDate);
+	contracts[registeredContractsNumber].defaultRentalValue = contract.defaultRentalValue;
+	contracts[registeredContractsNumber].contractStatus = contract.contractStatus;
+	contracts[registeredContractsNumber].invoiceDueDate = contract.invoiceDueDate;
+	contracts[registeredContractsNumber].residence = contract.residence;
+	contracts[registeredContractsNumber].tenant = contract.tenant;
+	registeredContractsNumber++;
+	saveContractsData();
 	
 	char welcomeText[200];
 	snprintf(welcomeText, sizeof(welcomeText), "\nVocê registrou um contrato cujo imóvel é o de código %0.lf, e inquilino de nome %s!\n", contract.residence->id, contract.tenant->name);
 	printColorful(welcomeText, 2);
 	
-	if(contractsLength == contractsCurrentLimit)
+	if(registeredContractsNumber == contractsCurrentLimit)
 	allocateMoreSpaceContract();
 }
 
@@ -86,11 +88,12 @@ void deleteContract(double id){
 		return;
 	}
 	
-	for (int ii = 0; ii < contractsLength; ii++){
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
 		if(contracts[ii].id == id){			
-			int indLastItemOfContracts = contractsLength-1;
+			int indLastItemOfContracts = registeredContractsNumber-1;
 			contracts[ii] = contracts[indLastItemOfContracts];
-			contractsLength--;
+			registeredContractsNumber--;
+			saveContractsData();
 			printColorful("Contrato deletado com sucesso!\n", 2);
 			return;
 		}
@@ -125,11 +128,13 @@ void printContractById(double id){
 void findContractsByOwner(double ownerId){
 	int contractsFound = 0;
 	
-	for (int ii = 0; ii < contractsLength; ii++){
-		if(contracts[ii].residence->ownerId == ownerId){
-			contractsFound++;
-			printContract(contracts[ii]);
-		}
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
+		printf("contracts[%d].residence: %p\n", ii, (void *)contracts[ii].residence);
+		printf("contracts[%d].residence->ownerId: %d\n", ii, contracts[ii].residence->ownerId);
+		/* if(contracts[ii].residence->ownerId == ownerId){
+		contractsFound++;
+		printContract(contracts[ii]);
+		} */
 	}
 	
 	if(contractsFound == 0)
@@ -139,7 +144,7 @@ void findContractsByOwner(double ownerId){
 void findContractsByTenant(double tenantId){
 	int contractsFound = 0;
 	
-	for (int ii = 0; ii < contractsLength; ii++){
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
 		if(contracts[ii].tenant->id == tenantId){
 			contractsFound++;
 			printContract(contracts[ii]);
@@ -148,6 +153,35 @@ void findContractsByTenant(double tenantId){
 	
 	if(contractsFound == 0)
 	return printColorful("Não há contratos registrados.\n", 4);
+}
+
+void findContractsByStatus(int contractStatus){
+	int contractsFound = 0;
+	
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
+		if(contracts[ii].contractStatus == contractStatus){
+			contractsFound++;
+			Contract c = contracts[ii];
+			printf("\nID: %.0lf\n", c.id);
+			printf("Status: ", c.contractStatus);
+			if (c.contractStatus == 1) printColorful("Ativo\n", 2);
+			else if (c.contractStatus == 2) printColorful("Inativo\n", 1);
+			else if (c.contractStatus == 3) printColorful("Aprovação pendente\n", 4);
+			else printColorful("Desconhecido\n", 5); 
+			printf("Valor do aluguel: %.2lf\n", c.defaultRentalValue);
+			printf("Data de início: %s\n", c.contractStartDate);
+			printf("Data de término: %s\n", c.contractEndDate);
+			printf("Dia de vencimento: %d\n", c.invoiceDueDate);
+			printf("Status do inquilino: %d\n", c.tenant->tenantStatus);
+			printf("RG do inquilino: %s\n", c.tenant->rg);
+			printf("ID da residencia: %.0lf\n", c.residence->id);
+			printf("ID do proprietário da residencia: %.0lf\n", c.residence->ownerId);
+			printf("\n____\n");
+		}
+	}
+	
+	if(contractsFound == 0)
+	return printColorful("Não foram encontrados contratos com esse status.\n", 4);
 }
 
 void changeContractStatus(double id, int newStatus){
@@ -160,6 +194,7 @@ void changeContractStatus(double id, int newStatus){
 	return printColorful("Contrato não encontrado.\n", 1);
 	
 	c->contractStatus = newStatus;
+	saveContractsData();
 	
 	printColorful("Contrato atualizado com sucesso!\n", 2);
 }

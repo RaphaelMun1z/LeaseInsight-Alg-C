@@ -7,7 +7,7 @@
 Tenant *tenants;
 int registeredTenantsNumber = 0;
 int tenantsCurrentLimit;
-const int incrementAmount = 5;
+const int tenantIncrementAmount = 5;
 
 void initTenants() {
     tenantsCurrentLimit = 15;
@@ -36,12 +36,12 @@ void allocateSpaceTenantForFile(int numberOfTenants){
 }
 
 void allocateMoreSpaceTenant(){
-    tenantsCurrentLimit += incrementAmount;
+    tenantsCurrentLimit += tenantIncrementAmount;
     
     Tenant *temp = realloc(tenants, sizeof(Tenant) * tenantsCurrentLimit);
     if (temp == NULL){
         printf("[LOG] Erro ao realocar memória para 'tenants'!\n");
-        tenantsCurrentLimit -= incrementAmount;
+        tenantsCurrentLimit -= tenantIncrementAmount;
         return;
     }
     

@@ -30,13 +30,12 @@
 
 void initEntities(){
     initAuthUser();
-    initAdms();
-    
-    getTenantsData();
 
-    initOwners();
-    initResidences();
-    initContracts();
+    getAdmsData();    
+    getTenantsData();
+    getOwnersData();
+    getResidencesData();
+    getContractsData();
 }
 
 void freeEntities(){
@@ -54,14 +53,6 @@ void exitScreen(){
     getchar();
 }
 
-void mockRegisterAdm(){
-    Adm adm;
-    strcpy(adm.email, "adm@gmail.com");
-    strcpy(adm.name, "adm");
-    strcpy(adm.password, "adm123");
-    createAdm(adm);
-}
-
 int main(){
     // importante!!!
     // verificar se há algum contrato vinculado a residencia antes de remover
@@ -71,8 +62,6 @@ int main(){
     
     startScreen();
     printColorful("Seja bem-vindo(a)!\n", 0);
-    
-    mockRegisterAdm();
     
     initMenuHandler();
     

@@ -5,6 +5,9 @@
 // DTOs
 #include "../../dtos/dtos.h"
 
+// Services (test)
+#include "../../services/admService/admService.h"
+
 Adm *adms;
 int registeredAdmsNumber = 0;
 int admsCurrentLimit = 5;
@@ -14,7 +17,24 @@ void initAdms() {
     
     if (adms == NULL) {
         printf("[LOG] Erro ao alocar memória para 'Adms'!\n");
+        return;
     }
+
+    printf("[LOG] Memória padrão alocada para 'adms'\n");
+}
+
+void allocateSpaceAdmForFile(int numberOfAdms){
+    registeredAdmsNumber = numberOfAdms;
+    admsCurrentLimit = ((numberOfAdms / 5) + 1) * 5;
+    
+    adms = (Adm *) calloc(admsCurrentLimit, sizeof(Adm));
+    
+    if (adms == NULL) {
+        printf("[LOG] Erro ao alocar memória para 'adms'!\n");
+        return;
+    }
+    
+    printf("[LOG] Memória alocada para 'adms' com base nos %d registros do arquivo!\n", numberOfAdms);
 }
 
 void allocateMoreSpaceAdm(){

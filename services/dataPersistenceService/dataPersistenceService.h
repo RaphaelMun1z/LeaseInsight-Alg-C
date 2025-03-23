@@ -7,4 +7,16 @@
 void saveTenantsData();
 void getTenantsData();
 
+void saveOwnersData();
+void getOwnersData();
+
+void saveAdmsData();
+void getAdmsData();
+
+void saveContractsData();
+void getContractsData();
+
+void saveResidencesData();
+void getResidencesData();
+
 #endif

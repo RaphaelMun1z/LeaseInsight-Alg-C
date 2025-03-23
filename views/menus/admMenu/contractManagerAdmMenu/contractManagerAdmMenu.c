@@ -21,19 +21,20 @@ int contractManagerAdmMenu(){
         printColorful("Gerenciando contratos. Você pode: \n", 3);
         printColorful("1 -> Acessar todos contratos.\n", 5);
         printColorful("2 -> Acessar detalhes de um contrato pelo ID.\n", 5);
-        printColorful("3 -> Acessar contratos pelo RG do Inquilino.\n", 5);
-        printColorful("4 -> Alterar um contrato.\n", 5);
-        printColorful("5 -> Remover um contrato.\n", 5);
-        printColorful("6 -> Voltar.\n", 1);
+        printColorful("3 -> Acessar detalhes de um contrato pelo Status.\n", 5);
+        printColorful("4 -> Acessar contratos pelo RG do Inquilino.\n", 5);
+        printColorful("5 -> Alterar um contrato.\n", 5);
+        printColorful("6 -> Remover um contrato.\n", 5);
+        printColorful("7 -> Voltar.\n", 1);
         
         option = getch();
         option -= '0';
         
-        if(option < 1 || option > 6){
+        if(option < 1 || option > 7){
             cleanScreen();
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
-    } while(option < 1 || option > 6);
+    } while(option < 1 || option > 7);
     cleanScreen();
     return option;
 }
@@ -63,6 +64,25 @@ void contractManagerAdmMenuChoose(){
         }
 
         case 3:{
+            int contractStatus;
+
+            do {
+                cleanInputBuffer();
+                printColorful("Status [1 - Ativo | 2 - Inativo | 3 - Pré-aprovado]: ", 5);
+                scanf("%d", &contractStatus);
+                
+                if(contractStatus < 1 || contractStatus > 3){
+                    cleanScreen();
+                    printColorful("\nO Campo 'Status' é obrigatório. Tente novamente.\n\n", 4);
+                }
+            } while (contractStatus < 1 || contractStatus > 3);
+            
+            findContractsByStatus(contractStatus);
+            contractManagerAdmMenuChoose();
+            break;
+        }
+
+        case 4:{
             char tenantRg[100];
             cleanInputBuffer();
             printColorful("Informe o RG do inquilino: ", 3);
@@ -82,7 +102,7 @@ void contractManagerAdmMenuChoose(){
             break;
         }
         
-        case 4:{
+        case 5:{
             double contractId;
             int contractStatus;
             
@@ -111,7 +131,7 @@ void contractManagerAdmMenuChoose(){
             break;
         }
         
-        case 5: {
+        case 6: {
             double contractId;
             printColorful("Informe o ID do contrato: ", 3);
             scanf("%lf", &contractId);
@@ -127,7 +147,7 @@ void contractManagerAdmMenuChoose(){
             break;
         }
         
-        case 6: {
+        case 7: {
             break;
         }
         

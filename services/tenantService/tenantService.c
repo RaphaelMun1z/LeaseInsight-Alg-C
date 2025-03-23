@@ -118,6 +118,7 @@ void deleteTenant(char tenantRg[]){
 			int indLastItemOfTenants = registeredTenantsNumber-1;
 			tenants[ii] = tenants[indLastItemOfTenants];
 			registeredTenantsNumber--;
+            saveTenantsData();
 			printColorful("Inquilino deletado com sucesso!\n", 2);
 			return;
 		}
@@ -162,5 +163,6 @@ void changeTenantStatus(char rg[], int status){
 
 	Tenant *t = findTenantByRg(rg);
 	t->tenantStatus = status;
+    saveTenantsData();
 	printColorful("Inquilino atualizado com sucesso!\n", 2);
 }

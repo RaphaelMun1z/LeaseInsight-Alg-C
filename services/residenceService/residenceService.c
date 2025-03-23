@@ -9,6 +9,7 @@
 #include "../../entities/AuthUser/AuthUser.h"
 
 // Services
+#include "../dataPersistenceService/dataPersistenceService.h"
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
 #include "../ownerService/ownerService.h"
@@ -24,16 +25,16 @@ void findResidencesByOwner(double id);
 void changeResidenceOccupancyStatus(double id, int status);
 
 void findAllResidences(){
-	if(residencesLength == 0)
+	if(registeredResidencesNumber == 0)
 	return printColorful("Não há residencias registradas.\n", 4);
 	
-	for (int ii = 0; ii < residencesLength; ii++){
+	for (int ii = 0; ii < registeredResidencesNumber; ii++){
 		printResidence(residences[ii]);
 	}
 }
 
 Residence *findResidenceById(double id){
-	for (int ii = 0; ii < residencesLength; ii++){
+	for (int ii = 0; ii < registeredResidencesNumber; ii++){
 		if(residences[ii].id == id){
 			return &residences[ii];
 		}
@@ -47,20 +48,19 @@ int residenceExistsById(double id){
 }
 
 void createResidence(Residence residence){
-	// Verifica se ja existe (apos criar struct address)
-	
-	residences[residencesLength].id = residencesLength + 1;
-	residences[residencesLength].propertyType = residence.propertyType;
-	residences[residencesLength].occupancyStatus = residence.occupancyStatus;
-	residences[residencesLength].rentalValue = residence.rentalValue;
-	residences[residencesLength].ownerId = authUser->id;
-	residencesLength++;
+	residences[registeredResidencesNumber].id = registeredResidencesNumber + 1;
+	residences[registeredResidencesNumber].propertyType = residence.propertyType;
+	residences[registeredResidencesNumber].occupancyStatus = residence.occupancyStatus;
+	residences[registeredResidencesNumber].rentalValue = residence.rentalValue;
+	residences[registeredResidencesNumber].ownerId = authUser->id;
+	registeredResidencesNumber++;
+	saveResidencesData();
 	
 	char welcomeText[200];
 	snprintf(welcomeText, sizeof(welcomeText), "\nVocê registrou uma residencia!\n");
 	printColorful(welcomeText, 2);
 	
-	if(residencesLength == residencesCurrentLimit)
+	if(registeredResidencesNumber == residencesCurrentLimit)
 	allocateMoreSpaceResidence();
 }
 
@@ -70,11 +70,12 @@ void deleteResidence(double id){
 		return;
 	}
 	
-	for (int ii = 0; ii < residencesLength; ii++){
+	for (int ii = 0; ii < registeredResidencesNumber; ii++){
 		if(residences[ii].id == id){
-			int indLastItemOfResidences = residencesLength-1;
+			int indLastItemOfResidences = registeredResidencesNumber-1;
 			residences[ii] = residences[indLastItemOfResidences];
-			residencesLength--;
+			registeredResidencesNumber--;
+			saveResidencesData();
 			printColorful("Residencia deletado com sucesso!\n", 2);
 			return;
 		}
@@ -112,7 +113,7 @@ void printResidenceById(double id){
 
 void findResidencesByOwner(double ownerId){
 	int residencesFound = 0;
-	for (int ii = 0; ii < residencesLength; ii++){
+	for (int ii = 0; ii < registeredResidencesNumber; ii++){
 		if(residences[ii].ownerId == ownerId){
 			residencesFound++;
 			printResidence(residences[ii]);
@@ -130,6 +131,8 @@ void changeResidenceOccupancyStatus(double id, int status){
 	
 	Residence *r = findResidenceById(id);
 	r->occupancyStatus = status;
+	saveResidencesData();
+
 	printColorful("Residencia atualizada com sucesso!\n", 2);
 }
 
@@ -144,6 +147,8 @@ void changeResidenceDetails(double id, double newRentalValue, int newOccupancySt
 
 	if(newOccupancyStatus != -1)
 	r->occupancyStatus = newOccupancyStatus;
+
+	saveResidencesData();
 	
 	printColorful("Residencia atualizada com sucesso!\n", 2);
 }

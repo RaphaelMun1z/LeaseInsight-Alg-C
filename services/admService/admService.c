@@ -9,6 +9,7 @@
 #include "../../entities/Adm/Adm.h"
 
 // Services
+#include "../dataPersistenceService/dataPersistenceService.h"
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
 #include "../userService/userService.h"
@@ -53,6 +54,7 @@ void createAdm(Adm adm){
     strcpy(adms[registeredAdmsNumber].password, adm.password);
     registeredAdmsNumber++;
     registeredUsersNumber++;
+    saveAdmsData();
     
     if(registeredAdmsNumber == admsCurrentLimit)
     allocateMoreSpaceAdm();

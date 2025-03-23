@@ -5,11 +5,12 @@
 #include "../../dtos/dtos.h"
 
 extern Residence *residences;
-extern int residencesLength;
+extern int registeredResidencesNumber;
 extern int residencesCurrentLimit;
 
 void initResidences();
 void allocateMoreSpaceResidence();
+void allocateSpaceResidenceForFile(int numberOfResidences);
 void freeResidences();
 
 #endif

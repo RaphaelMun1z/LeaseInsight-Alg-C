@@ -9,6 +9,7 @@
 #include "../../entities/Owner/Owner.h"
 
 // Services
+#include "../dataPersistenceService/dataPersistenceService.h"
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
 #include "../userService/userService.h"
@@ -63,6 +64,8 @@ void createOwner(Owner owner){
     strcpy(owners[registeredOwnersNumber].password, owner.password);
     registeredOwnersNumber++;
     registeredUsersNumber++;
+
+    saveOwnersData();
     
     char tempName[100];
     strncpy(tempName, owner.name, strcspn(owner.name, "\n"));
@@ -93,6 +96,7 @@ void deleteOwner(double id){
             int indLastItemOfOwners = registeredOwnersNumber-1;
             owners[ii] = owners[indLastItemOfOwners];
             registeredOwnersNumber--;
+            saveOwnersData();
             printColorful("Proprietário deletado com sucesso!\n", 2);
             return;
         }
@@ -129,6 +133,7 @@ void changeOwnerDetails(double id, char newName[]){
     Owner *o = findOwnerById(id);
     if(!(strcmp(newName, "-1") == 0))
     strcpy(o->name, newName);
+    saveOwnersData();
     
     printColorful("Proprietário atualizado com sucesso!\n", 2);
 }

@@ -10,6 +10,7 @@ extern int ownersCurrentLimit;
 
 void initOwners();
 void allocateMoreSpaceOwner();
+void allocateSpaceOwnerForFile(int numberOfOwners);
 void freeOwners();
 
 #endif
