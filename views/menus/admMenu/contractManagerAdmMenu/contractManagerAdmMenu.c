@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <conio.h>
 #include <string.h>
 
@@ -11,6 +12,7 @@
 #include "../../../../entities/AuthUser/AuthUser.h"
 
 // Services
+#include "../../../../services/reportHandlerService/reportHandlerService.h"
 #include "../../../../services/stateManagerService/stateManagerService.h"
 #include "../../../../services/contractService/contractService.h"
 #include "../../../../services/tenantService/tenantService.h"
@@ -23,18 +25,20 @@ int contractManagerAdmMenu(){
         printColorful("2 -> Acessar detalhes de um contrato pelo ID.\n", 5);
         printColorful("3 -> Acessar detalhes de um contrato pelo Status.\n", 5);
         printColorful("4 -> Acessar contratos pelo RG do Inquilino.\n", 5);
-        printColorful("5 -> Alterar um contrato.\n", 5);
-        printColorful("6 -> Remover um contrato.\n", 5);
-        printColorful("7 -> Voltar.\n", 1);
+        printColorful("5 -> Gerar relatório de contratos por Data Inicial.\n", 5);
+        printColorful("6 -> Gerar relatório de contratos por Data de Fim.\n", 5);
+        printColorful("7 -> Alterar um contrato.\n", 5);
+        printColorful("8 -> Remover um contrato.\n", 5);
+        printColorful("9 -> Voltar.\n", 1);
         
         option = getch();
         option -= '0';
         
-        if(option < 1 || option > 7){
+        if(option < 1 || option > 9){
             cleanScreen();
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
-    } while(option < 1 || option > 7);
+    } while(option < 1 || option > 9);
     cleanScreen();
     return option;
 }
@@ -62,10 +66,10 @@ void contractManagerAdmMenuChoose(){
             contractManagerAdmMenuChoose();
             break;
         }
-
+        
         case 3:{
             int contractStatus;
-
+            
             do {
                 cleanInputBuffer();
                 printColorful("Status [1 - Ativo | 2 - Inativo | 3 - Pré-aprovado]: ", 5);
@@ -81,7 +85,7 @@ void contractManagerAdmMenuChoose(){
             contractManagerAdmMenuChoose();
             break;
         }
-
+        
         case 4:{
             char tenantRg[100];
             cleanInputBuffer();
@@ -103,6 +107,35 @@ void contractManagerAdmMenuChoose(){
         }
         
         case 5:{
+            char startDate[11];
+            
+            cleanInputBuffer();
+            printColorful("Informe a data inicial do contrato: ", 3);
+            fgets(startDate, 11, stdin);
+            startDate[strcspn(startDate, "\n")] = 0;
+
+            int contractsAmount = getContractsAmountByStartDate(startDate);
+
+            if(contractsAmount == 0){
+                printColorful("Não foram encontrados contratos.\n\n", 1);
+                contractManagerAdmMenuChoose();
+                return;
+            }
+            
+            Contract *foundContracts = calloc(contractsAmount, sizeof(Contract));
+            findContractsByStartDate(startDate, foundContracts);
+
+            generateContractsReport(foundContracts, contractsAmount);
+            contractManagerAdmMenuChoose();
+            break;
+        }
+        
+        case 6:{
+            printf("opt 6\n");
+            break;
+        }
+        
+        case 7:{
             int contractId;
             int contractStatus;
             
@@ -131,7 +164,7 @@ void contractManagerAdmMenuChoose(){
             break;
         }
         
-        case 6: {
+        case 8: {
             int contractId;
             printColorful("Informe o ID do contrato: ", 3);
             scanf("%d", &contractId);
@@ -147,7 +180,7 @@ void contractManagerAdmMenuChoose(){
             break;
         }
         
-        case 7: {
+        case 9: {
             break;
         }
         

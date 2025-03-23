@@ -31,6 +31,7 @@ controllers/signInController/signInController.c ^
 controllers/registerContractController/registerContractController.c ^
 controllers/registerResidenceController/registerResidenceController.c ^
 services/dataPersistenceService/dataPersistenceService.c ^
+services/reportHandlerService/reportHandlerService.c ^
 services/stateManagerService/stateManagerService.c ^
 services/userService/userService.c ^
 services/admService/admService.c ^

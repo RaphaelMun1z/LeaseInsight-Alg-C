@@ -7,6 +7,8 @@
 void findAllContracts();
 void findContractsByTenantRg(char tenantRg[]);
 Contract *findContractById(int id);
+void findContractsByStartDate(char startDate[], Contract *foundContracts);
+void findContractsByEndDate(char endDate[], Contract *foundContracts);
 void createContract(Contract contract); 
 void deleteContract(int id); 
 
@@ -15,6 +17,7 @@ void printContractById(int id);
 int contractExistsById(int id);
 void findContractsByOwner(int id);
 void findContractsByTenant(int id);
+int getContractsAmountByStartDate(char startDate[]);
 void findContractsByStatus(int contractStatus);
 void changeContractStatus(int id, int status);
 

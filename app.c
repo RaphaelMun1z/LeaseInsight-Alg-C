@@ -52,8 +52,7 @@ void exitScreen(){
 }
 
 int main(){
-    // importante!!!
-    // verificar se há algum contrato vinculado a residencia antes de remover
+    // Criar Address para Residence - [é orbigatório por conta da pre entrega!]
     cleanScreen();
     
     initEntities();

@@ -58,6 +58,20 @@ Contract *findContractById(int id){
 	return NULL;
 }
 
+void findContractsByStartDate(char startDate[], Contract *foundContracts){
+	int aux = 0;
+    for (int ii = 0; ii < registeredContractsNumber; ii++) {
+        if (strcmp(contracts[ii].contractStartDate, startDate) == 0) {
+			foundContracts[aux] = contracts[ii];
+            aux++;
+        }
+    }
+}
+
+void findContractsByEndDate(char endDate[], Contract *foundContracts){
+
+}
+
 int contractExistsById(int id){
 	return findContractById(id) == NULL ? 0 : 1;
 }
@@ -153,6 +167,18 @@ void findContractsByTenant(int tenantId){
 	
 	if(contractsFound == 0)
 	return printColorful("Não há contratos registrados.\n", 4);
+}
+
+int getContractsAmountByStartDate(char startDate[]){
+	int contractsFound = 0;
+	
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
+		if(strcmp(contracts[ii].contractStartDate, startDate) == 0){
+			contractsFound++;
+		}
+	}
+	
+	return contractsFound;
 }
 
 void findContractsByStatus(int contractStatus){
