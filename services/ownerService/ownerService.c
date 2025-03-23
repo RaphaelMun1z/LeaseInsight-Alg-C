@@ -15,15 +15,15 @@
 #include "../userService/userService.h"
 
 void findAllOwners();
-Owner *findOwnerById(double id);
+Owner *findOwnerById(int id);
 Owner *findOwnerByEmail(char email[]);
 void createOwner(Owner Owner);
-void deleteOwner(double id); 
+void deleteOwner(int id); 
 
 void printOwner(Owner o);
-void printOwnerById(double id);
-int ownerExistsById(double id);
-void changeOwnerDetails(double id, char newName[]);
+void printOwnerById(int id);
+int ownerExistsById(int id);
+void changeOwnerDetails(int id, char newName[]);
 
 void findAllOwners(){
     if(registeredOwnersNumber == 0)
@@ -34,7 +34,7 @@ void findAllOwners(){
     }
 }
 
-Owner *findOwnerById(double id){
+Owner *findOwnerById(int id){
     for (int ii = 0; ii < registeredOwnersNumber; ii++){
         if(owners[ii].id == id){
             return &owners[ii];
@@ -85,7 +85,7 @@ void createOwner(Owner owner){
     signInUser(credentials);
 }
 
-void deleteOwner(double id){
+void deleteOwner(int id){
     if(!ownerExistsById(id)){
         printColorful("Proprietário não encontrado.\n", 1);
         return;
@@ -112,7 +112,7 @@ void printOwner(Owner o){
     printf("\n____\n");
 }
 
-void printOwnerById(double id){
+void printOwnerById(int id){
     Owner *o = findOwnerById(id);
     
     if(o == NULL)
@@ -121,11 +121,11 @@ void printOwnerById(double id){
     printOwner(*o);
 }
 
-int ownerExistsById(double id){
+int ownerExistsById(int id){
     return findOwnerById(id) == NULL ? 0 : 1;
 }
 
-void changeOwnerDetails(double id, char newName[]){
+void changeOwnerDetails(int id, char newName[]){
     if(!ownerExistsById(id)){
         return printColorful("Proprietário não encontrado.\n", 1);
     }

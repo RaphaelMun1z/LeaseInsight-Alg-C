@@ -5,7 +5,7 @@
 #include "../../dtos/dtos.h"
 
 void findAllAdms();
-Adm *findAdmById(double id);
+Adm *findAdmById(int id);
 Adm *findAdmByEmail(char email[]);
 void createAdm(Adm adm);
 

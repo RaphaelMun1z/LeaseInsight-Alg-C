@@ -15,14 +15,14 @@
 #include "../ownerService/ownerService.h"
 
 void findAllResidences();
-Residence *findResidenceById(double id);
+Residence *findResidenceById(int id);
 void createResidence(Residence Residence); 
-void deleteResidence(double id); 
+void deleteResidence(int id); 
 
 void printResidence(Residence c);
-void printResidenceById(double id);
-void findResidencesByOwner(double id);
-void changeResidenceOccupancyStatus(double id, int status);
+void printResidenceById(int id);
+void findResidencesByOwner(int id);
+void changeResidenceOccupancyStatus(int id, int status);
 
 void findAllResidences(){
 	if(registeredResidencesNumber == 0)
@@ -33,7 +33,7 @@ void findAllResidences(){
 	}
 }
 
-Residence *findResidenceById(double id){
+Residence *findResidenceById(int id){
 	for (int ii = 0; ii < registeredResidencesNumber; ii++){
 		if(residences[ii].id == id){
 			return &residences[ii];
@@ -43,12 +43,13 @@ Residence *findResidenceById(double id){
 	return NULL;
 }
 
-int residenceExistsById(double id){
+int residenceExistsById(int id){
 	return findResidenceById(id) == NULL ? 0 : 1;
 }
 
 void createResidence(Residence residence){
 	residences[registeredResidencesNumber].id = registeredResidencesNumber + 1;
+	printf("ID: %d\n", residences[registeredResidencesNumber].id);
 	residences[registeredResidencesNumber].propertyType = residence.propertyType;
 	residences[registeredResidencesNumber].occupancyStatus = residence.occupancyStatus;
 	residences[registeredResidencesNumber].rentalValue = residence.rentalValue;
@@ -64,7 +65,7 @@ void createResidence(Residence residence){
 	allocateMoreSpaceResidence();
 }
 
-void deleteResidence(double id){
+void deleteResidence(int id){
 	if(!residenceExistsById(id)){
 		printColorful("Residencia não encontrado.\n", 1);
 		return;
@@ -85,7 +86,7 @@ void deleteResidence(double id){
 }
 
 void printResidence(Residence r){
-	printf("\nID: %.0lf\n", r.id);
+	printf("\nID: %d\n", r.id);
 	printf("Valor locação: R$%.2lf\n", r.rentalValue);
 	int tipo = r.propertyType;
 	printf("Tipo de imóvel: ");
@@ -102,7 +103,7 @@ void printResidence(Residence r){
 	printf("\n____\n");
 }
 
-void printResidenceById(double id){
+void printResidenceById(int id){
 	Residence *r = findResidenceById(id);
 	
 	if(r == NULL)
@@ -111,7 +112,7 @@ void printResidenceById(double id){
 	printResidence(*r);
 }
 
-void findResidencesByOwner(double ownerId){
+void findResidencesByOwner(int ownerId){
 	int residencesFound = 0;
 	for (int ii = 0; ii < registeredResidencesNumber; ii++){
 		if(residences[ii].ownerId == ownerId){
@@ -124,7 +125,7 @@ void findResidencesByOwner(double ownerId){
 	return printColorful("Não há residencias registradas.\n", 4);
 }
 
-void changeResidenceOccupancyStatus(double id, int status){
+void changeResidenceOccupancyStatus(int id, int status){
 	if(!residenceExistsById(id)){
 		return printColorful("Residencia não encontrada.\n", 1);
 	}
@@ -136,7 +137,7 @@ void changeResidenceOccupancyStatus(double id, int status){
 	printColorful("Residencia atualizada com sucesso!\n", 2);
 }
 
-void changeResidenceDetails(double id, double newRentalValue, int newOccupancyStatus){
+void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatus){
 	if(!residenceExistsById(id)){
 		return printColorful("Residencia não encontrada.\n", 1);
 	}

@@ -5,14 +5,14 @@
 #include "../../dtos/dtos.h"
 
 void findAllOwners();
-Owner *findOwnerById(double id);
+Owner *findOwnerById(int id);
 Owner *findOwnerByEmail(char email[]);
 void createOwner(Owner Owner);
-void deleteOwner(double id); 
+void deleteOwner(int id); 
 
 void printOwner(Owner o);
-void printOwnerById(double id);
-int ownerExistsById(double id);
-void changeOwnerDetails(double id, char newName[]);
+void printOwnerById(int id);
+int ownerExistsById(int id);
+void changeOwnerDetails(int id, char newName[]);
 
 #endif

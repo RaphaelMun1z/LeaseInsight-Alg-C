@@ -49,7 +49,7 @@ void tenantMenuChoose(){
         case 2: {
             double contractId;
             printColorful("Informe o ID do contrato: ", 3);
-            scanf("%lf", &contractId);
+            scanf("%d", &contractId);
             
             if(!contractExistsById(contractId)){
                 printColorful("Contrato não encontrado.\n\n", 1);
@@ -71,7 +71,7 @@ void tenantMenuChoose(){
         case 3: {
             double contractId;
             printColorful("Informe o ID do contrato: ", 3);
-            scanf("%lf", &contractId);
+            scanf("%d", &contractId);
             
             if(!contractExistsById(contractId)){
                 printColorful("Contrato não encontrado.\n\n", 1);

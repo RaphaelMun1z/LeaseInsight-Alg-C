@@ -44,7 +44,7 @@ void ownerManagerAdmMenuChoose(){
         case 2: {
             double ownerId;
             printColorful("Informe o ID do proprietário: ", 3);
-            scanf("%lf", &ownerId);
+            scanf("%d", &ownerId);
             
             Owner *o = findOwnerById(ownerId);
             
@@ -64,7 +64,7 @@ void ownerManagerAdmMenuChoose(){
     
             double ownerId;
             printColorful("Informe o ID do proprietário: ", 3);
-            scanf("%lf", &ownerId);
+            scanf("%d", &ownerId);
             
             if(!ownerExistsById(ownerId)){
                 printColorful("Proprietário não encontrado.\n\n", 1);
@@ -93,7 +93,7 @@ void ownerManagerAdmMenuChoose(){
         case 4:{
             double ownerId;
             printColorful("Informe o ID do proprietário: ", 3);
-            scanf("%lf", &ownerId);
+            scanf("%d", &ownerId);
             
             if(!ownerExistsById(ownerId)){
                 printColorful("Proprietário não encontrado.\n\n", 1);

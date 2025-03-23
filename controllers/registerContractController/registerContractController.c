@@ -85,12 +85,12 @@ void registerContractForm(){
         }
     } while (newContract.invoiceDueDate < 1 || newContract.invoiceDueDate > 31);
     
-    double propertyId;
+    int propertyId;
     Residence *propertyFound = NULL;
     do {
         cleanInputBuffer();
         printColorful("Código da propriedade: ", 5);
-        scanf("%lf", &propertyId);
+        scanf("%d", &propertyId);
         
         if(cancelOperationWithInt(propertyId)) return;
         
@@ -106,14 +106,14 @@ void registerContractForm(){
             }
         }
     } while (propertyId < 1 || propertyFound == NULL);
-    newContract.residence = propertyFound;
+    newContract.residence = *propertyFound;
     
-    double tenantId;
+    int tenantId;
     Tenant *tenantFound = NULL;
     do {
         cleanInputBuffer();
         printColorful("Código do inquilino: ", 5);
-        scanf("%lf", &tenantId);
+        scanf("%d", &tenantId);
         
         if(cancelOperationWithInt(tenantId)) return;
         
@@ -129,7 +129,7 @@ void registerContractForm(){
             }
         }
     } while (tenantId < 1 || tenantFound == NULL);
-    newContract.tenant = tenantFound;
+    newContract.tenant = *tenantFound;
     
     cleanScreen();
     createContract(newContract);

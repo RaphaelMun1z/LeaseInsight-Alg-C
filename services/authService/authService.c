@@ -20,7 +20,7 @@
 
 void signInAdm(LoginCredentials credentials, AuthUserResponse *userResponse){
     Adm *adm = findAdmByEmail(credentials.email);
-
+    
     if(adm == NULL){
         userResponse = NULL;
         return;
@@ -75,7 +75,7 @@ void signInOwner(LoginCredentials credentials, AuthUserResponse *userResponse){
 void signInUser(LoginCredentials credentials){
     AuthUserResponse possibleUser;
     possibleUser.id = -1;
-
+    
     signInAdm(credentials, &possibleUser);
     if(possibleUser.id != -1){
         setAuthUser(possibleUser);

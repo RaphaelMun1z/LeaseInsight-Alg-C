@@ -2,14 +2,14 @@
 #define DTOS_H
 
 typedef struct {
-    double id; // PK
+    int id; // PK
     char name[100];
     char email[255]; // Unique
     char password[100];
 } Adm;
 
 typedef struct {
-    double id; // PK
+    int id; // PK
     char name[100];
     char phone[16];
     char email[255]; // Unique
@@ -26,7 +26,7 @@ typedef struct {
 
 typedef struct 
 {
-    double id;
+    int id;
     int propertyType; 
     int occupancyStatus; 
     double rentalValue;
@@ -34,7 +34,7 @@ typedef struct
 } Residence;
 
 typedef struct Owner {
-    double id; // PK
+    int id; // PK
     char name[100];
     char phone[16];
     char email[255];
@@ -42,25 +42,25 @@ typedef struct Owner {
 } Owner;
 
 typedef struct {
-    double id;
+    int id;
     int userType; // 1 = ADM, 2 = OWNER, 3 = TENANT
 } AuthUser;
 
 typedef struct {
-    double id;
+    int id;
     int userType; // 1 = ADM, 2 = OWNER, 3 = TENANT
     char name[100];
 } AuthUserResponse;
 
 typedef struct{
-    double id;
+    int id;
     char contractStartDate[11];
     char contractEndDate[11];
     double defaultRentalValue;
     int contractStatus;
     int invoiceDueDate;
-    Residence *residence;
-    Tenant *tenant;
+    Residence residence;
+    Tenant tenant;
 } Contract;
 
 #endif

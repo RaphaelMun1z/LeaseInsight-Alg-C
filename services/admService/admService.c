@@ -25,7 +25,7 @@ void findAllAdms(){
     }
 }
 
-Adm *findAdmById(double id){
+Adm *findAdmById(int id){
     for (int ii = 0; ii < registeredAdmsNumber; ii++){
         if(adms[ii].id == id){
             return &adms[ii];

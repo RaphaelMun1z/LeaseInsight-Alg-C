@@ -6,7 +6,7 @@
 
 AuthUser *authUser;
 
-void setDefaultValuesToAuthUser(double id, int userType){
+void setDefaultValuesToAuthUser(int id, int userType){
     if (authUser == NULL){
         printf("[LOG] Erro ao definir valores para 'authUser'!\n");
         return; 
@@ -16,7 +16,7 @@ void setDefaultValuesToAuthUser(double id, int userType){
     authUser->userType = userType;
 }
 
-void allocateAuthUserMemory(double id, int userType){
+void allocateAuthUserMemory(int id, int userType){
     authUser = (AuthUser *) calloc(1, sizeof(AuthUser));
 
     if (authUser == NULL){

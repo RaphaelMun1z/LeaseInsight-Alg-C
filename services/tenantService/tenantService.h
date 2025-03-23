@@ -5,7 +5,7 @@
 #include "../../dtos/dtos.h"
 
 void findAllTenants();
-Tenant *findTenantById(double id);
+Tenant *findTenantById(int id);
 Tenant *findTenantByEmail(char email[]);
 Tenant *findTenantByRg(char rg[]);
 void createTenant(Tenant Tenant);

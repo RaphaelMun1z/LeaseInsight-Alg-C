@@ -6,16 +6,16 @@
 
 void findAllContracts();
 void findContractsByTenantRg(char tenantRg[]);
-Contract *findContractById(double id);
+Contract *findContractById(int id);
 void createContract(Contract contract); 
-void deleteContract(double id); 
+void deleteContract(int id); 
 
 void printContract(Contract c);
-void printContractById(double id);
-int contractExistsById(double id);
-void findContractsByOwner(double id);
-void findContractsByTenant(double id);
+void printContractById(int id);
+int contractExistsById(int id);
+void findContractsByOwner(int id);
+void findContractsByTenant(int id);
 void findContractsByStatus(int contractStatus);
-void changeContractStatus(double id, int status);
+void changeContractStatus(int id, int status);
 
 #endif

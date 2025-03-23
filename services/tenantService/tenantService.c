@@ -16,7 +16,7 @@
 #include "../contractService/contractService.h"
 
 void findAllTenants();
-Tenant *findTenantById(double id);
+Tenant *findTenantById(int id);
 Tenant *findTenantByEmail(char email[]);
 Tenant *findTenantByRg(char rg[]);
 void createTenant(Tenant Tenant);
@@ -34,7 +34,7 @@ void findAllTenants(){
     }
 }
 
-Tenant *findTenantById(double id){
+Tenant *findTenantById(int id){
     for (int ii = 0; ii < registeredTenantsNumber; ii++){
         if(tenants[ii].id == id){
             return &tenants[ii];
@@ -149,7 +149,7 @@ void printTenantByRg(char rg[]){
 int isTenantAssociatedToContract(int tenantId, int contractId){
     Contract *c = findContractById(contractId);
     
-    if(c->tenant->id != tenantId){
+    if(c->tenant.id != tenantId){
         return 0;
     }
     

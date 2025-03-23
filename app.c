@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 #include <string.h>
 
 // Utils
@@ -26,11 +25,10 @@
 
 // Services
 #include "services/dataPersistenceService/dataPersistenceService.h"
-#include "services/admService/admService.h"
 
 void initEntities(){
     initAuthUser();
-
+    
     getAdmsData();    
     getTenantsData();
     getOwnersData();

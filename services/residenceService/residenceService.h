@@ -5,15 +5,15 @@
 #include "../../dtos/dtos.h"
 
 void findAllResidences();
-Residence *findResidenceById(double id);
+Residence *findResidenceById(int id);
 void createResidence(Residence residence); 
-void deleteResidence(double id); 
+void deleteResidence(int id); 
 
 void printResidence(Residence r);
-void printResidenceById(double id);
-int residenceExistsById(double id);
-void findResidencesByOwner(double id);
-void changeResidenceOccupancyStatus(double id, int status);
-void changeResidenceDetails(double id, double newRentalValue, int newOccupancyStatus);
+void printResidenceById(int id);
+int residenceExistsById(int id);
+void findResidencesByOwner(int id);
+void changeResidenceOccupancyStatus(int id, int status);
+void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatus);
 
 #endif
