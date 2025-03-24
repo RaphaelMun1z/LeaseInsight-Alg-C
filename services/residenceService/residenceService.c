@@ -7,6 +7,7 @@
 // Entities
 #include "../../entities/Residence/Residence.h"
 #include "../../entities/AuthUser/AuthUser.h"
+#include "../../entities/Contract/Contract.h"
 
 // Services
 #include "../dataPersistenceService/dataPersistenceService.h"
@@ -16,13 +17,15 @@
 
 void findAllResidences();
 Residence *findResidenceById(int id);
-void createResidence(Residence Residence); 
+void createResidence(Residence residence); 
 void deleteResidence(int id); 
-
-void printResidence(Residence c);
+void printResidence(Residence r);
 void printResidenceById(int id);
+int residenceExistsById(int id);
 void findResidencesByOwner(int id);
+int hasContractAssociated(int residenceId);
 void changeResidenceOccupancyStatus(int id, int status);
+void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatus, int changeAddress, Address newAddress);
 
 void findAllResidences(){
 	if(registeredResidencesNumber == 0)
@@ -70,6 +73,11 @@ void deleteResidence(int id){
 		printColorful("Residencia não encontrado.\n", 1);
 		return;
 	}
+
+	if(hasContractAssociated(id)){
+		printColorful("Não é possível deletar uma residencia com contrato associado.\n", 1);
+		return;
+	}
 	
 	for (int ii = 0; ii < registeredResidencesNumber; ii++){
 		if(residences[ii].id == id){
@@ -100,6 +108,8 @@ void printResidence(Residence r){
 	else if (status == 2) printf("Livre\n");
 	else if (status == 3) printf("Saída pendente\n");
 	else printf("Inválido\n");
+	printf("Proprietário: %s\n", findOwnerById(r.ownerId)->name);
+	printf("Código do Proprietário: %d\n", r.ownerId);
 	printf("Endereço: %s, %d, %s, %s, %s, %s\n", r.address.street, r.address.number, r.address.complement, r.address.district, r.address.city, r.address.state);
 	printf("\n____\n");
 }
@@ -156,4 +166,14 @@ void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatu
 	saveResidencesData();
 	
 	printColorful("Residencia atualizada com sucesso!\n", 2);
+}
+
+int hasContractAssociated(int residenceId){
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
+		if(contracts[ii].residence.id == residenceId){
+			return 1;
+		}
+	}
+	
+	return 0;
 }

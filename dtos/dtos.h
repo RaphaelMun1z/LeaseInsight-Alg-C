@@ -14,7 +14,7 @@ typedef struct {
     char phone[16];
     char email[255]; // Unique
     char password[100];
-    char rg[13];
+    char rg[13]; // Unique
     char cpf[15];
     int tenantStatus;
 } Tenant;

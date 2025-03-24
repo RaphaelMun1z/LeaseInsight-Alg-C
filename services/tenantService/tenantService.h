@@ -14,6 +14,7 @@ void deleteTenant(char tenantRg[]);
 void printTenant(Tenant t);
 void printTenantByRg(char rg[]);
 int tenantExistsByRg(char rg[]);
+int tenantHasContract(int tenantId);
 int isTenantAssociatedToContract(int tenantId, int contractId);
 void changeTenantStatus(char rg[], int status);
 void changeTenantPhone(int tenantId, char newPhone[]);

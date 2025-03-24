@@ -7,6 +7,7 @@
 // Entities
 #include "../../entities/GenericUser/GenericUser.h"
 #include "../../entities/Owner/Owner.h"
+#include "../../entities/Residence/Residence.h"
 
 // Services
 #include "../dataPersistenceService/dataPersistenceService.h"
@@ -23,6 +24,7 @@ void deleteOwner(int id);
 void printOwner(Owner o);
 void printOwnerById(int id);
 int ownerExistsById(int id);
+int ownerHasResidence(int ownerId);
 void changeOwnerDetails(int id, char newName[]);
 
 void findAllOwners(){
@@ -90,6 +92,11 @@ void deleteOwner(int id){
         printColorful("Proprietário não encontrado.\n", 1);
         return;
     }
+
+    if(ownerHasResidence(id)){
+        printColorful("Proprietário não pode ser deletado, pois possui residências cadastradas.\n", 1);
+        return;
+    }
     
     for (int ii = 0; ii < registeredOwnersNumber; ii++){
         if(owners[ii].id == id){			
@@ -137,4 +144,14 @@ void changeOwnerDetails(int id, char newName[]){
     saveOwnersData();
     
     printColorful("Proprietário atualizado com sucesso!\n", 2);
+}
+
+int ownerHasResidence(int ownerId){
+    for (int ii = 0; ii < registeredResidencesNumber; ii++){
+        if(residences[ii].ownerId == ownerId){
+            return 1;
+        }
+    }
+    
+    return 0;
 }

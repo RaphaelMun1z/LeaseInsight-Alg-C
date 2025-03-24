@@ -7,6 +7,7 @@
 // Entities
 #include "../../entities/GenericUser/GenericUser.h"
 #include "../../entities/Tenant/Tenant.h"
+#include "../../entities/Contract/Contract.h"
 
 // Services
 #include "../dataPersistenceService/dataPersistenceService.h"
@@ -23,6 +24,7 @@ void createTenant(Tenant Tenant);
 
 void printTenant(Tenant t);
 void printTenantByRg(char rg[]);
+int tenantHasContract(int tenantId);
 int isTenantAssociatedToContract(int tenantId, int contractId);
 
 void findAllTenants(){
@@ -69,7 +71,7 @@ int tenantExistsByRg(char rg[]){
 }
 
 void createTenant(Tenant tenant){
-    if(userAlreadyRegistered(tenant.email)) return;
+    if(userAlreadyRegistered(tenant.email) || findTenantByRg(tenant.rg) != NULL) return;
 
     if(findTenantByRg(tenant.rg) != NULL){
         printColorful("Usuário já cadastrado!\n", 1);
@@ -112,6 +114,11 @@ void deleteTenant(char tenantRg[]){
 		printColorful("Inquilino não encontrado.\n", 1);
 		return;
 	}
+
+    if(tenantHasContract(findTenantByRg(tenantRg)->id)){
+        printColorful("Inquilino possui contrato vinculado, não é possível deletar.\n", 1);
+        return;
+    }
 	
 	for (int ii = 0; ii < registeredTenantsNumber; ii++){
 		if(strcmp(tenants[ii].rg, tenantRg) == 0){
@@ -178,4 +185,14 @@ void changeTenantPhone(int tenantId, char newPhone[]){
     saveTenantsData();
 
 	printColorful("Inquilino atualizado com sucesso!\n", 2);
+}
+
+int tenantHasContract(int tenantId){
+    for (int ii = 0; ii < registeredContractsNumber; ii++){
+        if(contracts[ii].tenant.id == tenantId){
+            return 1;
+        }
+    }
+    
+    return 0;
 }

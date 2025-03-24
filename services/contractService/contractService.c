@@ -11,6 +11,8 @@
 #include "../dataPersistenceService/dataPersistenceService.h"
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
+#include "../residenceService/residenceService.h"
+#include "../tenantService/tenantService.h"
 
 void findAllContracts();
 Contract *findContractById(int id);
@@ -85,6 +87,16 @@ int contractExistsById(int id){
 void createContract(Contract contract){
 	if(contract.residence.occupancyStatus != 2){
 		printColorful("Imóvel não disponível para locação.\n", 1);
+		return;
+	}
+
+	if(findResidenceById(contract.residence.id) == NULL){
+		printColorful("Imóvel não encontrado.\n", 1);
+		return;
+	}
+
+	if(findTenantById(contract.tenant.id) == NULL){
+		printColorful("Inquilino não encontrado.\n", 1);
 		return;
 	}
 
