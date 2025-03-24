@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <string.h>
 
 // Utils
@@ -27,8 +26,8 @@ int contractManagerMenu(){
         printColorful("5 -> Remover um contrato.\n", 5);
         printColorful("6 -> Voltar.\n", 1);
         
-        option = getch();
-        option -= '0';
+        printColorful("Escolha uma opção: ", 5);
+        scanf("%d", &option);
         
         if(option < 1 || option > 6){
             cleanScreen();
@@ -104,7 +103,7 @@ void contractManagerMenuChoose(){
             contractManagerMenuChoose();
             break;
         }
-
+        
         case 6: {
             break;
         }

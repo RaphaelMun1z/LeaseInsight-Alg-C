@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <string.h>
 
 // Utils
@@ -25,8 +24,8 @@ int usersManagerMenu(){
         printColorful("2 -> Gerenciar proprietários.\n", 5);
         printColorful("3 -> Voltar.\n", 1);
         
-        option = getch();
-        option -= '0';
+        printColorful("Escolha uma opção: ", 5);
+        scanf("%d", &option);
         
         if(option < 1 || option > 3){
             cleanScreen();

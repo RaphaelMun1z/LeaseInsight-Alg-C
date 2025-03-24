@@ -164,15 +164,7 @@ void saveContractsData(){
         return;
     }
     
-    printf("Número de Contratos %d\n", registeredContractsNumber);
-    
     fwrite(contracts, sizeof(Contract), registeredContractsNumber, ptrArq);
-    
-    // Obtendo a posição atual do ponteiro do arquivo
-    long currentPosition = ftell(ptrArq);
-    // Calculando quantos registros foram gravados
-    long numberOfRecords = currentPosition / sizeof(Contract);
-    printf("Número de registros gravados: %ld\n", numberOfRecords);
     
     fclose(ptrArq);
 }

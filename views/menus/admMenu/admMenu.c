@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <string.h>
 
 // Utils
@@ -29,8 +28,8 @@ int admMenu(){
         printColorful("3 -> Gostaria de gerenciar usuários.\n", 5);
         printColorful("4 -> Gostaria de sair da minha conta.\n", 1);
         
-        option = getch();
-        option -= '0';
+        printColorful("Escolha uma opção: ", 5);
+        scanf("%d", &option);
         
         if(option < 1 || option > 4){
             cleanScreen();

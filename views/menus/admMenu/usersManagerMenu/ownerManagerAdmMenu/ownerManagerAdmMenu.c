@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 #include <string.h>
 
 // Utils
@@ -21,8 +20,8 @@ int ownerManagerAdmMenu(){
         printColorful("4 -> Remover um proprietários.\n", 5);
         printColorful("5 -> Voltar.\n", 1);
         
-        option = getch();
-        option -= '0';
+        printColorful("Escolha uma opção: ", 5);
+        scanf("%d", &option);
         
         if(option < 1 || option > 5){
             cleanScreen();
@@ -61,7 +60,7 @@ void ownerManagerAdmMenuChoose(){
         
         case 3: {
             char newOwnerName[100];
-    
+            
             int ownerId;
             printColorful("Informe o ID do proprietário: ", 3);
             scanf("%d", &ownerId);

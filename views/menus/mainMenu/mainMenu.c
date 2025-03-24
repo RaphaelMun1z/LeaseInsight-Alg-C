@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <conio.h>
 
 // Utils
 #include "../../../utils/cleanScreen/cleanScreen.h"
@@ -20,8 +19,8 @@ int mainMenu(){
         printColorful("2 -> Gostaria de acessar o sistema.\n", 5);
         printColorful("3 -> Gostaria de sair do sistema.\n", 1);
         
-        option = getch();
-        option -= '0';
+        printColorful("Escolha uma opção: ", 5);
+        scanf("%d", &option);
         
         if(option < 1 || option > 3){
             cleanScreen();
