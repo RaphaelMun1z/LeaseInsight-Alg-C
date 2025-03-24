@@ -6,6 +6,7 @@
 #include "../../utils/printColorful/printColorful.h"
 #include "../../utils/cleanScreen/cleanScreen.h"
 #include "../../utils/cancelOperation/cancelOperation.h"
+#include "../../utils/enums/enums.h"
 
 // Entities
 #include "../../entities/AuthUser/AuthUser.h"
@@ -15,7 +16,7 @@
 
 void registerResidenceForm(){
     Residence newResidence;
-
+    
     printColorful("\nPreencha os campos a seguir para registrar a propriedade.", 3);
     printColorful("\n[DICA] Para cancelar operação, digite: 'Sair', ou '-1' em campos numéricos.\n\n", 5);
     
@@ -34,29 +35,29 @@ void registerResidenceForm(){
     
     do {
         cleanInputBuffer();
-        printColorful("Tipo de propriedade [1 - Casa | 2 - Apartamento | 3 - Outros]: ", 5);
+        getResidenceTypeOptions();
         scanf("%d", &newResidence.propertyType);
         
         if(cancelOperationWithInt(newResidence.propertyType)) return;
         
-        if(newResidence.propertyType < 1 || newResidence.propertyType > 3){
+        if(newResidence.propertyType < 1 || newResidence.propertyType > 8){
             cleanScreen();
             printColorful("\nO Campo 'Tipo de propriedade' é obrigatório. Tente novamente.\n\n", 4);
         }
-    } while (newResidence.propertyType < 1 || newResidence.propertyType > 3);
+    } while (newResidence.propertyType < 1 || newResidence.propertyType > 8);
     
     do {
         cleanInputBuffer();
-        printColorful("Status [1 - Ocupado | 2 - Livre | 3 - Saída pendente]: ", 5);
+        getResidenceOccupancyStatusOptions();
         scanf("%d", &newResidence.occupancyStatus);
         
         if(cancelOperationWithInt(newResidence.occupancyStatus)) return;
         
-        if(newResidence.occupancyStatus < 1 || newResidence.occupancyStatus > 3){
+        if(newResidence.occupancyStatus < 1 || newResidence.occupancyStatus > 7){
             cleanScreen();
             printColorful("\nO Campo 'Status' é obrigatório. Tente novamente.\n\n", 4);
         }
-    } while (newResidence.occupancyStatus < 1 || newResidence.occupancyStatus > 3);
+    } while (newResidence.occupancyStatus < 1 || newResidence.occupancyStatus > 7);
     
     printColorful("Endereço: \n", 5);
     
@@ -92,7 +93,7 @@ void registerResidenceForm(){
     fgets(newResidence.address.complement, 100, stdin);
     newResidence.address.complement[strcspn(newResidence.address.complement, "\n")] = 0;
     if(cancelOperationWithString(newResidence.address.complement)) return;
-
+    
     do {
         cleanInputBuffer();
         printColorful("Bairro: ", 5);
@@ -120,7 +121,7 @@ void registerResidenceForm(){
             printColorful("\nO Campo 'Cidade' é obrigatório. Tente novamente.\n\n", 4);
         }
     } while (newResidence.address.city[0] == '\0');
-
+    
     do {
         cleanInputBuffer();
         printColorful("Estado: ", 5);
@@ -134,7 +135,7 @@ void registerResidenceForm(){
             printColorful("\nO Campo 'Estado' é obrigatório. Tente novamente.\n\n", 4);
         }
     } while (newResidence.address.state[0] == '\0');
-
+    
     do {
         cleanInputBuffer();
         printColorful("CEP (Ex.: 38500-000): ", 5);

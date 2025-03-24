@@ -38,7 +38,7 @@ typedef struct
 {
     int id;
     int propertyType; 
-    int occupancyStatus; // [1 - Ocupado | 2 - Livre | 3 - Saída pendente]
+    int occupancyStatus;
     double rentalValue;
     int ownerId;
     Address address;

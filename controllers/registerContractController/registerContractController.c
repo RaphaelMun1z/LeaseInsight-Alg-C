@@ -6,6 +6,7 @@
 #include "../../utils/printColorful/printColorful.h"
 #include "../../utils/cleanScreen/cleanScreen.h"
 #include "../../utils/cancelOperation/cancelOperation.h"
+#include "../../utils/enums/enums.h"
 
 // Services
 #include "../../services/contractService/contractService.h"
@@ -61,16 +62,16 @@ void registerContractForm(){
     
     do {
         cleanInputBuffer();
-        printColorful("Status [1 - Ativo | 2 - Inativo | 3 - Aprovação pendente]: ", 5);
+        getContractStatusOptions();
         scanf("%d", &newContract.contractStatus);
         
         if(cancelOperationWithInt(newContract.contractStatus)) return;
         
-        if(newContract.contractStatus < 1 || newContract.contractStatus > 3){
+        if(newContract.contractStatus < 1 || newContract.contractStatus > 12){
             cleanScreen();
             printColorful("\nO Campo 'Status' é obrigatório. Tente novamente.\n\n", 4);
         }
-    } while (newContract.contractStatus < 1 || newContract.contractStatus > 3);
+    } while (newContract.contractStatus < 1 || newContract.contractStatus > 12);
     
     do {
         cleanInputBuffer();

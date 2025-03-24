@@ -3,6 +3,7 @@
 
 // Utils
 #include "../../utils/printColorful/printColorful.h"
+#include "../../utils/enums/enums.h"
 
 // Entities
 #include "../../entities/Residence/Residence.h"
@@ -14,18 +15,21 @@
 #include "../stateManagerService/stateManagerService.h"
 #include "../authService/authService.h"
 #include "../ownerService/ownerService.h"
+#include "../contractService/contractService.h"
 
 void findAllResidences();
 Residence *findResidenceById(int id);
+void findResidencesByOwner(int id);
 void createResidence(Residence residence); 
+void changeResidenceOccupancyStatus(int id, int status);
+void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatus, int changeAddress, Address newAddress);
 void deleteResidence(int id); 
+
 void printResidence(Residence r);
 void printResidenceById(int id);
 int residenceExistsById(int id);
-void findResidencesByOwner(int id);
 int hasContractAssociated(int residenceId);
-void changeResidenceOccupancyStatus(int id, int status);
-void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatus, int changeAddress, Address newAddress);
+void updateResidenceAssociatedToContracts(Residence *r);
 
 void findAllResidences(){
 	if(registeredResidencesNumber == 0)
@@ -94,22 +98,22 @@ void deleteResidence(int id){
 }
 
 void printResidence(Residence r){
-	printf("\nID: %d\n", r.id);
+	printf("\nCódigo: %d\n", r.id);
 	printf("Valor locação: R$%.2lf\n", r.rentalValue);
-	int tipo = r.propertyType;
-	printf("Tipo de propriedade: ");
-	if (tipo == 1) printf("Casa\n");
-	else if (tipo == 2) printf("Apartamento\n");
-	else if (tipo == 3) printf("Outros\n");
-	else printf("Inválido\n");
-	printf("Status: ");
-	int status = r.occupancyStatus;
-	if (status == 1) printf("Ocupado\n");
-	else if (status == 2) printf("Livre\n");
-	else if (status == 3) printf("Saída pendente\n");
-	else printf("Inválido\n");
-	printf("Proprietário: %s\n", findOwnerById(r.ownerId)->name);
+
+	char propertyTypeStr[100];
+	getResidenceType(r.propertyType, propertyTypeStr);
+	printf("Tipo de propriedade: %s\n", propertyTypeStr);
+
+	char occupancyStatusStr[100];
+	getResidenceOccupancyStatus(r.occupancyStatus, occupancyStatusStr);
+	printf("Status de ocupação: %s\n", occupancyStatusStr);
+
+	// Owner
 	printf("Código do Proprietário: %d\n", r.ownerId);
+	printf("Nome do proprietário: %s\n", findOwnerById(r.ownerId)->name);
+	
+	// Address
 	printf("Endereço: %s, %d, %s, %s, %s, %s\n", r.address.street, r.address.number, r.address.complement, r.address.district, r.address.city, r.address.state);
 	printf("\n____\n");
 }
@@ -136,6 +140,25 @@ void findResidencesByOwner(int ownerId){
 	return printColorful("Não há propriedades registradas.\n", 4);
 }
 
+int isResidenceAssociatedToContract(int residenceId, int contractId){
+    Contract *c = findContractById(contractId);
+    
+    if(c->residence.id != residenceId){
+        return 0;
+    }
+    
+    return 1;
+}
+
+void updateResidenceAssociatedToContracts(Residence *r){
+    for(int ii = 0; ii < registeredContractsNumber; ii++){
+        if(isResidenceAssociatedToContract(r->id, contracts[ii].id)){
+            contracts[ii].residence = *r;
+        }
+    }
+    saveContractsData();
+}
+
 void changeResidenceOccupancyStatus(int id, int status){
 	if(!residenceExistsById(id)){
 		return printColorful("Propriedade não encontrada.\n", 1);
@@ -145,6 +168,7 @@ void changeResidenceOccupancyStatus(int id, int status){
 	r->occupancyStatus = status;
 	saveResidencesData();
 	
+	updateResidenceAssociatedToContracts(r);
 	printColorful("Propriedade atualizada com sucesso!\n", 2);
 }
 
@@ -165,6 +189,7 @@ void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatu
 	
 	saveResidencesData();
 	
+	updateResidenceAssociatedToContracts(r);
 	printColorful("Propriedade atualizada com sucesso!\n", 2);
 }
 

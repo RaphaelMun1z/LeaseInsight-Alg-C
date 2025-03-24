@@ -6,6 +6,7 @@
 #include "../../utils/printColorful/printColorful.h"
 #include "../../utils/cleanScreen/cleanScreen.h"
 #include "../../utils/cancelOperation/cancelOperation.h"
+#include "../../utils/enums/enums.h"
 
 // Entities
 #include "../../entities/AuthUser/AuthUser.h"
@@ -31,14 +32,14 @@ void updateResidenceForm(double *newRentalValue, int *newOccupancyStatus, int *c
     do {
         printColorful("\n[DICA] Para pular esse atributo, digite: '-1'.\n", 5);
         cleanInputBuffer();
-        printColorful("Status [1 - Ocupado | 2 - Livre | 3 - Saída pendente]: ", 5);
+        getResidenceOccupancyStatusOptions();
         scanf("%d", newOccupancyStatus);
         
-        if((*newOccupancyStatus < 1 || *newOccupancyStatus > 3) && *newRentalValue != -1){
+        if((*newOccupancyStatus < 1 || *newOccupancyStatus > 7) && *newRentalValue != -1){
             cleanScreen();
             printColorful("\nO Campo 'Status' é obrigatório. Tente novamente.\n\n", 4);
         }
-    } while ((*newOccupancyStatus < 1 || *newOccupancyStatus > 3) && *newRentalValue != -1);
+    } while ((*newOccupancyStatus < 1 || *newOccupancyStatus > 7) && *newRentalValue != -1);
 
     do {
         cleanInputBuffer();

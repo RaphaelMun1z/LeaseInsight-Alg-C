@@ -6,6 +6,7 @@
 #include "../../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../../utils/printColorful/printColorful.h"
 #include "../../../../utils/cleanInputBuffer/cleanInputBuffer.h"
+#include "../../../../utils/enums/enums.h"
 
 // Entities
 #include "../../../../entities/AuthUser/AuthUser.h"
@@ -75,14 +76,14 @@ void contractManagerAdmMenuChoose(){
             
             do {
                 cleanInputBuffer();
-                printColorful("Status [1 - Ativo | 2 - Inativo | 3 - Pré-aprovado]: ", 5);
+                getContractStatusOptions();
                 scanf("%d", &contractStatus);
                 
-                if(contractStatus < 1 || contractStatus > 3){
+                if(contractStatus < 1 || contractStatus > 12){
                     cleanScreen();
                     printColorful("\nO Campo 'Status' é obrigatório. Tente novamente.\n\n", 4);
                 }
-            } while (contractStatus < 1 || contractStatus > 3);
+            } while (contractStatus < 1 || contractStatus > 12);
             
             findContractsByStatus(contractStatus);
             contractManagerAdmMenuChoose();
@@ -172,14 +173,14 @@ void contractManagerAdmMenuChoose(){
             
             do {
                 cleanInputBuffer();
-                printColorful("Status [1 - Ativo | 2 - Inativo | 3 - Pré-aprovado]: ", 5);
+                getContractStatusOptions();
                 scanf("%d", &contractStatus);
                 
-                if(contractStatus < 1 || contractStatus > 3){
+                if(contractStatus < 1 || contractStatus > 12){
                     cleanScreen();
                     printColorful("\nO Campo 'Status' é obrigatório. Tente novamente.\n\n", 4);
                 }
-            } while (contractStatus < 1 || contractStatus > 3);
+            } while (contractStatus < 1 || contractStatus > 12);
             
             changeContractStatus(contractId, contractStatus);
             contractManagerAdmMenuChoose();

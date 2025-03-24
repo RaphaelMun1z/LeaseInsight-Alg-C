@@ -3,6 +3,7 @@
 
 // Utils
 #include "../../utils/printColorful/printColorful.h"
+#include "../../utils/enums/enums.h"
 
 // Entities
 #include "../../entities/Contract/Contract.h"
@@ -16,14 +17,14 @@
 
 void findAllContracts();
 Contract *findContractById(int id);
+void findContractsByOwner(int id);
+void findContractsByTenant(int id);
 void createContract(Contract contract); 
+void changeContractStatus(int id, int status);
 void deleteContract(int id); 
 
 void printContract(Contract c);
 void printContractById(int id);
-void findContractsByOwner(int id);
-void findContractsByTenant(int id);
-void changeContractStatus(int id, int status);
 
 void findAllContracts(){
 	if(registeredContractsNumber == 0)
@@ -85,7 +86,7 @@ int contractExistsById(int id){
 }
 
 void createContract(Contract contract){
-	if(contract.residence.occupancyStatus != 2){
+	if(contract.residence.occupancyStatus != 6){
 		printColorful("Propriedade não disponível para locação.\n", 1);
 		return;
 	}
@@ -141,20 +142,31 @@ void deleteContract(int id){
 
 void printContract(Contract c){	
 	printf("\nCódigo: %d\n", c.id);
-	printf("Status: ", c.contractStatus);
-	if (c.contractStatus == 1) printColorful("Ativo\n", 2);
-	else if (c.contractStatus == 2) printColorful("Inativo\n", 1);
-	else if (c.contractStatus == 3) printColorful("Aprovação pendente\n", 4);
-	else printColorful("Desconhecido\n", 5); 
+
+	char contractStatusStr[100];
+	getContractStatus(c.contractStatus, contractStatusStr);
+	printf("Status: %s\n", contractStatusStr);
+ 
 	printf("Valor do aluguel: %.2lf\n", c.defaultRentalValue);
 	printf("Data de início: %s\n", c.contractStartDate);
 	printf("Data de término: %s\n", c.contractEndDate);
-	printf("Dia de vencimento: %d\n", c.invoiceDueDate);
-	printf("Código inquilino: %d\n", c.tenant.id);
-	printf("Status do inquilino: %d\n", c.tenant.tenantStatus);
-	printf("RG do inquilino: %s\n", c.tenant.rg);
-	printf("Código da propriedade: %d\n", c.residence.id);
-	printf("Código do proprietário da propriedade: %d\n", c.residence.ownerId);
+	printf("Dia de vencimento da fatura: %d\n", c.invoiceDueDate);
+
+	// Tenant
+	printColorful("Inquilino:\n", 3);
+	printf("   Código inquilino: %d\n", c.tenant.id);
+	printf("   Status do inquilino: %d\n", c.tenant.tenantStatus);
+	printf("   RG do inquilino: %s\n", c.tenant.rg);
+
+	// Residence
+	printColorful("Propriedade:\n", 3);
+	printf("   Código da propriedade: %d\n", c.residence.id);
+	printf("   Endereço da propriedade: %s, %d, %s, %s, %s, %s\n", c.residence.address.street, c.residence.address.number, c.residence.address.complement, c.residence.address.district, c.residence.address.city, c.residence.address.state);
+
+	// Owner
+	printColorful("Proprietário:\n", 3);
+	printf("   Código do proprietário da propriedade: %d\n", c.residence.ownerId);
+	
 	printf("\n____\n");
 }
 

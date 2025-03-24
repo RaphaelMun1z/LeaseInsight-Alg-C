@@ -4,6 +4,7 @@
 // Utils
 #include "../../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../../utils/printColorful/printColorful.h"
+#include "../../../../utils/enums/enums.h"
 
 // Entities
 #include "../../../../entities/AuthUser/AuthUser.h"
@@ -84,7 +85,7 @@ void contractManagerMenuChoose(){
                 return;
             }
             
-            printColorful("Informe o novo status [1 - Ativo | 2 - Inativo | 3 - Aprovação pendente]: ", 3);
+            getContractStatusOptions();
             scanf("%d", &contractStatus);
             
             changeContractStatus(contractId, contractStatus);

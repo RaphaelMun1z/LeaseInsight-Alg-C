@@ -5,6 +5,7 @@
 #include "../../../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../../../utils/printColorful/printColorful.h"
 #include "../../../../../utils/cleanInputBuffer/cleanInputBuffer.h"
+#include "../../../../../utils/enums/enums.h"
 
 // Services
 #include "../../../../../services/stateManagerService/stateManagerService.h"
@@ -79,7 +80,7 @@ void tenantManagerAdmMenuChoose(){
                 return;
             }
             
-            printColorful("Informe o novo status [1 - Ativo | 2 - Inativo | 3 - Suspenso]: ", 3);
+            getTenantStatusOptions();
             scanf("%d", &tenantStatus);
             
             changeTenantStatus(tenantRg, tenantStatus);

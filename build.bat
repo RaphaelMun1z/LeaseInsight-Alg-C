@@ -4,6 +4,7 @@ gcc app.c ^
 utils/printColorful/printColorful.c ^
 utils/cleanScreen/cleanScreen.c ^
 utils/cleanInputBuffer/cleanInputBuffer.c ^
+utils/enums/enums.c ^
 utils/cancelOperation/cancelOperation.c ^
 views/startScreen/startScreen.c ^
 views/menus/menuHandler/menuHandler.c ^

@@ -2,8 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <windows.h>
-
 // Utils
 #include "utils/cleanScreen/cleanScreen.h"
 #include "utils/printColorful/printColorful.h"
@@ -54,9 +52,6 @@ void exitScreen(){
 }
 
 int main(){
-    SetConsoleOutputCP(CP_UTF8);
-    SetConsoleCP(CP_UTF8);  
-
     cleanScreen();
     
     initEntities();
