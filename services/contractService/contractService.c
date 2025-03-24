@@ -86,20 +86,20 @@ int contractExistsById(int id){
 
 void createContract(Contract contract){
 	if(contract.residence.occupancyStatus != 2){
-		printColorful("Imóvel não disponível para locação.\n", 1);
+		printColorful("Propriedade não disponível para locação.\n", 1);
 		return;
 	}
-
+	
 	if(findResidenceById(contract.residence.id) == NULL){
-		printColorful("Imóvel não encontrado.\n", 1);
+		printColorful("Propriedade não encontrada.\n", 1);
 		return;
 	}
-
+	
 	if(findTenantById(contract.tenant.id) == NULL){
 		printColorful("Inquilino não encontrado.\n", 1);
 		return;
 	}
-
+	
 	contracts[registeredContractsNumber].id = registeredContractsNumber + 1;
 	strcpy(contracts[registeredContractsNumber].contractStartDate, contract.contractStartDate);
 	strcpy(contracts[registeredContractsNumber].contractEndDate, contract.contractEndDate);
@@ -112,7 +112,7 @@ void createContract(Contract contract){
 	saveContractsData();
 	
 	char welcomeText[200];
-	snprintf(welcomeText, sizeof(welcomeText), "\nVocê registrou um contrato cujo imóvel é o de código %d e inquilino de nome %s!\n", contract.residence.id, contract.tenant.name);
+	snprintf(welcomeText, sizeof(welcomeText), "\nVocê registrou um contrato cuja propriedade é a de código %d, e inquilino de nome %s!\n", contract.residence.id, contract.tenant.name);
 	printColorful(welcomeText, 2);
 	
 	if(registeredContractsNumber == contractsCurrentLimit)
@@ -139,8 +139,8 @@ void deleteContract(int id){
 	return printColorful("Contrato não encontrado.\n", 1);
 }
 
-void printContract(Contract c){
-	printf("\nID: %d\n", c.id);
+void printContract(Contract c){	
+	printf("\nCódigo: %d\n", c.id);
 	printf("Status: ", c.contractStatus);
 	if (c.contractStatus == 1) printColorful("Ativo\n", 2);
 	else if (c.contractStatus == 2) printColorful("Inativo\n", 1);
@@ -150,8 +150,11 @@ void printContract(Contract c){
 	printf("Data de início: %s\n", c.contractStartDate);
 	printf("Data de término: %s\n", c.contractEndDate);
 	printf("Dia de vencimento: %d\n", c.invoiceDueDate);
-	printf("ID inquilino: %d\n", c.tenant.id);
-	printf("ID proprietário do imóvel: %d\n", c.residence.ownerId);
+	printf("Código inquilino: %d\n", c.tenant.id);
+	printf("Status do inquilino: %d\n", c.tenant.tenantStatus);
+	printf("RG do inquilino: %s\n", c.tenant.rg);
+	printf("Código da propriedade: %d\n", c.residence.id);
+	printf("Código do proprietário da propriedade: %d\n", c.residence.ownerId);
 	printf("\n____\n");
 }
 
@@ -222,22 +225,7 @@ void findContractsByStatus(int contractStatus){
 	for (int ii = 0; ii < registeredContractsNumber; ii++){
 		if(contracts[ii].contractStatus == contractStatus){
 			contractsFound++;
-			Contract c = contracts[ii];
-			printf("\nID: %.0lf\n", c.id);
-			printf("Status: ", c.contractStatus);
-			if (c.contractStatus == 1) printColorful("Ativo\n", 2);
-			else if (c.contractStatus == 2) printColorful("Inativo\n", 1);
-			else if (c.contractStatus == 3) printColorful("Aprovação pendente\n", 4);
-			else printColorful("Desconhecido\n", 5); 
-			printf("Valor do aluguel: %.2lf\n", c.defaultRentalValue);
-			printf("Data de início: %s\n", c.contractStartDate);
-			printf("Data de término: %s\n", c.contractEndDate);
-			printf("Dia de vencimento: %d\n", c.invoiceDueDate);
-			printf("Status do inquilino: %d\n", c.tenant.tenantStatus);
-			printf("RG do inquilino: %s\n", c.tenant.rg);
-			printf("ID da residencia: %.0lf\n", c.residence.id);
-			printf("ID do proprietário da residencia: %.0lf\n", c.residence.ownerId);
-			printf("\n____\n");
+			printContract(contracts[ii]);
 		}
 	}
 	

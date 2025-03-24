@@ -15,9 +15,9 @@ int mainMenu(){
     int option;
     do{
         printColorful("\nComo posso ajudar? \n", 3);
-        printColorful("1 -> Gostaria de sair do sistema.\n", 1);
-        printColorful("2 -> Gostaria de me registrar.\n", 5);
-        printColorful("3 -> Gostaria de acessar o sistema.\n", 5);
+        printColorful("1 -> Sair do sistema.\n", 1);
+        printColorful("2 -> Registrar-me.\n", 5);
+        printColorful("3 -> Acessar o sistema.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -33,11 +33,19 @@ int mainMenu(){
 
 int mainMenuChoose(){
     switch (mainMenu()){
-        case 1:
-        printColorful("\nAté mais!\n", 0);
-        return 0;
-        break;
-
+        case 1: {
+            char opt;
+            printColorful("Tem certeza que deseja sair do sistema? (S/N) ", 4);
+            scanf(" %c", &opt);
+            
+            if(opt == 'S' || opt == 's'){
+                cleanScreen();
+                printColorful("\nAté mais!\n", 0);
+                return 0;
+            }
+            break;
+        }
+        
         case 2:
         registerMenuChoose();
         return 1;

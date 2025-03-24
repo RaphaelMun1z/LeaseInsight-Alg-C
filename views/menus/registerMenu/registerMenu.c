@@ -11,9 +11,9 @@ int registerMenu(){
     int option;
     do{
         printColorful("\nQual tipo de conta você gostaria de criar? \n", 3);
-        printColorful("1 -> Voltar para o menu principal.\n", 6);
-        printColorful("2 -> Gostaria de criar uma conta como INQUILINO\n", 5);
-        printColorful("3 -> Gostaria de criar uma conta como PROPRIETÁRIO.\n", 5);
+        printColorful("1 -> Voltar.\n", 6);
+        printColorful("2 -> Registrar-me como INQUILINO\n", 5);
+        printColorful("3 -> Registrar-me como PROPRIETÁRIO.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -33,7 +33,7 @@ int registerMenuChoose(){
         case 1:
         return 0;
         break;
-        
+
         case 2:
         registerTenantForm();
         return 1;

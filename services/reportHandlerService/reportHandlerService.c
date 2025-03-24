@@ -34,23 +34,23 @@ void generateContractsReport(Contract *selectedContracts, int itemsAmount, char 
     fprintf(ptrArq, "\nAdministração de locação de imóveis\n");
     fprintf(ptrArq, "Copyright © 2025 LeaseInsight. Todos os direitos reservados.\n");
     fprintf(ptrArq, "Desenvolvido por: Raphael e Ygor\n\n");
-
+    
     fprintf(ptrArq, "Relatório de Contratos\n");
     fprintf(ptrArq, "Filtrado por Data Inicial: %s\n", dateFiltered);
     fprintf(ptrArq, "Data e Hora da Criação do Relatório: %s\n", currentDateTime);
     fprintf(ptrArq, "___________________________________________________________\n");
-        
+    
     for (int ii = 0; ii < itemsAmount; ii++){
         fprintf(ptrArq, "\nCódigo: %d\n", selectedContracts[ii].id);
         fprintf(ptrArq, "Início do contrato: %s\n", selectedContracts[ii].contractStartDate);
         fprintf(ptrArq, "Fim do contrato: %s\n", selectedContracts[ii].contractEndDate);
         fprintf(ptrArq, "Valor de locação: %.2f\n", selectedContracts[ii].defaultRentalValue);
-        fprintf(ptrArq, "Invoice Due Date: %d\n", selectedContracts[ii].invoiceDueDate);
-        fprintf(ptrArq, "Contract Status: %d\n", selectedContracts[ii].contractStatus);
-        fprintf(ptrArq, "Tenant Status: %d\n", selectedContracts[ii].tenant.tenantStatus);
-        fprintf(ptrArq, "Tenant RG: %s\n", selectedContracts[ii].tenant.rg);
-        fprintf(ptrArq, "Residence ID: %d\n", selectedContracts[ii].residence.id);
-        // fprintf(ptrArq, "Residence Address: %s\n", selectedContracts[ii].residence.id);
+        fprintf(ptrArq, "Vencimento da mensalidade - dia do mês: %d\n", selectedContracts[ii].invoiceDueDate);
+        fprintf(ptrArq, "Status do contrato: %d\n", selectedContracts[ii].contractStatus);
+        fprintf(ptrArq, "Status do inquilino: %d\n", selectedContracts[ii].tenant.tenantStatus);
+        fprintf(ptrArq, "RG do inquilino: %s\n", selectedContracts[ii].tenant.rg);
+        fprintf(ptrArq, "Código da propriedade: %d\n", selectedContracts[ii].residence.id);
+        fprintf(ptrArq, "Endereço da propriedade: %s, %d, %s, %s, %s, %s\n", selectedContracts[ii].residence.address.street, selectedContracts[ii].residence.address.number, selectedContracts[ii].residence.address.complement, selectedContracts[ii].residence.address.district, selectedContracts[ii].residence.address.city, selectedContracts[ii].residence.address.state);
         fprintf(ptrArq, "___\n");
     }
     

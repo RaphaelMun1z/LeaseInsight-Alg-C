@@ -29,7 +29,7 @@ void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatu
 
 void findAllResidences(){
 	if(registeredResidencesNumber == 0)
-	return printColorful("Não há residencias registradas.\n", 4);
+	return printColorful("Não há propriedades registradas.\n", 4);
 	
 	for (int ii = 0; ii < registeredResidencesNumber; ii++){
 		printResidence(residences[ii]);
@@ -61,7 +61,7 @@ void createResidence(Residence residence){
 	saveResidencesData();
 	
 	char welcomeText[200];
-	snprintf(welcomeText, sizeof(welcomeText), "\nVocê registrou uma residencia!\n");
+	snprintf(welcomeText, sizeof(welcomeText), "\nVocê registrou uma propriedade!\n");
 	printColorful(welcomeText, 2);
 	
 	if(registeredResidencesNumber == residencesCurrentLimit)
@@ -70,12 +70,12 @@ void createResidence(Residence residence){
 
 void deleteResidence(int id){
 	if(!residenceExistsById(id)){
-		printColorful("Residencia não encontrado.\n", 1);
+		printColorful("Propriedade não encontrado.\n", 1);
 		return;
 	}
 
 	if(hasContractAssociated(id)){
-		printColorful("Não é possível deletar uma residencia com contrato associado.\n", 1);
+		printColorful("Não é possível deletar uma propriedade com contrato associado.\n", 1);
 		return;
 	}
 	
@@ -85,19 +85,19 @@ void deleteResidence(int id){
 			residences[ii] = residences[indLastItemOfResidences];
 			registeredResidencesNumber--;
 			saveResidencesData();
-			printColorful("Residencia deletado com sucesso!\n", 2);
+			printColorful("Propriedade deletado com sucesso!\n", 2);
 			return;
 		}
 	}
 	
-	return printColorful("Residencia não encontrada.\n", 1);
+	return printColorful("Propriedade não encontrada.\n", 1);
 }
 
 void printResidence(Residence r){
 	printf("\nID: %d\n", r.id);
 	printf("Valor locação: R$%.2lf\n", r.rentalValue);
 	int tipo = r.propertyType;
-	printf("Tipo de imóvel: ");
+	printf("Tipo de propriedade: ");
 	if (tipo == 1) printf("Casa\n");
 	else if (tipo == 2) printf("Apartamento\n");
 	else if (tipo == 3) printf("Outros\n");
@@ -118,7 +118,7 @@ void printResidenceById(int id){
 	Residence *r = findResidenceById(id);
 	
 	if(r == NULL)
-	return printColorful("Residencia não encontrada.\n", 1);
+	return printColorful("Propriedade não encontrada.\n", 1);
 	
 	printResidence(*r);
 }
@@ -133,24 +133,24 @@ void findResidencesByOwner(int ownerId){
 	}
 	
 	if(residencesFound == 0)
-	return printColorful("Não há residencias registradas.\n", 4);
+	return printColorful("Não há propriedades registradas.\n", 4);
 }
 
 void changeResidenceOccupancyStatus(int id, int status){
 	if(!residenceExistsById(id)){
-		return printColorful("Residencia não encontrada.\n", 1);
+		return printColorful("Propriedade não encontrada.\n", 1);
 	}
 	
 	Residence *r = findResidenceById(id);
 	r->occupancyStatus = status;
 	saveResidencesData();
 	
-	printColorful("Residencia atualizada com sucesso!\n", 2);
+	printColorful("Propriedade atualizada com sucesso!\n", 2);
 }
 
 void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatus, int changeAddress, Address newAddress){
 	if(!residenceExistsById(id)){
-		return printColorful("Residencia não encontrada.\n", 1);
+		return printColorful("Propriedade não encontrada.\n", 1);
 	}
 	
 	Residence *r = findResidenceById(id);
@@ -165,7 +165,7 @@ void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatu
 	
 	saveResidencesData();
 	
-	printColorful("Residencia atualizada com sucesso!\n", 2);
+	printColorful("Propriedade atualizada com sucesso!\n", 2);
 }
 
 int hasContractAssociated(int residenceId){

@@ -22,7 +22,7 @@ int contractManagerAdmMenu(){
         printColorful("Gerenciando contratos. Você pode: \n", 3);
         printColorful("1 -> Voltar.\n", 6);
         printColorful("2 -> Acessar todos contratos.\n", 5);
-        printColorful("3 -> Acessar detalhes de um contrato pelo ID.\n", 5);
+        printColorful("3 -> Acessar detalhes de um contrato pelo código.\n", 5);
         printColorful("4 -> Acessar detalhes de um contrato pelo Status.\n", 5);
         printColorful("5 -> Acessar contratos pelo RG do Inquilino.\n", 5);
         printColorful("6 -> Gerar relatório de contratos por Data Inicial.\n", 5);
@@ -56,7 +56,7 @@ void contractManagerAdmMenuChoose(){
         
         case 3:{
             int contractId;
-            printColorful("Informe o ID do contrato: ", 3);
+            printColorful("Informe o código do contrato: ", 3);
             scanf("%d", &contractId);
             
             if(!contractExistsById(contractId)){
@@ -161,7 +161,7 @@ void contractManagerAdmMenuChoose(){
             int contractId;
             int contractStatus;
             
-            printColorful("Informe o ID do contrato: ", 3);
+            printColorful("Informe o código do contrato: ", 3);
             scanf("%d", &contractId);
             
             if(!contractExistsById(contractId)){
@@ -188,7 +188,7 @@ void contractManagerAdmMenuChoose(){
         
         case 9: {
             int contractId;
-            printColorful("Informe o ID do contrato: ", 3);
+            printColorful("Informe o código do contrato: ", 3);
             scanf("%d", &contractId);
             
             if(!contractExistsById(contractId)){

@@ -16,7 +16,7 @@
 void registerResidenceForm(){
     Residence newResidence;
 
-    printColorful("\nPreencha os campos a seguir para registrar a residencia.", 3);
+    printColorful("\nPreencha os campos a seguir para registrar a propriedade.", 3);
     printColorful("\n[DICA] Para cancelar operação, digite: 'Sair', ou '-1' em campos numéricos.\n\n", 5);
     
     do {
@@ -34,14 +34,14 @@ void registerResidenceForm(){
     
     do {
         cleanInputBuffer();
-        printColorful("Tipo de imóvel [1 - Casa | 2 - Apartamento | 3 - Outros]: ", 5);
+        printColorful("Tipo de propriedade [1 - Casa | 2 - Apartamento | 3 - Outros]: ", 5);
         scanf("%d", &newResidence.propertyType);
         
         if(cancelOperationWithInt(newResidence.propertyType)) return;
         
         if(newResidence.propertyType < 1 || newResidence.propertyType > 3){
             cleanScreen();
-            printColorful("\nO Campo 'Tipo de imóvel' é obrigatório. Tente novamente.\n\n", 4);
+            printColorful("\nO Campo 'Tipo de propriedade' é obrigatório. Tente novamente.\n\n", 4);
         }
     } while (newResidence.propertyType < 1 || newResidence.propertyType > 3);
     

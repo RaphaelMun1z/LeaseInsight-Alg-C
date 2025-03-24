@@ -20,12 +20,12 @@
 int residenceManagerAdmMenu(){
     int option;
     do{
-        printColorful("Gerenciando residencias. Você pode: \n", 3);
+        printColorful("Gerenciando propriedades. Você pode: \n", 3);
         printColorful("1 -> Voltar.\n", 6);
-        printColorful("2 -> Acessar todas residencias.\n", 5);
-        printColorful("3 -> Acessar detalhes de uma residencia.\n", 5);
-        printColorful("4 -> Alterar uma residencia.\n", 5);
-        printColorful("5 -> Remover uma residencia.\n", 5);
+        printColorful("2 -> Acessar todas propriedades.\n", 5);
+        printColorful("3 -> Acessar detalhes de uma propriedade.\n", 5);
+        printColorful("4 -> Alterar uma propriedade.\n", 5);
+        printColorful("5 -> Remover uma propriedade.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -53,11 +53,11 @@ void residenceManagerAdmMenuChoose(){
         
         case 3: {
             int residenceId;
-            printColorful("Informe o ID da residência: ", 3);
+            printColorful("Informe o código da propriedade: ", 3);
             scanf("%d", &residenceId);
             
             if(!residenceExistsById(residenceId)){
-                printColorful("Residencia não encontrada.\n\n", 1);
+                printColorful("Propriedade não encontrada.\n\n", 1);
                 residenceManagerAdmMenuChoose();
                 return;
             }
@@ -75,11 +75,11 @@ void residenceManagerAdmMenuChoose(){
             int changeAddress;
             Address newAddress;
             
-            printColorful("Informe o ID da residencia: ", 3);
+            printColorful("Informe o código da propriedade: ", 3);
             scanf("%d", &residenceId);
             
             if(!residenceExistsById(residenceId)){
-                printColorful("Residencia não encontrada.\n\n", 1);
+                printColorful("Propriedade não encontrada.\n\n", 1);
                 residenceManagerAdmMenuChoose();
                 return;
             }
@@ -93,11 +93,11 @@ void residenceManagerAdmMenuChoose(){
         
         case 5: {
             int residenceId;
-            printColorful("Informe o ID da residencia: ", 3);
+            printColorful("Informe o código da propriedade: ", 3);
             scanf("%d", &residenceId);
             
             if(!residenceExistsById(residenceId)){
-                printColorful("Residencia não encontrada.\n\n", 1);
+                printColorful("Propriedade não encontrada.\n\n", 1);
                 residenceManagerAdmMenuChoose();
                 return;
             }

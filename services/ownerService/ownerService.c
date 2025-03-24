@@ -94,7 +94,7 @@ void deleteOwner(int id){
     }
 
     if(ownerHasResidence(id)){
-        printColorful("Proprietário não pode ser deletado, pois possui residências cadastradas.\n", 1);
+        printColorful("Proprietário não pode ser deletado, pois possui propriedades cadastradas.\n", 1);
         return;
     }
     

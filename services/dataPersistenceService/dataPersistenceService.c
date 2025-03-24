@@ -205,7 +205,7 @@ void saveResidencesData(){
     ptrArq = fopen("resources/data/residences_data.bin", "wb");
     
     if(ptrArq == NULL){
-        printColorful("Ocorreu um erro ao salvar residencias!\n", 1);
+        printColorful("Ocorreu um erro ao salvar propriedades!\n", 1);
         system("pause");
         exit(1);
         return;

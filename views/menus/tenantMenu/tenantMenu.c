@@ -21,12 +21,12 @@ int tenantMenu(){
         (getAuthUserName() != NULL) ? strcpy(name, getAuthUserName()) : strcpy(name, "Não foi possível carregar.");
         snprintf(message, sizeof(message), "\n%s, de que forma posso auxiliar? \n", name);
         printColorful(message, 3);
-        printColorful("1 -> Gostaria de sair da minha conta.\n", 6);
-        printColorful("2 -> Gostaria de acessar meus dados.\n", 5);
-        printColorful("3 -> Gostaria de acessar meus contratos.\n", 5);
-        printColorful("4 -> Gostaria de acessar detalhes de um contrato.\n", 5);
-        printColorful("5 -> Gostaria de cancelar um contrato.\n", 5);
-        printColorful("6 -> Gostaria de modificar meu Telefone.\n", 5);
+        printColorful("1 -> Sair da minha conta.\n", 6);
+        printColorful("2 -> Acessar meus dados.\n", 5);
+        printColorful("3 -> Acessar meus contratos.\n", 5);
+        printColorful("4 -> Acessar detalhes de um contrato pelo código.\n", 5);
+        printColorful("5 -> Cancelar um contrato.\n", 5);
+        printColorful("6 -> Atualizar meu telefone.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -59,7 +59,7 @@ void tenantMenuChoose(){
         
         case 4: {
             int contractId;
-            printColorful("Informe o ID do contrato: ", 3);
+            printColorful("Informe o código do contrato: ", 3);
             scanf("%d", &contractId);
             
             if(!contractExistsById(contractId)){
@@ -81,7 +81,7 @@ void tenantMenuChoose(){
         
         case 5: {
             int contractId;
-            printColorful("Informe o ID do contrato: ", 3);
+            printColorful("Informe o código do contrato: ", 3);
             scanf("%d", &contractId);
             
             if(!contractExistsById(contractId)){

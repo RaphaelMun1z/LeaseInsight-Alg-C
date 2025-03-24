@@ -49,7 +49,7 @@ void allocateMoreSpaceResidence(){
     
     residences = temp;
 
-    printf("[LOG] Espaço para mais residencias alocado com sucesso!\n");
+    printf("[LOG] Espaço para mais propriedades alocado com sucesso!\n");
 }
 
 void freeResidences(){

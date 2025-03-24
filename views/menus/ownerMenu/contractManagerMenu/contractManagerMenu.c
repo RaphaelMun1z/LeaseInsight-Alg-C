@@ -56,8 +56,8 @@ void contractManagerMenuChoose(){
         break;
         
         case 4: {
-            double contractId;
-            printColorful("Informe o ID do contrato: ", 3);
+            int contractId;
+            printColorful("Informe o código do contrato: ", 3);
             scanf("%d", &contractId);
             
             if(!contractExistsById(contractId)){
@@ -72,10 +72,10 @@ void contractManagerMenuChoose(){
         }
         
         case 5:{
-            double contractId;
+            int contractId;
             int contractStatus;
             
-            printColorful("Informe o ID do contrato: ", 3);
+            printColorful("Informe o código do contrato: ", 3);
             scanf("%d", &contractId);
             
             if(!contractExistsById(contractId)){
@@ -93,8 +93,8 @@ void contractManagerMenuChoose(){
         }
         
         case 6: {
-            double contractId;
-            printColorful("Informe o ID do contrato: ", 3);
+            int contractId;
+            printColorful("Informe o código do contrato: ", 3);
             scanf("%d", &contractId);
             
             if(!contractExistsById(contractId)){

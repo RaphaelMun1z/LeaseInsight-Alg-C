@@ -57,11 +57,11 @@ void residenceManagerMenuChoose(){
         
         case 4: {
             int residenceId;
-            printColorful("Informe o ID da residência: ", 3);
+            printColorful("Informe o código da propriedade: ", 3);
             scanf("%d", &residenceId);
             
             if(!residenceExistsById(residenceId)){
-                printColorful("Residencia não encontrada.\n\n", 1);
+                printColorful("Propriedade não encontrada.\n\n", 1);
                 residenceManagerMenuChoose();
                 return;
             }
@@ -75,11 +75,11 @@ void residenceManagerMenuChoose(){
             int residenceId;
             int residenceStatus;
             
-            printColorful("Informe o ID da residencia: ", 3);
+            printColorful("Informe o código da propriedade: ", 3);
             scanf("%d", &residenceId);
             
             if(!residenceExistsById(residenceId)){
-                printColorful("Residencia não encontrada.\n\n", 1);
+                printColorful("Propriedade não encontrada.\n\n", 1);
                 residenceManagerMenuChoose();
                 return;
             }
@@ -94,11 +94,11 @@ void residenceManagerMenuChoose(){
         
         case 6: {
             int residenceId;
-            printColorful("Informe o ID da residencia: ", 3);
+            printColorful("Informe o código da propriedade: ", 3);
             scanf("%d", &residenceId);
             
             if(!residenceExistsById(residenceId)){
-                printColorful("Residencia não encontrada.\n\n", 1);
+                printColorful("Propriedade não encontrada.\n\n", 1);
                 residenceManagerMenuChoose();
                 return;
             }
