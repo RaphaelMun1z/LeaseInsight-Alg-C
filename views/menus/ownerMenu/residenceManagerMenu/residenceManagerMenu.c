@@ -19,12 +19,12 @@ int residenceManagerMenu(){
     int option;
     do{
         printColorful("Gerenciando propriedades. Você pode: \n", 3);
-        printColorful("1 -> Acessar minhas propriedades.\n", 5);
-        printColorful("2 -> Cadastrar propriedade.\n", 5);
-        printColorful("3 -> Acessar detalhes de uma propriedade.\n", 5);
-        printColorful("4 -> Alterar uma propriedade.\n", 5);
-        printColorful("5 -> Remover uma propriedade.\n", 5);
-        printColorful("6 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 1);
+        printColorful("2 -> Acessar minhas propriedades.\n", 5);
+        printColorful("3 -> Cadastrar propriedade.\n", 5);
+        printColorful("4 -> Acessar detalhes de uma propriedade.\n", 5);
+        printColorful("5 -> Alterar uma propriedade.\n", 5);
+        printColorful("6 -> Remover uma propriedade.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -41,17 +41,21 @@ int residenceManagerMenu(){
 void residenceManagerMenuChoose(){
     switch (residenceManagerMenu())
     {
-        case 1:
+        case 1: {
+            break;
+        }
+
+        case 2:
         findResidencesByOwner(authUser->id);
         residenceManagerMenuChoose();
         break;
         
-        case 2:
+        case 3:
         registerResidenceForm();
         residenceManagerMenuChoose();
         break;
         
-        case 3: {
+        case 4: {
             int residenceId;
             printColorful("Informe o ID da residência: ", 3);
             scanf("%d", &residenceId);
@@ -67,7 +71,7 @@ void residenceManagerMenuChoose(){
             break;
         }
         
-        case 4:{
+        case 5:{
             int residenceId;
             int residenceStatus;
             
@@ -88,7 +92,7 @@ void residenceManagerMenuChoose(){
             break;
         }
         
-        case 5: {
+        case 6: {
             int residenceId;
             printColorful("Informe o ID da residencia: ", 3);
             scanf("%d", &residenceId);
@@ -101,10 +105,6 @@ void residenceManagerMenuChoose(){
             
             deleteResidence(residenceId);
             residenceManagerMenuChoose();
-            break;
-        }
-
-        case 6: {
             break;
         }
         

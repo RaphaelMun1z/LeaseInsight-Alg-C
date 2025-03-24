@@ -14,11 +14,11 @@ int tenantManagerAdmMenu(){
     int option;
     do{
         printColorful("Gerenciando inquilinos. Você pode: \n", 3);
-        printColorful("1 -> Acessar todos inquilinos.\n", 5);
-        printColorful("2 -> Acessar detalhes de uma inquilino.\n", 5);
-        printColorful("3 -> Alterar um inquilino.\n", 5);
-        printColorful("4 -> Remover um inquilino.\n", 5);
-        printColorful("5 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 1);
+        printColorful("2 -> Acessar todos inquilinos.\n", 5);
+        printColorful("3 -> Acessar detalhes de uma inquilino.\n", 5);
+        printColorful("4 -> Alterar um inquilino.\n", 5);
+        printColorful("5 -> Remover um inquilino.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -35,12 +35,16 @@ int tenantManagerAdmMenu(){
 void tenantManagerAdmMenuChoose(){
     switch (tenantManagerAdmMenu())
     {
-        case 1:
+        case 1: {
+            break;
+        }
+        
+        case 2:
         findAllTenants();
         tenantManagerAdmMenuChoose();
         break;
         
-        case 2: {
+        case 3: {
             char tenantRg[100];
             cleanInputBuffer();
             printColorful("Informe o RG do inquilino: ", 3);
@@ -60,7 +64,7 @@ void tenantManagerAdmMenuChoose(){
             break;
         }
         
-        case 3: {
+        case 4: {
             char tenantRg[100];
             int tenantStatus;
             
@@ -83,7 +87,7 @@ void tenantManagerAdmMenuChoose(){
             break;
         }
         
-        case 4:{
+        case 5:{
             char tenantRg[100];
             
             cleanInputBuffer();
@@ -99,10 +103,6 @@ void tenantManagerAdmMenuChoose(){
             
             deleteTenant(tenantRg);
             tenantManagerAdmMenuChoose();
-            break;
-        }
-        
-        case 5: {
             break;
         }
         

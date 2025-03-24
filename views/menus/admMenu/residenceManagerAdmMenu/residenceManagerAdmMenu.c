@@ -21,11 +21,11 @@ int residenceManagerAdmMenu(){
     int option;
     do{
         printColorful("Gerenciando residencias. Você pode: \n", 3);
-        printColorful("1 -> Acessar todas residencias.\n", 5);
-        printColorful("2 -> Acessar detalhes de uma residencia.\n", 5);
-        printColorful("3 -> Alterar uma residencia.\n", 5);
-        printColorful("4 -> Remover uma residencia.\n", 5);
-        printColorful("5 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 1);
+        printColorful("2 -> Acessar todas residencias.\n", 5);
+        printColorful("3 -> Acessar detalhes de uma residencia.\n", 5);
+        printColorful("4 -> Alterar uma residencia.\n", 5);
+        printColorful("5 -> Remover uma residencia.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -42,12 +42,16 @@ int residenceManagerAdmMenu(){
 void residenceManagerAdmMenuChoose(){
     switch (residenceManagerAdmMenu())
     {
-        case 1:
+        case 1: {
+            break;
+        }
+        
+        case 2:
         findAllResidences();
         residenceManagerAdmMenuChoose();
         break;
         
-        case 2: {
+        case 3: {
             int residenceId;
             printColorful("Informe o ID da residência: ", 3);
             scanf("%d", &residenceId);
@@ -63,7 +67,7 @@ void residenceManagerAdmMenuChoose(){
             break;
         }
         
-        case 3:{
+        case 4:{
             int residenceId;
 
             double newRentalValue;
@@ -87,7 +91,7 @@ void residenceManagerAdmMenuChoose(){
             break;
         }
         
-        case 4: {
+        case 5: {
             int residenceId;
             printColorful("Informe o ID da residencia: ", 3);
             scanf("%d", &residenceId);
@@ -100,10 +104,6 @@ void residenceManagerAdmMenuChoose(){
             
             deleteResidence(residenceId);
             residenceManagerAdmMenuChoose();
-            break;
-        }
-        
-        case 5: {
             break;
         }
         

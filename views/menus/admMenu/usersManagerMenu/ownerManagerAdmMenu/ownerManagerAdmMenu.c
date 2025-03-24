@@ -14,11 +14,11 @@ int ownerManagerAdmMenu(){
     int option;
     do{
         printColorful("Gerenciando proprietários. Você pode: \n", 3);
-        printColorful("1 -> Acessar todos proprietários.\n", 5);
-        printColorful("2 -> Acessar detalhes de um proprietário.\n", 5);
-        printColorful("3 -> Alterar um proprietários.\n", 5);
-        printColorful("4 -> Remover um proprietários.\n", 5);
-        printColorful("5 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 1);
+        printColorful("2 -> Acessar todos proprietários.\n", 5);
+        printColorful("3 -> Acessar detalhes de um proprietário.\n", 5);
+        printColorful("4 -> Alterar um proprietários.\n", 5);
+        printColorful("5 -> Remover um proprietários.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -35,12 +35,16 @@ int ownerManagerAdmMenu(){
 void ownerManagerAdmMenuChoose(){
     switch (ownerManagerAdmMenu())
     {
-        case 1:
+        case 1: {
+            break;
+        }
+        
+        case 2:
         findAllOwners();
         ownerManagerAdmMenuChoose();
         break;
         
-        case 2: {
+        case 3: {
             int ownerId;
             printColorful("Informe o ID do proprietário: ", 3);
             scanf("%d", &ownerId);
@@ -58,7 +62,7 @@ void ownerManagerAdmMenuChoose(){
             break;
         }
         
-        case 3: {
+        case 4: {
             char newOwnerName[100];
             
             int ownerId;
@@ -89,7 +93,7 @@ void ownerManagerAdmMenuChoose(){
             break;
         }
         
-        case 4:{
+        case 5:{
             int ownerId;
             printColorful("Informe o ID do proprietário: ", 3);
             scanf("%d", &ownerId);
@@ -102,10 +106,6 @@ void ownerManagerAdmMenuChoose(){
             
             deleteOwner(ownerId);
             ownerManagerAdmMenuChoose();
-            break;
-        }
-        
-        case 5: {
             break;
         }
         

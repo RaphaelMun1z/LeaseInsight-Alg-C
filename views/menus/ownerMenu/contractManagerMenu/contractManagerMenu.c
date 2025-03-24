@@ -19,12 +19,12 @@ int contractManagerMenu(){
     int option;
     do{
         printColorful("Gerenciando contratos. Você pode: \n", 3);
-        printColorful("1 -> Acessar meus contratos.\n", 5);
-        printColorful("2 -> Cadastrar contrato.\n", 5);
-        printColorful("3 -> Acessar detalhes de um contrato.\n", 5);
-        printColorful("4 -> Alterar um contrato.\n", 5);
-        printColorful("5 -> Remover um contrato.\n", 5);
-        printColorful("6 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 1);
+        printColorful("2 -> Acessar meus contratos.\n", 5);
+        printColorful("3 -> Cadastrar contrato.\n", 5);
+        printColorful("4 -> Acessar detalhes de um contrato.\n", 5);
+        printColorful("5 -> Alterar um contrato.\n", 5);
+        printColorful("6 -> Remover um contrato.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -41,17 +41,21 @@ int contractManagerMenu(){
 void contractManagerMenuChoose(){
     switch (contractManagerMenu())
     {
-        case 1:
+        case 1: {
+            break;
+        }
+        
+        case 2:
         findContractsByOwner(authUser->id);
         contractManagerMenuChoose();
         break;
         
-        case 2:
+        case 3:
         registerContractForm();
         contractManagerMenuChoose();
         break;
         
-        case 3: {
+        case 4: {
             double contractId;
             printColorful("Informe o ID do contrato: ", 3);
             scanf("%d", &contractId);
@@ -67,7 +71,7 @@ void contractManagerMenuChoose(){
             break;
         }
         
-        case 4:{
+        case 5:{
             double contractId;
             int contractStatus;
             
@@ -88,7 +92,7 @@ void contractManagerMenuChoose(){
             break;
         }
         
-        case 5: {
+        case 6: {
             double contractId;
             printColorful("Informe o ID do contrato: ", 3);
             scanf("%d", &contractId);
@@ -101,10 +105,6 @@ void contractManagerMenuChoose(){
             
             deleteContract(contractId);
             contractManagerMenuChoose();
-            break;
-        }
-        
-        case 6: {
             break;
         }
         

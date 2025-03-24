@@ -20,9 +20,9 @@ int usersManagerMenu(){
     int option;
     do{
         printColorful("Gerenciando usuários. Você pode: \n", 3);
-        printColorful("1 -> Gerenciar inquilinos.\n", 5);
-        printColorful("2 -> Gerenciar proprietários.\n", 5);
-        printColorful("3 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 1);
+        printColorful("2 -> Gerenciar inquilinos.\n", 5);
+        printColorful("3 -> Gerenciar proprietários.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -39,19 +39,19 @@ int usersManagerMenu(){
 void usersManagerMenuChoose(){
     switch (usersManagerMenu())
     {
-        case 1:
+        case 1: {
+            break;
+        }
+        
+        case 2:
         tenantManagerAdmMenuChoose();
         usersManagerMenuChoose();
         break;
         
-        case 2:
+        case 3:
         ownerManagerAdmMenuChoose();
         usersManagerMenuChoose();
         break;
-        
-        case 3: {
-            break;
-        }
         
         default:
         cleanScreen();

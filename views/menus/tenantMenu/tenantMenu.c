@@ -21,12 +21,12 @@ int tenantMenu(){
         (getAuthUserName() != NULL) ? strcpy(name, getAuthUserName()) : strcpy(name, "Não foi possível carregar.");
         snprintf(message, sizeof(message), "\n%s, de que forma posso auxiliar? \n", name);
         printColorful(message, 3);
-        printColorful("1 -> Gostaria de acessar meus dados.\n", 5);
-        printColorful("2 -> Gostaria de acessar meus contratos.\n", 5);
-        printColorful("3 -> Gostaria de acessar detalhes de um contrato.\n", 5);
-        printColorful("4 -> Gostaria de cancelar um contrato.\n", 5);
-        printColorful("5 -> Gostaria de modificar meu Telefone.\n", 5);
-        printColorful("6 -> Gostaria de sair da minha conta.\n", 1);
+        printColorful("1 -> Gostaria de sair da minha conta.\n", 1);
+        printColorful("2 -> Gostaria de acessar meus dados.\n", 5);
+        printColorful("3 -> Gostaria de acessar meus contratos.\n", 5);
+        printColorful("4 -> Gostaria de acessar detalhes de um contrato.\n", 5);
+        printColorful("5 -> Gostaria de cancelar um contrato.\n", 5);
+        printColorful("6 -> Gostaria de modificar meu Telefone.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
@@ -42,18 +42,22 @@ int tenantMenu(){
 
 void tenantMenuChoose(){
     switch (tenantMenu())
-    {
+    {  
         case 1:
+        logoutAuthUser();
+        break;
+        
+        case 2:
         printTenant(*findTenantById(authUser->id));
         tenantMenuChoose();
         break;
         
-        case 2:
+        case 3:
         findContractsByTenant(authUser->id);
         tenantMenuChoose();
         break;
         
-        case 3: {
+        case 4: {
             int contractId;
             printColorful("Informe o ID do contrato: ", 3);
             scanf("%d", &contractId);
@@ -75,7 +79,7 @@ void tenantMenuChoose(){
             break;
         }
         
-        case 4: {
+        case 5: {
             int contractId;
             printColorful("Informe o ID do contrato: ", 3);
             scanf("%d", &contractId);
@@ -97,7 +101,7 @@ void tenantMenuChoose(){
             break;
         }
         
-        case 5: {
+        case 6: {
             char newPhone[16];
             do {
                 cleanInputBuffer();
@@ -115,10 +119,6 @@ void tenantMenuChoose(){
             tenantMenuChoose();
             break;
         }
-        
-        case 6:
-        logoutAuthUser();
-        break;
         
         default:
         cleanScreen();
