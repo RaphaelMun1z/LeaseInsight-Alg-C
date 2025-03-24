@@ -12,6 +12,10 @@
 // Entities
 #include "../../entities/Contract/Contract.h"
 
+// Services
+#include "../../services/tenantService/tenantService.h"
+#include "../../services/residenceService/residenceService.h"
+
 void generateContractsReport(Contract *selectedContracts, int itemsAmount, char dateFiltered[]){
     FILE *ptrArq;
     
@@ -52,19 +56,21 @@ void generateContractsReport(Contract *selectedContracts, int itemsAmount, char 
         getContractStatus(selectedContracts[ii].contractStatus, contractStatusStr);
         fprintf(ptrArq, "Status do contrato: %s\n", contractStatusStr);
 
+        Tenant *t = findTenantById(selectedContracts[ii].tenantId);
         fprintf(ptrArq, "Informações do inquilino:\n");
-        fprintf(ptrArq, "\tCódigo do inquilino: %d\n", selectedContracts[ii].tenant.id);
-        fprintf(ptrArq, "\tNome do inquilino: %s\n", selectedContracts[ii].tenant.name);
-        fprintf(ptrArq, "\tRG do inquilino: %s\n", selectedContracts[ii].tenant.rg);
-        fprintf(ptrArq, "\tE-mail do inquilino: %s\n", selectedContracts[ii].tenant.email);
+        fprintf(ptrArq, "\tCódigo do inquilino: %d\n", (*t).id);
+        fprintf(ptrArq, "\tNome do inquilino: %s\n", (*t).name);
+        fprintf(ptrArq, "\tRG do inquilino: %s\n", (*t).rg);
+        fprintf(ptrArq, "\tE-mail do inquilino: %s\n", (*t).email);
         
         char tenantStatusStr[100];
-        getTenantStatus(selectedContracts[ii].tenant.tenantStatus, tenantStatusStr);
+        getTenantStatus((*t).tenantStatus, tenantStatusStr);
         fprintf(ptrArq, "\tStatus do inquilino: %s\n", tenantStatusStr);
         
+        Residence *r = findResidenceById(selectedContracts[ii].residenceId);
         fprintf(ptrArq, "Informações da propriedade:\n");
-        fprintf(ptrArq, "\tCódigo da propriedade: %d\n", selectedContracts[ii].residence.id);
-        fprintf(ptrArq, "\tEndereço da propriedade: %s, %d, %s, %s, %s, %s\n", selectedContracts[ii].residence.address.street, selectedContracts[ii].residence.address.number, selectedContracts[ii].residence.address.complement, selectedContracts[ii].residence.address.district, selectedContracts[ii].residence.address.city, selectedContracts[ii].residence.address.state);
+        fprintf(ptrArq, "\tCódigo da propriedade: %d\n", (*r).id);
+        fprintf(ptrArq, "\tEndereço da propriedade: %s, %d, %s, %s, %s, %s\n", (*r).address.street, (*r).address.number, (*r).address.complement, (*r).address.district, (*r).address.city, (*r).address.state);
         fprintf(ptrArq, "___\n");
     }
     

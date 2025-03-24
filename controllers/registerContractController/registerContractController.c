@@ -107,7 +107,7 @@ void registerContractForm(){
             }
         }
     } while (propertyId < 1 || propertyFound == NULL);
-    newContract.residence = *propertyFound;
+    newContract.residenceId = propertyId;
     
     int tenantId;
     Tenant *tenantFound = NULL;
@@ -130,7 +130,7 @@ void registerContractForm(){
             }
         }
     } while (tenantId < 1 || tenantFound == NULL);
-    newContract.tenant = *tenantFound;
+    newContract.tenantId = tenantId;
     
     cleanScreen();
     createContract(newContract);

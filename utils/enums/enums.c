@@ -120,7 +120,7 @@ void getTenantStatus(int tenantStatus, char *tenantStatusStr){
         strcpy(tenantStatusStr, "Inativo");
         break;
         case 3:
-        strcpy(tenantStatusStr, "Pendente");
+        strcpy(tenantStatusStr, "Aprovação Pendente");
         break;
         default:
         strcpy(tenantStatusStr, "Status de inquilino não encontrado");

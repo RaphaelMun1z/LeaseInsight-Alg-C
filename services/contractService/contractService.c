@@ -14,6 +14,7 @@
 #include "../authService/authService.h"
 #include "../residenceService/residenceService.h"
 #include "../tenantService/tenantService.h"
+#include "../ownerService/ownerService.h"
 
 void findAllContracts();
 Contract *findContractById(int id);
@@ -41,7 +42,9 @@ void findContractsByTenantRg(char tenantRg[]){
 	
 	int contractsFound = 0;
 	for (int ii = 0; ii < registeredContractsNumber; ii++){
-		if(strcmp(contracts[ii].tenant.rg, tenantRg) == 0){
+		Tenant *t = findTenantById(contracts[ii].tenantId);
+		
+		if(strcmp(t->rg, tenantRg) == 0){
 			contractsFound++;
 			printContract(contracts[ii]);
 		}
@@ -86,18 +89,27 @@ int contractExistsById(int id){
 }
 
 void createContract(Contract contract){
-	if(contract.residence.occupancyStatus != 6){
-		printColorful("Propriedade não disponível para locação.\n", 1);
-		return;
-	}
-	
-	if(findResidenceById(contract.residence.id) == NULL){
+	Residence *r = findResidenceById(contract.residenceId);
+
+	if(r == NULL){
 		printColorful("Propriedade não encontrada.\n", 1);
 		return;
 	}
+
+	if((*r).occupancyStatus != 6){
+		printColorful("Propriedade não disponível para locação.\n", 1);
+		return;
+	}
+
+	Tenant *t = findTenantById(contract.tenantId);
 	
-	if(findTenantById(contract.tenant.id) == NULL){
+	if(t == NULL){
 		printColorful("Inquilino não encontrado.\n", 1);
+		return;
+	}
+
+	if((*t).tenantStatus != 1){
+		printColorful("Conta de Inquilino não está ativa.\n", 1);
 		return;
 	}
 	
@@ -107,13 +119,13 @@ void createContract(Contract contract){
 	contracts[registeredContractsNumber].defaultRentalValue = contract.defaultRentalValue;
 	contracts[registeredContractsNumber].contractStatus = contract.contractStatus;
 	contracts[registeredContractsNumber].invoiceDueDate = contract.invoiceDueDate;
-	contracts[registeredContractsNumber].residence = contract.residence;
-	contracts[registeredContractsNumber].tenant = contract.tenant;
+	contracts[registeredContractsNumber].residenceId = contract.residenceId;
+	contracts[registeredContractsNumber].tenantId = contract.tenantId;
 	registeredContractsNumber++;
 	saveContractsData();
 	
 	char welcomeText[200];
-	snprintf(welcomeText, sizeof(welcomeText), "\nVocê registrou um contrato cuja propriedade é a de código %d, e inquilino de nome %s!\n", contract.residence.id, contract.tenant.name);
+	snprintf(welcomeText, sizeof(welcomeText), "\nVocê registrou um contrato cuja propriedade está localizada em %s, %d, %s, %s, %s, %s, e inquilino de nome %s!\n", (*r).address.street, (*r).address.number, (*r).address.complement, (*r).address.district, (*r).address.city, (*r).address.state, (*t).name);
 	printColorful(welcomeText, 2);
 	
 	if(registeredContractsNumber == contractsCurrentLimit)
@@ -152,20 +164,26 @@ void printContract(Contract c){
 	printf("Data de término: %s\n", c.contractEndDate);
 	printf("Dia de vencimento da fatura: %d\n", c.invoiceDueDate);
 
-	// Tenant
-	printColorful("Inquilino:\n", 3);
-	printf("   Código inquilino: %d\n", c.tenant.id);
-	printf("   Status do inquilino: %d\n", c.tenant.tenantStatus);
-	printf("   RG do inquilino: %s\n", c.tenant.rg);
+	return;
 
+	// Tenant
+	Tenant *t = findTenantById(c.tenantId);
+	printColorful("Inquilino:\n", 3);
+	printf("   Código inquilino: %d\n", (*t).id);
+	printf("   Status do inquilino: %d\n", (*t).tenantStatus);
+	printf("   RG do inquilino: %s\n", (*t).rg);
+	
 	// Residence
+	Residence *r = findResidenceById(c.residenceId);
 	printColorful("Propriedade:\n", 3);
-	printf("   Código da propriedade: %d\n", c.residence.id);
-	printf("   Endereço da propriedade: %s, %d, %s, %s, %s, %s\n", c.residence.address.street, c.residence.address.number, c.residence.address.complement, c.residence.address.district, c.residence.address.city, c.residence.address.state);
+	printf("   Código da propriedade: %d\n", (*r).id);
+	printf("   Endereço da propriedade: %s, %d, %s, %s, %s, %s\n", (*r).address.street, (*r).address.number, (*r).address.complement, (*r).address.district, (*r).address.city, (*r).address.state);
 
 	// Owner
+	Owner *o = findOwnerById((*r).ownerId);
 	printColorful("Proprietário:\n", 3);
-	printf("   Código do proprietário da propriedade: %d\n", c.residence.ownerId);
+	printf("   Código do proprietário da propriedade: %d\n", (*o).id);
+	printf("   Nome do proprietário da propriedade: %s\n", (*o).name);
 	
 	printf("\n____\n");
 }
@@ -183,7 +201,8 @@ void findContractsByOwner(int ownerId){
 	int contractsFound = 0;
 	
 	for (int ii = 0; ii < registeredContractsNumber; ii++){
-		if(contracts[ii].residence.ownerId == ownerId){
+		Residence *r = findResidenceById(contracts[ii].residenceId);
+		if((*r).ownerId == ownerId){
 			contractsFound++;
 			printContract(contracts[ii]);
 		}
@@ -197,7 +216,7 @@ void findContractsByTenant(int tenantId){
 	int contractsFound = 0;
 	
 	for (int ii = 0; ii < registeredContractsNumber; ii++){
-		if(contracts[ii].tenant.id == tenantId){
+		if(contracts[ii].tenantId == tenantId){
 			contractsFound++;
 			printContract(contracts[ii]);
 		}

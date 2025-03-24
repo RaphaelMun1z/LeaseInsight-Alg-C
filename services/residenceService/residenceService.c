@@ -29,7 +29,6 @@ void printResidence(Residence r);
 void printResidenceById(int id);
 int residenceExistsById(int id);
 int hasContractAssociated(int residenceId);
-void updateResidenceAssociatedToContracts(Residence *r);
 
 void findAllResidences(){
 	if(registeredResidencesNumber == 0)
@@ -143,20 +142,11 @@ void findResidencesByOwner(int ownerId){
 int isResidenceAssociatedToContract(int residenceId, int contractId){
     Contract *c = findContractById(contractId);
     
-    if(c->residence.id != residenceId){
+    if((*c).residenceId != residenceId){
         return 0;
     }
     
     return 1;
-}
-
-void updateResidenceAssociatedToContracts(Residence *r){
-    for(int ii = 0; ii < registeredContractsNumber; ii++){
-        if(isResidenceAssociatedToContract(r->id, contracts[ii].id)){
-            contracts[ii].residence = *r;
-        }
-    }
-    saveContractsData();
 }
 
 void changeResidenceOccupancyStatus(int id, int status){
@@ -168,7 +158,6 @@ void changeResidenceOccupancyStatus(int id, int status){
 	r->occupancyStatus = status;
 	saveResidencesData();
 	
-	updateResidenceAssociatedToContracts(r);
 	printColorful("Propriedade atualizada com sucesso!\n", 2);
 }
 
@@ -189,13 +178,12 @@ void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatu
 	
 	saveResidencesData();
 	
-	updateResidenceAssociatedToContracts(r);
 	printColorful("Propriedade atualizada com sucesso!\n", 2);
 }
 
 int hasContractAssociated(int residenceId){
 	for (int ii = 0; ii < registeredContractsNumber; ii++){
-		if(contracts[ii].residence.id == residenceId){
+		if(contracts[ii].residenceId == residenceId){
 			return 1;
 		}
 	}

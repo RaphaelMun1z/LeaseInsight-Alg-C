@@ -27,7 +27,6 @@ void printTenant(Tenant t);
 void printTenantByRg(char rg[]);
 int tenantHasContract(int tenantId);
 int isTenantAssociatedToContract(int tenantId, int contractId);
-void updateTenantAssociatedToContracts(Tenant *t);
 
 void findAllTenants(){
     if(registeredTenantsNumber == 0)
@@ -163,7 +162,7 @@ void printTenantByRg(char rg[]){
 int isTenantAssociatedToContract(int tenantId, int contractId){
     Contract *c = findContractById(contractId);
     
-    if(c->tenant.id != tenantId){
+    if(c->tenantId != tenantId){
         return 0;
     }
     
@@ -179,17 +178,6 @@ void changeTenantStatus(char rg[], int status){
 	t->tenantStatus = status;
     saveTenantsData();
 	printColorful("Inquilino atualizado com sucesso!\n", 2);
-
-    updateTenantAssociatedToContracts(t);
-}
-
-void updateTenantAssociatedToContracts(Tenant *t){
-    for(int ii = 0; ii < registeredContractsNumber; ii++){
-        if(isTenantAssociatedToContract(t->id, contracts[ii].id)){
-            contracts[ii].tenant = *t;
-        }
-    }
-    saveContractsData();
 }
 
 void changeTenantPhone(int tenantId, char newPhone[]){
@@ -202,13 +190,11 @@ void changeTenantPhone(int tenantId, char newPhone[]){
     saveTenantsData();
 
 	printColorful("Inquilino atualizado com sucesso!\n", 2);
-
-    updateTenantAssociatedToContracts(t);
 }
 
 int tenantHasContract(int tenantId){
     for (int ii = 0; ii < registeredContractsNumber; ii++){
-        if(contracts[ii].tenant.id == tenantId){
+        if(contracts[ii].tenantId == tenantId){
             return 1;
         }
     }
