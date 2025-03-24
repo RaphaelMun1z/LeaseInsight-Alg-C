@@ -4,6 +4,7 @@
 
 // Utils
 #include "../../utils/printColorful/printColorful.h"
+#include "../../utils/enums/enums.h"
 
 // DTOs
 #include "../../dtos/dtos.h"
@@ -46,11 +47,24 @@ void generateContractsReport(Contract *selectedContracts, int itemsAmount, char 
         fprintf(ptrArq, "Fim do contrato: %s\n", selectedContracts[ii].contractEndDate);
         fprintf(ptrArq, "Valor de locação: %.2f\n", selectedContracts[ii].defaultRentalValue);
         fprintf(ptrArq, "Vencimento da mensalidade - dia do mês: %d\n", selectedContracts[ii].invoiceDueDate);
-        fprintf(ptrArq, "Status do contrato: %d\n", selectedContracts[ii].contractStatus);
-        fprintf(ptrArq, "Status do inquilino: %d\n", selectedContracts[ii].tenant.tenantStatus);
-        fprintf(ptrArq, "RG do inquilino: %s\n", selectedContracts[ii].tenant.rg);
-        fprintf(ptrArq, "Código da propriedade: %d\n", selectedContracts[ii].residence.id);
-        fprintf(ptrArq, "Endereço da propriedade: %s, %d, %s, %s, %s, %s\n", selectedContracts[ii].residence.address.street, selectedContracts[ii].residence.address.number, selectedContracts[ii].residence.address.complement, selectedContracts[ii].residence.address.district, selectedContracts[ii].residence.address.city, selectedContracts[ii].residence.address.state);
+
+        char contractStatusStr[100];
+        getContractStatus(selectedContracts[ii].contractStatus, contractStatusStr);
+        fprintf(ptrArq, "Status do contrato: %s\n", contractStatusStr);
+
+        fprintf(ptrArq, "Informações do inquilino:\n");
+        fprintf(ptrArq, "\tCódigo do inquilino: %d\n", selectedContracts[ii].tenant.id);
+        fprintf(ptrArq, "\tNome do inquilino: %s\n", selectedContracts[ii].tenant.name);
+        fprintf(ptrArq, "\tRG do inquilino: %s\n", selectedContracts[ii].tenant.rg);
+        fprintf(ptrArq, "\tE-mail do inquilino: %s\n", selectedContracts[ii].tenant.email);
+        
+        char tenantStatusStr[100];
+        getTenantStatus(selectedContracts[ii].tenant.tenantStatus, tenantStatusStr);
+        fprintf(ptrArq, "\tStatus do inquilino: %s\n", tenantStatusStr);
+        
+        fprintf(ptrArq, "Informações da propriedade:\n");
+        fprintf(ptrArq, "\tCódigo da propriedade: %d\n", selectedContracts[ii].residence.id);
+        fprintf(ptrArq, "\tEndereço da propriedade: %s, %d, %s, %s, %s, %s\n", selectedContracts[ii].residence.address.street, selectedContracts[ii].residence.address.number, selectedContracts[ii].residence.address.complement, selectedContracts[ii].residence.address.district, selectedContracts[ii].residence.address.city, selectedContracts[ii].residence.address.state);
         fprintf(ptrArq, "___\n");
     }
     

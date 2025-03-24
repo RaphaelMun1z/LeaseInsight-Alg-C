@@ -8,16 +8,22 @@ Desenvolvido por: Raphael e Ygor
 
 Relatório de Contratos
 Filtrado por Data Inicial: 23/03/2025
-Data e Hora da Criação do Relatório: 2025-03-23 17:24:20
+Data e Hora da Criação do Relatório: 2025-03-24 00:22:07
 ___________________________________________________________
 
 Código: 1
-Contract Start Date: 23/03/2025
-Contract End Date: 23/09/2025
-Default Rental Value: 1100.00
-Invoice Due Date: 10
-Contract Status: 1
-Tenant Status: 1
-Tenant RG: 2
-Residence ID: 1
+Início do contrato: 23/03/2025
+Fim do contrato: 23/03/2026
+Valor de locação: 1300.00
+Vencimento da mensalidade - dia do mês: 15
+Status do contrato: Finalizado
+Informações do inquilino:
+	Código do inquilino: 2
+	Nome do inquilino: inquilino
+	RG do inquilino: 1
+	E-mail do inquilino: inquilino@gmail.com
+	Status do inquilino: Inativo
+Informações da propriedade:
+	Código da propriedade: 2
+	Endereço da propriedade: Av. principal, 987, Ao lado do shopping abc, Bragantino, Fortaleza, Piaui
 ___
