@@ -21,7 +21,7 @@ int residenceManagerAdmMenu(){
     int option;
     do{
         printColorful("Gerenciando residencias. Você pode: \n", 3);
-        printColorful("1 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 6);
         printColorful("2 -> Acessar todas residencias.\n", 5);
         printColorful("3 -> Acessar detalhes de uma residencia.\n", 5);
         printColorful("4 -> Alterar uma residencia.\n", 5);
@@ -45,7 +45,7 @@ void residenceManagerAdmMenuChoose(){
         case 1: {
             break;
         }
-        
+
         case 2:
         findAllResidences();
         residenceManagerAdmMenuChoose();

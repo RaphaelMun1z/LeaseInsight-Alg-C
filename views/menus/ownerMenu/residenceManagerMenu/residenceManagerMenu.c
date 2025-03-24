@@ -19,7 +19,7 @@ int residenceManagerMenu(){
     int option;
     do{
         printColorful("Gerenciando propriedades. Você pode: \n", 3);
-        printColorful("1 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 6);
         printColorful("2 -> Acessar minhas propriedades.\n", 5);
         printColorful("3 -> Cadastrar propriedade.\n", 5);
         printColorful("4 -> Acessar detalhes de uma propriedade.\n", 5);

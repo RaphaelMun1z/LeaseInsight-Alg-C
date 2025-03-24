@@ -19,7 +19,7 @@ int ownerMenu(){
         (getAuthUserName() != NULL) ? strcpy(name, getAuthUserName()) : strcpy(name, "Não foi possível carregar.");
         snprintf(message, sizeof(message), "\n%s, de que forma posso auxiliar? \n", name);
         printColorful(message, 3);
-        printColorful("1 -> Gostaria de sair da minha conta.\n", 1);
+        printColorful("1 -> Gostaria de sair da minha conta.\n", 6);
         printColorful("2 -> Gostaria de gerenciar propriedades.\n", 5);
         printColorful("3 -> Gostaria de gerenciar contratos.\n", 5);
         
@@ -41,7 +41,7 @@ void ownerMenuChoose(){
         case 1:
         logoutAuthUser();
         break;
-        
+
         case 2:
         residenceManagerMenuChoose();
         break;

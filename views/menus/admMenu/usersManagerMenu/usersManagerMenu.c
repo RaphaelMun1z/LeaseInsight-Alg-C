@@ -20,7 +20,7 @@ int usersManagerMenu(){
     int option;
     do{
         printColorful("Gerenciando usuários. Você pode: \n", 3);
-        printColorful("1 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 6);
         printColorful("2 -> Gerenciar inquilinos.\n", 5);
         printColorful("3 -> Gerenciar proprietários.\n", 5);
         
@@ -42,7 +42,7 @@ void usersManagerMenuChoose(){
         case 1: {
             break;
         }
-        
+
         case 2:
         tenantManagerAdmMenuChoose();
         usersManagerMenuChoose();

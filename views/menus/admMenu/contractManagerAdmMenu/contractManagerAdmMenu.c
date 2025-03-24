@@ -20,7 +20,7 @@ int contractManagerAdmMenu(){
     int option;
     do{
         printColorful("Gerenciando contratos. Você pode: \n", 3);
-        printColorful("1 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 6);
         printColorful("2 -> Acessar todos contratos.\n", 5);
         printColorful("3 -> Acessar detalhes de um contrato pelo ID.\n", 5);
         printColorful("4 -> Acessar detalhes de um contrato pelo Status.\n", 5);
@@ -48,7 +48,7 @@ void contractManagerAdmMenuChoose(){
         case 1: {
             break;
         }
-        
+
         case 2:
         findAllContracts();
         contractManagerAdmMenuChoose();

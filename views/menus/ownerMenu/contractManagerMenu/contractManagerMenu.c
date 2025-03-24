@@ -19,7 +19,7 @@ int contractManagerMenu(){
     int option;
     do{
         printColorful("Gerenciando contratos. Você pode: \n", 3);
-        printColorful("1 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 6);
         printColorful("2 -> Acessar meus contratos.\n", 5);
         printColorful("3 -> Cadastrar contrato.\n", 5);
         printColorful("4 -> Acessar detalhes de um contrato.\n", 5);
@@ -44,7 +44,7 @@ void contractManagerMenuChoose(){
         case 1: {
             break;
         }
-        
+
         case 2:
         findContractsByOwner(authUser->id);
         contractManagerMenuChoose();

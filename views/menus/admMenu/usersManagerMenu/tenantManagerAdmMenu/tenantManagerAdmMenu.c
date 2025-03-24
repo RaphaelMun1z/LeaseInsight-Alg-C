@@ -14,7 +14,7 @@ int tenantManagerAdmMenu(){
     int option;
     do{
         printColorful("Gerenciando inquilinos. Você pode: \n", 3);
-        printColorful("1 -> Voltar.\n", 1);
+        printColorful("1 -> Voltar.\n", 6);
         printColorful("2 -> Acessar todos inquilinos.\n", 5);
         printColorful("3 -> Acessar detalhes de uma inquilino.\n", 5);
         printColorful("4 -> Alterar um inquilino.\n", 5);
@@ -38,7 +38,7 @@ void tenantManagerAdmMenuChoose(){
         case 1: {
             break;
         }
-        
+
         case 2:
         findAllTenants();
         tenantManagerAdmMenuChoose();
