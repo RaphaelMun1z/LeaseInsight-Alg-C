@@ -10,6 +10,7 @@ extern int admsCurrentLimit;
 
 void initAdms();
 void allocateMoreSpaceAdm();
+void deallocateSpaceAdm();
 void allocateSpaceAdmForFile(int numberOfAdms);
 void freeAdms();
 

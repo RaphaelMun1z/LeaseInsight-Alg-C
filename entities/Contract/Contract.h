@@ -10,6 +10,7 @@ extern int contractsCurrentLimit;
 
 void initContracts();
 void allocateMoreSpaceContract();
+void deallocateSpaceContract();
 void allocateSpaceContractForFile(int numberOfContracts);
 void freeContracts();
 

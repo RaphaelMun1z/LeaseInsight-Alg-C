@@ -48,6 +48,21 @@ void allocateMoreSpaceResidence(){
     printf("[LOG] Espaço para mais propriedades alocado com sucesso!\n");
 }
 
+void deallocateSpaceResidence(){
+    printf("Desalocando 5 espaços de memória para 'residences'\n");
+    residencesCurrentLimit -= residenceIncrementAmount;
+    
+    Residence *temp = realloc(residences, sizeof(Residence) * residencesCurrentLimit);
+    if (temp == NULL){
+        printf("[LOG] Erro ao desalocar memória para 'residences'!\n");
+        residencesCurrentLimit += residenceIncrementAmount;
+        return;
+    }
+    
+    residences = temp;
+    printf("[LOG] Menos memória alocada para 'residences'\n");
+}
+
 void freeResidences(){
     free(residences);
     residences = NULL;

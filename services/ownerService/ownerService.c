@@ -103,6 +103,9 @@ void deleteOwner(int id){
             int indLastItemOfOwners = registeredOwnersNumber-1;
             owners[ii] = owners[indLastItemOfOwners];
             registeredOwnersNumber--;
+            if(registeredOwnersNumber == ownersCurrentLimit-10){
+                deallocateSpaceOwner();
+            }
             saveOwnersData();
             printColorful("Proprietário deletado com sucesso!\n\n", 2);
             return;

@@ -9,9 +9,11 @@
 
 Owner *owners;
 int registeredOwnersNumber = 0;
-int ownersCurrentLimit = 5;
+int ownersCurrentLimit;
+const int ownerIncrementAmount = 5;
 
 void initOwners() {
+    int ownersCurrentLimit = 15;
     owners = (Owner *) calloc(5, sizeof(Owner));
     
     if (owners == NULL) {
@@ -46,6 +48,21 @@ void allocateMoreSpaceOwner(){
     owners = temp;
 
     printf("[LOG] Espaço para mais proprietários alocado com sucesso!\n");
+}
+
+void deallocateSpaceOwner(){
+    printf("Desalocando 5 espaços de memória para 'owners'\n");
+    ownersCurrentLimit -= ownerIncrementAmount;
+    
+    Owner *temp = realloc(owners, sizeof(Owner) * ownersCurrentLimit);
+    if (temp == NULL){
+        printf("[LOG] Erro ao desalocar memória para 'owners'!\n");
+        ownersCurrentLimit += ownerIncrementAmount;
+        return;
+    }
+    
+    owners = temp;
+    printf("[LOG] Menos memória alocada para 'owners'\n");
 }
 
 void freeOwners(){

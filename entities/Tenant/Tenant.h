@@ -10,6 +10,7 @@ extern int tenantsCurrentLimit;
 
 void initTenants();
 void allocateMoreSpaceTenant();
+void deallocateSpaceTenant();
 void allocateSpaceTenantForFile(int numberOfTenants);
 void freeTenants();
 

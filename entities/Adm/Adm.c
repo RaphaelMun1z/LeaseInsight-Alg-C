@@ -10,9 +10,12 @@
 
 Adm *adms;
 int registeredAdmsNumber = 0;
-int admsCurrentLimit = 5;
+int admsCurrentLimit;
+const int admIncrementAmount = 5;
+
 
 void initAdms() {
+    int admsCurrentLimit = 15;
     adms = (Adm *) calloc(5, sizeof(Adm));
     
     if (adms == NULL) {
@@ -47,6 +50,21 @@ void allocateMoreSpaceAdm(){
     adms = temp;
 
     printf("[LOG] Espaço para mais administradores alocado com sucesso!\n");
+}
+
+void deallocateSpaceAdm(){
+    printf("Desalocando 5 espaços de memória para 'adms'\n");
+    admsCurrentLimit -= admIncrementAmount;
+    
+    Adm *temp = realloc(adms, sizeof(Adm) * admsCurrentLimit);
+    if (temp == NULL){
+        printf("[LOG] Erro ao desalocar memória para 'adms'!\n");
+        admsCurrentLimit += admIncrementAmount;
+        return;
+    }
+    
+    adms = temp;
+    printf("[LOG] Menos memória alocada para 'adms'\n");
 }
 
 void freeAdms(){

@@ -126,6 +126,9 @@ void deleteTenant(char tenantRg[]){
 			int indLastItemOfTenants = registeredTenantsNumber-1;
 			tenants[ii] = tenants[indLastItemOfTenants];
 			registeredTenantsNumber--;
+            if(registeredTenantsNumber == tenantsCurrentLimit-10){
+                deallocateSpaceTenant();
+            }
             saveTenantsData();
 			printColorful("Inquilino deletado com sucesso!\n\n", 2);
 			return;

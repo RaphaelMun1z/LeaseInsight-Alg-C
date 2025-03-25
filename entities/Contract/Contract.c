@@ -49,6 +49,21 @@ void allocateMoreSpaceContract() {
     printf("[LOG] Espaço para mais contratos alocado com sucesso!\n");
 }
 
+void deallocateSpaceContract(){
+    printf("Desalocando 5 espaços de memória para 'contracts'\n");
+    contractsCurrentLimit -= contractIncrementAmount;
+    
+    Contract *temp = (Contract *) realloc(contracts, sizeof(Contract) * contractsCurrentLimit);
+    if (temp == NULL){
+        printf("[LOG] Erro ao desalocar memória para 'contracts'!\n");
+        contractsCurrentLimit += contractIncrementAmount;
+        return;
+    }
+    
+    contracts = temp;
+    printf("[LOG] Menos memória alocada para 'contracts'\n");
+}
+
 void freeContracts(){
     free(contracts);
     contracts = NULL;

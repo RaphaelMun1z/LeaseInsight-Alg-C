@@ -49,6 +49,21 @@ void allocateMoreSpaceTenant(){
     printf("[LOG] Mais memória alocada para 'tenants'\n");
 }
 
+void deallocateSpaceTenant(){
+    printf("Desalocando 5 espaços de memória para 'tenants'\n");
+    tenantsCurrentLimit -= tenantIncrementAmount;
+    
+    Tenant *temp = realloc(tenants, sizeof(Tenant) * tenantsCurrentLimit);
+    if (temp == NULL){
+        printf("[LOG] Erro ao desalocar memória para 'tenants'!\n");
+        tenantsCurrentLimit += tenantIncrementAmount;
+        return;
+    }
+    
+    tenants = temp;
+    printf("[LOG] Menos memória alocada para 'tenants'\n");
+}
+
 void freeTenants(){
     free(tenants);
     tenants = NULL;

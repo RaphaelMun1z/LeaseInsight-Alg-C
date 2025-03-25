@@ -10,6 +10,7 @@ extern int residencesCurrentLimit;
 
 void initResidences();
 void allocateMoreSpaceResidence();
+void deallocateSpaceResidence();
 void allocateSpaceResidenceForFile(int numberOfResidences);
 void freeResidences();
 

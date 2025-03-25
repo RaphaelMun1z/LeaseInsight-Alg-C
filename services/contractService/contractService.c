@@ -176,6 +176,9 @@ void deleteContract(int id){
 			int indLastItemOfContracts = registeredContractsNumber-1;
 			contracts[ii] = contracts[indLastItemOfContracts];
 			registeredContractsNumber--;
+			if(registeredContractsNumber == contractsCurrentLimit-10){
+                deallocateSpaceContract();
+            }
 			saveContractsData();
 			printColorful("Contrato deletado com sucesso!\n", 2);
 			return;

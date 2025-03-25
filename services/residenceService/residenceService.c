@@ -87,6 +87,9 @@ void deleteResidence(int id){
 			int indLastItemOfResidences = registeredResidencesNumber-1;
 			residences[ii] = residences[indLastItemOfResidences];
 			registeredResidencesNumber--;
+			if(registeredResidencesNumber == residencesCurrentLimit-10){
+                deallocateSpaceResidence();
+            }
 			saveResidencesData();
 			printColorful("Propriedade deletado com sucesso!\n\n", 2);
 			return;
