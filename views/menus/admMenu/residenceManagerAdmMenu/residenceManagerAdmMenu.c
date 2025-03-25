@@ -6,6 +6,7 @@
 #include "../../../../utils/printColorful/printColorful.h"
 #include "../../../../utils/cleanInputBuffer/cleanInputBuffer.h"
 #include "../../../../utils/cancelOperation/cancelOperation.h"
+#include "../../../../utils/verifyInputContent/verifyInputContent.h"
 
 // Entities
 #include "../../../../entities/AuthUser/AuthUser.h"
@@ -28,7 +29,7 @@ int residenceManagerAdmMenu(){
         printColorful("5 -> Remover uma propriedade.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
-        scanf("%d", &option);
+        option = returnValidInt();
         
         if(option < 1 || option > 5){
             cleanScreen();

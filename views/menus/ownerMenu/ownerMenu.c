@@ -4,6 +4,7 @@
 // Utils
 #include "../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../utils/printColorful/printColorful.h"
+#include "../../../utils/verifyInputContent/verifyInputContent.h"
 
 // Services
 #include "../../../services/stateManagerService/stateManagerService.h"
@@ -24,7 +25,7 @@ int ownerMenu(){
         printColorful("3 -> Gerenciar CONTRATOS.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
-        scanf("%d", &option);
+        option = returnValidInt();
         
         if(option < 1 || option > 3){
             cleanScreen();

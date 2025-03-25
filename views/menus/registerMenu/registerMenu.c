@@ -3,6 +3,7 @@
 // Utils
 #include "../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../utils/printColorful/printColorful.h"
+#include "../../../utils/verifyInputContent/verifyInputContent.h"
 
 // Controllers
 #include "../../../controllers/registerController/registerController.h"
@@ -16,7 +17,7 @@ int registerMenu(){
         printColorful("3 -> Registrar-me como PROPRIETÁRIO.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
-        scanf("%d", &option);
+        option = returnValidInt();
         
         if(option < 1 || option > 3){
             cleanScreen();

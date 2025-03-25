@@ -3,6 +3,7 @@
 // Utils
 #include "../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../utils/printColorful/printColorful.h"
+#include "../../../utils/verifyInputContent/verifyInputContent.h"
 
 // Views
 #include "../registerMenu/registerMenu.h"
@@ -20,7 +21,7 @@ int mainMenu(){
         printColorful("3 -> Acessar o sistema.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
-        scanf("%d", &option);
+        option = returnValidInt();
         
         if(option < 1 || option > 3){
             cleanScreen();
