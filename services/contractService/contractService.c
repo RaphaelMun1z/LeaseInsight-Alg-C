@@ -121,6 +121,20 @@ int contractExistsById(int id){
 	return findContractById(id) == NULL ? 0 : 1;
 }
 
+int ownerHasThisContract(int contractId, int ownerId){
+	Contract *c = findContractById(contractId);
+	
+	if(c == NULL)
+	return 0;
+	
+	Residence *r = findResidenceById(c->residenceId);
+	
+	if((*r).ownerId != ownerId)
+	return 0;
+	
+	return 1;
+}
+
 void createContract(Contract contract){
 	Residence *r = findResidenceById(contract.residenceId);
 
@@ -238,6 +252,20 @@ void printContractById(int id){
 	printContract(*c);
 }
 
+void printContractByOwner(int contractId, int ownerId){
+	Contract *c = findContractById(contractId);
+	
+	if(c == NULL)
+	return printColorful("Contrato não encontrado.\n", 1);
+	
+	Residence *r = findResidenceById(c->residenceId);
+	
+	if((*r).ownerId != ownerId)
+	return printColorful("Contrato não encontrado.\n", 1);
+	
+	printContract(*c);
+}
+
 void printContractsByTenant(int tenantId){
 	int contractsFound = 0;
 	
@@ -328,6 +356,20 @@ void findContractsByStatus(int contractStatus){
 	
 	if(contractsFound == 0)
 	return printColorful("Não foram encontrados contratos com esse status.\n", 4);
+}
+
+int isOwnerAssociatedToContract(int contractId, int ownerId){
+	Contract *c = findContractById(contractId);
+	
+	if(c == NULL)
+	return 0;
+	
+	Residence *r = findResidenceById(c->residenceId);
+	
+	if((*r).ownerId != ownerId)
+	return 0;
+	
+	return 1;
 }
 
 void changeContractStatus(int id, int newStatus){

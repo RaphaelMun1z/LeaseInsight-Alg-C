@@ -14,6 +14,8 @@ void printResidenceById(int id);
 int residenceExistsById(int id);
 void findResidencesByOwner(int id);
 int hasContractAssociated(int residenceId);
+int isResidenceAssociatedToOwner(int residenceId, int ownerId);
+int isResidenceAssociatedToAnyContract(int residenceId);
 void changeResidenceOccupancyStatus(int id, int status);
 void changeResidenceDetails(int id, double newRentalValue, int newOccupancyStatus, int changeAddress, Address newAddress);
 

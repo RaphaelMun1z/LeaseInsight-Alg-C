@@ -47,7 +47,7 @@ void residenceManagerMenuChoose(){
         case 1: {
             break;
         }
-
+        
         case 2:
         findResidencesByOwner(authUser->id);
         residenceManagerMenuChoose();
@@ -63,7 +63,7 @@ void residenceManagerMenuChoose(){
             printColorful("Informe o código da propriedade: ", 3);
             scanf("%d", &residenceId);
             
-            if(!residenceExistsById(residenceId)){
+            if(!isResidenceAssociatedToOwner(residenceId, authUser->id)){
                 printColorful("Propriedade não encontrada.\n\n", 1);
                 residenceManagerMenuChoose();
                 return;
@@ -76,7 +76,7 @@ void residenceManagerMenuChoose(){
         
         case 5:{
             int residenceId;
-
+            
             double newRentalValue;
             int newOccupancyStatus;
             int changeAddress;
@@ -85,12 +85,12 @@ void residenceManagerMenuChoose(){
             printColorful("Informe o código da propriedade: ", 3);
             scanf("%d", &residenceId);
             
-            if(!residenceExistsById(residenceId)){
+            if(!isResidenceAssociatedToOwner(residenceId, authUser->id)){
                 printColorful("Propriedade não encontrada.\n\n", 1);
                 residenceManagerMenuChoose();
                 return;
             }
-
+            
             updateResidenceForm(&newRentalValue, &newOccupancyStatus, &changeAddress, &newAddress);
             
             changeResidenceDetails(residenceId, newRentalValue, newOccupancyStatus, changeAddress, newAddress);
@@ -103,8 +103,14 @@ void residenceManagerMenuChoose(){
             printColorful("Informe o código da propriedade: ", 3);
             scanf("%d", &residenceId);
             
-            if(!residenceExistsById(residenceId)){
+            if(!isResidenceAssociatedToOwner(residenceId, authUser->id)){
                 printColorful("Propriedade não encontrada.\n\n", 1);
+                residenceManagerMenuChoose();
+                return;
+            }
+            
+            if(isResidenceAssociatedToAnyContract(residenceId)){
+                printColorful("Propriedade não pode ser removida, pois está associada a um contrato.\n\n", 1);
                 residenceManagerMenuChoose();
                 return;
             }

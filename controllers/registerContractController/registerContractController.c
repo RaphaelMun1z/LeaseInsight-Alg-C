@@ -8,6 +8,9 @@
 #include "../../utils/cancelOperation/cancelOperation.h"
 #include "../../utils/enums/enums.h"
 
+// Entities
+#include "../../entities/AuthUser/AuthUser.h"
+
 // Services
 #include "../../services/contractService/contractService.h"
 #include "../../services/tenantService/tenantService.h"
@@ -99,21 +102,24 @@ void registerContractForm(){
             cleanScreen();
             printColorful("\nO Campo 'Código da propriedade' é obrigatório. Tente novamente.\n\n", 4);
         }else{
-            propertyFound = findResidenceById(propertyId);
-            if(propertyFound == NULL){
+            if(!isResidenceAssociatedToOwner(propertyId, authUser->id)){
                 cleanScreen();
                 printColorful("\nO código informado é inválido. Tente novamente.\n", 4);
                 printColorful("\n[DICA] Para cancelar operação, digite: '-1'\n\n", 5);
-            }else if(propertyFound->occupancyStatus != 6){
-                cleanScreen();
-                printColorful("\nA propriedade informada não está disponível. Tente outra propriedade.\n", 4);
-                printColorful("\n[DICA] Para cancelar operação, digite: '-1'\n\n", 5);
-                propertyFound = NULL;
+            } else {
+                propertyFound = findResidenceById(propertyId);
+                
+                if(propertyFound->occupancyStatus != 6){
+                    cleanScreen();
+                    printColorful("\nA propriedade informada não está disponível. Tente outra propriedade.\n", 4);
+                    printColorful("\n[DICA] Para cancelar operação, digite: '-1'\n\n", 5);
+                    propertyFound = NULL;
+                }
             }
         }
     } while (propertyId < 1 || propertyFound == NULL);
     newContract.residenceId = propertyId;
-
+    
     char tenantRg[13];
     Tenant *tenantFound = NULL;
     do{

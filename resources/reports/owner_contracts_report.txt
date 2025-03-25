@@ -1,0 +1,46 @@
+======================================
+===========  LEASEINSIGHT  ===========
+======================================
+
+Administração de locação de imóveis
+Copyright © 2025 LeaseInsight. Todos os direitos reservados.
+Desenvolvido por: Raphael e Ygor
+
+Relatório de Contratos
+Filtrado por: Proprietário
+Data e Hora da Criação do Relatório: 2025-03-25 14:07:13
+___________________________________________________________
+
+Código: 6
+Início do contrato: 02/12/2023
+Fim do contrato: 02/12/2024
+Valor de locação: 2050.00
+Vencimento da mensalidade - dia do mês: 15
+Status do contrato: Finalizado
+Informações do inquilino:
+	Código do inquilino: 6
+	Nome do inquilino: Larissa Oliveira Reis
+	RG do inquilino: 32.987.654-5
+	E-mail do inquilino: larissa.reis@email.com
+	Status do inquilino: Ativo
+Informações da propriedade:
+	Código da propriedade: 7
+	Endereço da propriedade: Rua da Paz, 75, , Industrial, Contagem, MG
+___
+
+Código: 7
+Início do contrato: 13/01/2025
+Fim do contrato: 13/01/2026
+Valor de locação: 1500.00
+Vencimento da mensalidade - dia do mês: 15
+Status do contrato: Ativo
+Informações do inquilino:
+	Código do inquilino: 7
+	Nome do inquilino: Renato Almeida Costa
+	RG do inquilino: 65.432.109-6
+	E-mail do inquilino: renato.costa@email.com
+	Status do inquilino: Ativo
+Informações da propriedade:
+	Código da propriedade: 8
+	Endereço da propriedade: Rua da Paz, 85, Na esquina da Praça da Paz, Industrial, Contagem, MG
+___

@@ -71,7 +71,7 @@ void contractManagerMenuChoose(){
                 return;
             }
             
-            printContractById(contractId);
+            printContractByOwner(contractId, authUser->id);
             contractManagerMenuChoose();
             break;
         }
@@ -83,8 +83,8 @@ void contractManagerMenuChoose(){
             printColorful("Informe o código do contrato: ", 3);
             scanf("%d", &contractId);
             
-            if(!contractExistsById(contractId)){
-                printColorful("Contrato não encontrado.\n\n", 1);
+            if(!ownerHasThisContract(contractId, authUser->id)){
+                printColorful("Você não tem permissão para alterar esse contrato.\n\n", 1);
                 contractManagerMenuChoose();
                 return;
             }
@@ -111,8 +111,8 @@ void contractManagerMenuChoose(){
             printColorful("Informe o código do contrato: ", 3);
             scanf("%d", &contractId);
             
-            if(!contractExistsById(contractId)){
-                printColorful("Contrato não encontrado.\n\n", 1);
+            if(!isOwnerAssociatedToContract(contractId, authUser->id)){
+                printColorful("Você não tem permissão para remover esse contrato.\n\n", 1);
                 contractManagerMenuChoose();
                 return;
             }
@@ -121,10 +121,10 @@ void contractManagerMenuChoose(){
             contractManagerMenuChoose();
             break;
         }
-
+        
         case 7: {
             int contractsAmount = getContractsAmountByOwner(authUser->id);
-
+            
             if(contractsAmount == 0){
                 printColorful("Não foram encontrados contratos.\n\n", 1);
                 contractManagerMenuChoose();
@@ -137,12 +137,12 @@ void contractManagerMenuChoose(){
                 contractManagerMenuChoose();
                 return;
             }
-
+            
             findContractsByOwner(authUser->id, foundContracts);
-
+            
             generateContractsReport(foundContracts, contractsAmount, "Proprietário", "owner_contracts_report");
             free(foundContracts);
-
+            
             contractManagerMenuChoose();
         }
         

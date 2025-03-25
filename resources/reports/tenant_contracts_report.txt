@@ -1,0 +1,29 @@
+======================================
+===========  LEASEINSIGHT  ===========
+======================================
+
+Administração de locação de imóveis
+Copyright © 2025 LeaseInsight. Todos os direitos reservados.
+Desenvolvido por: Raphael e Ygor
+
+Relatório de Contratos
+Filtrado por: Inquilino
+Data e Hora da Criação do Relatório: 2025-03-25 13:37:50
+___________________________________________________________
+
+Código: 1
+Início do contrato: 10/01/2024
+Fim do contrato: 10/01/2025
+Valor de locação: 1200.00
+Vencimento da mensalidade - dia do mês: 15
+Status do contrato: Ativo
+Informações do inquilino:
+	Código do inquilino: 2
+	Nome do inquilino: Ana Beatriz Silva
+	RG do inquilino: 12.345.678-1
+	E-mail do inquilino: ana.silva@email.com
+	Status do inquilino: Ativo
+Informações da propriedade:
+	Código da propriedade: 2
+	Endereço da propriedade: Rua das Flores, 123, Apto 102, Centro, Uberlândia, MG
+___

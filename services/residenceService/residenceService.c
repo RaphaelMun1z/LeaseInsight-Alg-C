@@ -197,3 +197,26 @@ int hasContractAssociated(int residenceId){
 	
 	return 0;
 }
+
+int isResidenceAssociatedToAnyContract(int residenceId){
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
+		if(contracts[ii].residenceId == residenceId){
+			return 1;
+		}
+	}
+	
+	return 0;
+}
+
+int isResidenceAssociatedToOwner(int residenceId, int ownerId){
+	Residence *r = findResidenceById(residenceId);
+	if(r == NULL){
+		return 0;
+	}
+	
+	if((*r).ownerId != ownerId){
+		return 0;
+	}
+	
+	return 1;
+}
