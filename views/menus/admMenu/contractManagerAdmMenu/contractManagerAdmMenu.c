@@ -128,11 +128,19 @@ void contractManagerAdmMenuChoose(){
             }
             
             Contract *foundContracts = calloc(contractsAmount, sizeof(Contract));
+            if(foundContracts == NULL){
+                printColorful("Erro ao alocar memória para contratos.\n\n", 1);
+                contractManagerAdmMenuChoose();
+                return;
+            }
+
             findContractsByStartDate(startDate, foundContracts);
 
             char reportTitle[50];
             sprintf(reportTitle, "Data: %s", startDate);
             generateContractsReport(foundContracts, contractsAmount, reportTitle, "contracts_by_start_date_report");
+            free(foundContracts);
+
             contractManagerAdmMenuChoose();
             break;
         }
@@ -154,11 +162,19 @@ void contractManagerAdmMenuChoose(){
             }
             
             Contract *foundContracts = calloc(contractsAmount, sizeof(Contract));
+            if(foundContracts == NULL){
+                printColorful("Erro ao alocar memória para contratos.\n\n", 1);
+                contractManagerAdmMenuChoose();
+                return;
+            }
+
             findContractsByEndDate(endDate, foundContracts);
 
             char reportTitle[50];
             sprintf(reportTitle, "Data: %s", endDate);
             generateContractsReport(foundContracts, contractsAmount, reportTitle, "contracts_by_end_date_report");
+            free(foundContracts);
+
             contractManagerAdmMenuChoose();
             break;
         }

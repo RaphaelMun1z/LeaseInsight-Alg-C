@@ -20,8 +20,6 @@ void initTenants() {
         printf("[LOG] Erro ao alocar memória para 'tenants'!\n");
         return;
     }
-
-    printf("[LOG] Memória padrão alocada para 'tenants'\n");
 }
 
 void allocateSpaceTenantForFile(int numberOfTenants){
@@ -35,8 +33,6 @@ void allocateSpaceTenantForFile(int numberOfTenants){
         printf("[LOG] Erro ao alocar memória para 'tenants'!\n");
         return;
     }
-
-    printf("[LOG] Memória alocada para 'tenants' com base nos %d registros do arquivo!\n", numberOfTenants);
 }
 
 void allocateMoreSpaceTenant(){

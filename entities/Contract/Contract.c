@@ -18,8 +18,6 @@ void initContracts() {
         exit(1);
         return;
     }
-    
-    printf("[LOG] Memória padrão alocada para 'contracts'\n");
 }
 
 void allocateSpaceContractForFile(int numberOfContracts){
@@ -32,9 +30,7 @@ void allocateSpaceContractForFile(int numberOfContracts){
         printf("[LOG] Erro ao alocar memória para 'contracts'!\n");
         exit(1);
         return;
-    }
-    
-    printf("[LOG] Memória alocada para 'contracts' com base nos %d registros do arquivo!\n", numberOfContracts);
+    }    
 }
 
 void allocateMoreSpaceContract() {

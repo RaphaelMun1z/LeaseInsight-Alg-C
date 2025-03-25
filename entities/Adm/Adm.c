@@ -19,8 +19,6 @@ void initAdms() {
         printf("[LOG] Erro ao alocar memória para 'Adms'!\n");
         return;
     }
-
-    printf("[LOG] Memória padrão alocada para 'adms'\n");
 }
 
 void allocateSpaceAdmForFile(int numberOfAdms){
@@ -34,8 +32,6 @@ void allocateSpaceAdmForFile(int numberOfAdms){
         printf("[LOG] Erro ao alocar memória para 'adms'!\n");
         return;
     }
-    
-    printf("[LOG] Memória alocada para 'adms' com base nos %d registros do arquivo!\n", numberOfAdms);
 }
 
 void allocateMoreSpaceAdm(){
@@ -49,6 +45,8 @@ void allocateMoreSpaceAdm(){
     }
     
     adms = temp;
+
+    printf("[LOG] Espaço para mais administradores alocado com sucesso!\n");
 }
 
 void freeAdms(){

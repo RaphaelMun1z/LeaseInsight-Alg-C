@@ -18,8 +18,6 @@ void initOwners() {
         printf("[LOG] Erro ao alocar memória para 'owners'!\n");
         return;
     }
-
-    printf("[LOG] Memória padrão alocada para 'owners'\n");
 }
 
 void allocateSpaceOwnerForFile(int numberOfOwners){
@@ -33,8 +31,6 @@ void allocateSpaceOwnerForFile(int numberOfOwners){
         printf("[LOG] Erro ao alocar memória para 'owners'!\n");
         return;
     }
-
-    printf("[LOG] Memória alocada para 'owners' com base nos %d registros do arquivo!\n", numberOfOwners);
 }
 
 void allocateMoreSpaceOwner(){
@@ -48,6 +44,8 @@ void allocateMoreSpaceOwner(){
     }
     
     owners = temp;
+
+    printf("[LOG] Espaço para mais proprietários alocado com sucesso!\n");
 }
 
 void freeOwners(){

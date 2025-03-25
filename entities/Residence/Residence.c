@@ -18,8 +18,6 @@ void initResidences() {
         exit(1);
         return;
     }
-
-    printf("[LOG] Memória padrão alocada para 'residences'\n");
 }
 
 void allocateSpaceResidenceForFile(int numberOfResidences){
@@ -33,8 +31,6 @@ void allocateSpaceResidenceForFile(int numberOfResidences){
         exit(1);
         return;
     }
-
-    printf("[LOG] Memória alocada para 'residences' com base nos %d registros do arquivo!\n", numberOfResidences);
 }
 
 void allocateMoreSpaceResidence(){
