@@ -1,29 +1,4 @@
 {
-<<<<<<< HEAD
-  "files.associations": {
-    "*.embeddedhtml": "html",
-    "stdlib.h": "c",
-    "printcolorful.h": "c",
-    "cleaninputbuffer.h": "c",
-    "cleanscreen.h": "c",
-    "stdio.h": "c",
-    "registercontroller.h": "c",
-    "tenant.h": "c",
-    "signincontroller.h": "c",
-    "residence.h": "c",
-    "contract.h": "c",
-    "typeinfo": "c",
-    "registerservice.h": "c",
-    "conio.h": "c",
-    "dtos.h": "c",
-    "authuser.h": "c",
-    "statemanagerservice.h": "c",
-    "mainmenu.h": "c",
-    "homemenu.h": "c",
-    "system_error": "c",
-    "tenantservice.h": "c",
-    "ownerservice.h": "c"
-  },
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",
@@ -81,30 +56,4 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false
-=======
-    "files.associations": {
-        "*.embeddedhtml": "html",
-        "stdlib.h": "c",
-        "printcolorful.h": "c",
-        "cleaninputbuffer.h": "c",
-        "cleanscreen.h": "c",
-        "stdio.h": "c",
-        "registercontroller.h": "c",
-        "tenant.h": "c",
-        "signincontroller.h": "c",
-        "residence.h": "c",
-        "contract.h": "c",
-        "typeinfo": "c",
-        "registerservice.h": "c",
-        "conio.h": "c",
-        "dtos.h": "c",
-        "authuser.h": "c",
-        "statemanagerservice.h": "c",
-        "mainmenu.h": "c",
-        "homemenu.h": "c",
-        "system_error": "c",
-        "tenantservice.h": "c",
-        "ownerservice.h": "c"
-    }
->>>>>>> main
 }
