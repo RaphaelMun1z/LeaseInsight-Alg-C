@@ -4,6 +4,7 @@
 // Utils
 #include "../../../../utils/cleanScreen/cleanScreen.h"
 #include "../../../../utils/printColorful/printColorful.h"
+#include "../../../../utils/cleanInputBuffer/cleanInputBuffer.h"
 #include "../../../../utils/enums/enums.h"
 
 // Entities
@@ -11,6 +12,7 @@
 
 // Controllers
 #include "../../../../controllers/registerResidenceController/registerResidenceController.h"
+#include "../../../../controllers/updateResidenceController/updateResidenceController.h"
 
 // Services
 #include "../../../../services/stateManagerService/stateManagerService.h"
@@ -74,7 +76,11 @@ void residenceManagerMenuChoose(){
         
         case 5:{
             int residenceId;
-            int residenceStatus;
+
+            double newRentalValue;
+            int newOccupancyStatus;
+            int changeAddress;
+            Address newAddress;
             
             printColorful("Informe o código da propriedade: ", 3);
             scanf("%d", &residenceId);
@@ -84,11 +90,10 @@ void residenceManagerMenuChoose(){
                 residenceManagerMenuChoose();
                 return;
             }
+
+            updateResidenceForm(&newRentalValue, &newOccupancyStatus, &changeAddress, &newAddress);
             
-            getResidenceOccupancyStatusOptions();
-            scanf("%d", &residenceStatus);
-            
-            changeResidenceOccupancyStatus(residenceId, residenceStatus);
+            changeResidenceDetails(residenceId, newRentalValue, newOccupancyStatus, changeAddress, newAddress);
             residenceManagerMenuChoose();
             break;
         }

@@ -104,33 +104,44 @@ void registerContractForm(){
                 cleanScreen();
                 printColorful("\nO código informado é inválido. Tente novamente.\n", 4);
                 printColorful("\n[DICA] Para cancelar operação, digite: '-1'\n\n", 5);
+            }else if(propertyFound->occupancyStatus != 6){
+                cleanScreen();
+                printColorful("\nA propriedade informada não está disponível. Tente outra propriedade.\n", 4);
+                printColorful("\n[DICA] Para cancelar operação, digite: '-1'\n\n", 5);
+                propertyFound = NULL;
             }
         }
     } while (propertyId < 1 || propertyFound == NULL);
     newContract.residenceId = propertyId;
-    
-    int tenantId;
+
+    char tenantRg[13];
     Tenant *tenantFound = NULL;
-    do {
+    do{
         cleanInputBuffer();
-        printColorful("Código do inquilino: ", 5);
-        scanf("%d", &tenantId);
+        printColorful("RG do Inquilino (Ex.: 11.111.111-1): ", 5);
+        fgets(tenantRg, 13, stdin);
+        tenantRg[strcspn(tenantRg, "\n")] = 0;
         
-        if(cancelOperationWithInt(tenantId)) return;
+        if(cancelOperationWithString(tenantRg)) return;
         
-        if(tenantId < 1){
+        if(tenantRg[0] == '\0'){
             cleanScreen();
-            printColorful("\nO Campo 'Código do inquilino' é obrigatório. Tente novamente.\n\n", 4);
+            printColorful("\nO Campo 'RG do Inquilino' é obrigatório. Tente novamente.\n\n", 4);
         }else{
-            tenantFound = findTenantById(tenantId);
+            tenantFound = findTenantByRg(tenantRg);
             if(tenantFound == NULL){
                 cleanScreen();
-                printColorful("\nO código informado é inválido. Tente novamente.\n", 4);
+                printColorful("\nO RG informado é inválido. Tente novamente.\n", 4);
                 printColorful("\n[DICA] Para cancelar operação, digite: '-1'\n\n", 5);
+            }else if(tenantFound->tenantStatus != 1){
+                cleanScreen();
+                printColorful("\nO inquilino informado não está disponível. Tente outro inquilino.\n", 4);
+                printColorful("\n[DICA] Para cancelar operação, digite: '-1'\n\n", 5);
+                propertyFound = NULL;
             }
         }
-    } while (tenantId < 1 || tenantFound == NULL);
-    newContract.tenantId = tenantId;
+    } while (tenantRg[0] == '\0' || tenantFound == NULL);
+    newContract.tenantId = tenantFound->id;
     
     cleanScreen();
     createContract(newContract);

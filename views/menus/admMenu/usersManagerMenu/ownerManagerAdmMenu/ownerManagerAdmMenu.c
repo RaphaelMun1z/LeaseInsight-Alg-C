@@ -98,12 +98,6 @@ void ownerManagerAdmMenuChoose(){
             printColorful("Informe o código do proprietário: ", 3);
             scanf("%d", &ownerId);
             
-            if(!ownerExistsById(ownerId)){
-                printColorful("Proprietário não encontrado.\n\n", 1);
-                ownerManagerAdmMenuChoose();
-                return;
-            }
-            
             deleteOwner(ownerId);
             ownerManagerAdmMenuChoose();
             break;

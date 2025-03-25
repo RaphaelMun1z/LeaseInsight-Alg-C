@@ -89,12 +89,12 @@ void createOwner(Owner owner){
 
 void deleteOwner(int id){
     if(!ownerExistsById(id)){
-        printColorful("Proprietário não encontrado.\n", 1);
+        printColorful("Proprietário não encontrado.\n\n", 1);
         return;
     }
 
     if(ownerHasResidence(id)){
-        printColorful("Proprietário não pode ser deletado, pois possui propriedades cadastradas.\n", 1);
+        printColorful("Proprietário não pode ser deletado, pois possui propriedades cadastradas.\n\n", 1);
         return;
     }
     
@@ -104,12 +104,12 @@ void deleteOwner(int id){
             owners[ii] = owners[indLastItemOfOwners];
             registeredOwnersNumber--;
             saveOwnersData();
-            printColorful("Proprietário deletado com sucesso!\n", 2);
+            printColorful("Proprietário deletado com sucesso!\n\n", 2);
             return;
         }
     }
     
-    return printColorful("Proprietário não encontrado.\n", 1);
+    return printColorful("Proprietário não encontrado.\n\n", 1);
 }
 
 void printOwner(Owner o){

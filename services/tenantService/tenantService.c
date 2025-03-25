@@ -112,12 +112,12 @@ void createTenant(Tenant tenant){
 
 void deleteTenant(char tenantRg[]){
     if(!tenantExistsByRg(tenantRg)){
-		printColorful("Inquilino não encontrado.\n", 1);
+		printColorful("Inquilino não encontrado.\n\n", 1);
 		return;
 	}
 
     if(tenantHasContract(findTenantByRg(tenantRg)->id)){
-        printColorful("Inquilino possui contrato vinculado, não é possível deletar.\n", 1);
+        printColorful("Inquilino possui contrato vinculado, não é possível deletar.\n\n", 1);
         return;
     }
 	
@@ -127,12 +127,12 @@ void deleteTenant(char tenantRg[]){
 			tenants[ii] = tenants[indLastItemOfTenants];
 			registeredTenantsNumber--;
             saveTenantsData();
-			printColorful("Inquilino deletado com sucesso!\n", 2);
+			printColorful("Inquilino deletado com sucesso!\n\n", 2);
 			return;
 		}
 	}
 
-	return printColorful("Inquilino não encontrado.\n", 1);
+	return printColorful("Inquilino não encontrado.\n\n", 1);
 }
 
 void printTenant(Tenant t){
@@ -170,6 +170,11 @@ int isTenantAssociatedToContract(int tenantId, int contractId){
 }
 
 void changeTenantStatus(char rg[], int status){
+    if(status == -1){
+        printColorful("Operação cancelada.\n", 1);
+        return;
+    }
+
 	if(!tenantExistsByRg(rg)){
 		return printColorful("Inquilino não encontrado.\n", 1);
 	}

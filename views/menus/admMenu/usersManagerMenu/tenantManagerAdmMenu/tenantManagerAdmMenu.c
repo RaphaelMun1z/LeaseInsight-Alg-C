@@ -80,8 +80,17 @@ void tenantManagerAdmMenuChoose(){
                 return;
             }
             
-            getTenantStatusOptions();
-            scanf("%d", &tenantStatus);
+            do {
+                printColorful("\n[DICA] Para pular esse atributo, digite: '-1'.\n", 5);
+                cleanInputBuffer();
+                getTenantStatusOptions();
+                scanf("%d", &tenantStatus);
+                
+                if((tenantStatus < 1 || tenantStatus > 3) && tenantStatus != -1){
+                    cleanScreen();
+                    printColorful("\nO Campo 'Status' é obrigatório. Tente novamente.\n\n", 4);
+                }
+            } while ((tenantStatus < 1 || tenantStatus > 3) && tenantStatus != -1);
             
             changeTenantStatus(tenantRg, tenantStatus);
             tenantManagerAdmMenuChoose();
@@ -102,6 +111,7 @@ void tenantManagerAdmMenuChoose(){
                 return;
             }
             
+            cleanInputBuffer();
             deleteTenant(tenantRg);
             tenantManagerAdmMenuChoose();
             break;

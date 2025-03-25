@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 // Utils
@@ -10,6 +11,7 @@
 #include "../../../entities/AuthUser/AuthUser.h"
 
 // Services
+#include "../../../services/reportHandlerService/reportHandlerService.h"
 #include "../../../services/stateManagerService/stateManagerService.h"
 #include "../../../services/contractService/contractService.h"
 #include "../../../services/tenantService/tenantService.h"
@@ -27,15 +29,16 @@ int tenantMenu(){
         printColorful("4 -> Acessar detalhes de um contrato pelo código.\n", 5);
         printColorful("5 -> Cancelar um contrato.\n", 5);
         printColorful("6 -> Atualizar meu telefone.\n", 5);
+        printColorful("7 -> Gerar relatório de contratos.\n", 5);
         
         printColorful("Escolha uma opção: ", 5);
         scanf("%d", &option);
         
-        if(option < 1 || option > 6){
+        if(option < 1 || option > 7){
             cleanScreen();
             printColorful("\nAcredito que houve um engano, o valor informado não existe. Tente novamente.\n", 4);
         }
-    } while(option < 1 || option > 6);
+    } while(option < 1 || option > 7);
     cleanScreen();
     return option;
 }
@@ -53,7 +56,7 @@ void tenantMenuChoose(){
         break;
         
         case 3:
-        findContractsByTenant(authUser->id);
+        printContractsByTenant(authUser->id);
         tenantMenuChoose();
         break;
         
@@ -118,6 +121,30 @@ void tenantMenuChoose(){
             changeTenantPhone(authUser->id, newPhone);
             tenantMenuChoose();
             break;
+        }
+
+        case 7: {
+            int contractsAmount = getContractsAmountByTenant(authUser->id);
+
+            if(contractsAmount == 0){
+                printColorful("Não foram encontrados contratos.\n\n", 1);
+                tenantMenuChoose();
+                return;
+            }
+            
+            Contract *foundContracts = calloc(contractsAmount, sizeof(Contract));
+            if(foundContracts == NULL){
+                printColorful("Houve um erro ao tentar alocar memória para os contratos.\n\n", 1);
+                tenantMenuChoose();
+                return;
+            }
+
+            findContractsByTenant(authUser->id, foundContracts);
+
+            generateContractsReport(foundContracts, contractsAmount, "Inquilino", "tenant_contracts_report");
+            free(foundContracts);
+
+            tenantMenuChoose();
         }
         
         default:

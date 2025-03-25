@@ -105,6 +105,7 @@ void contractManagerAdmMenuChoose(){
                 return;
             }
             
+            cleanInputBuffer();
             findContractsByTenantRg(tenantRg);
             contractManagerAdmMenuChoose();
             break;
@@ -129,7 +130,9 @@ void contractManagerAdmMenuChoose(){
             Contract *foundContracts = calloc(contractsAmount, sizeof(Contract));
             findContractsByStartDate(startDate, foundContracts);
 
-            generateContractsReport(foundContracts, contractsAmount, startDate);
+            char reportTitle[50];
+            sprintf(reportTitle, "Data: %s", startDate);
+            generateContractsReport(foundContracts, contractsAmount, reportTitle, "contracts_by_start_date_report");
             contractManagerAdmMenuChoose();
             break;
         }
@@ -153,7 +156,9 @@ void contractManagerAdmMenuChoose(){
             Contract *foundContracts = calloc(contractsAmount, sizeof(Contract));
             findContractsByEndDate(endDate, foundContracts);
 
-            generateContractsReport(foundContracts, contractsAmount, endDate);
+            char reportTitle[50];
+            sprintf(reportTitle, "Data: %s", endDate);
+            generateContractsReport(foundContracts, contractsAmount, reportTitle, "contracts_by_end_date_report");
             contractManagerAdmMenuChoose();
             break;
         }

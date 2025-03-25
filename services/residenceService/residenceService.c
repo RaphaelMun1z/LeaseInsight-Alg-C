@@ -73,12 +73,12 @@ void createResidence(Residence residence){
 
 void deleteResidence(int id){
 	if(!residenceExistsById(id)){
-		printColorful("Propriedade não encontrado.\n", 1);
+		printColorful("Propriedade não encontrado.\n\n", 1);
 		return;
 	}
 
 	if(hasContractAssociated(id)){
-		printColorful("Não é possível deletar uma propriedade com contrato associado.\n", 1);
+		printColorful("Não é possível deletar uma propriedade com contrato associado.\n\n", 1);
 		return;
 	}
 	
@@ -88,12 +88,12 @@ void deleteResidence(int id){
 			residences[ii] = residences[indLastItemOfResidences];
 			registeredResidencesNumber--;
 			saveResidencesData();
-			printColorful("Propriedade deletado com sucesso!\n", 2);
+			printColorful("Propriedade deletado com sucesso!\n\n", 2);
 			return;
 		}
 	}
 	
-	return printColorful("Propriedade não encontrada.\n", 1);
+	return printColorful("Propriedade não encontrada.\n\n", 1);
 }
 
 void printResidence(Residence r){
@@ -150,6 +150,10 @@ int isResidenceAssociatedToContract(int residenceId, int contractId){
 }
 
 void changeResidenceOccupancyStatus(int id, int status){
+	if(status == -1){
+		return printColorful("Operação cancelada.\n", 1);
+	}
+
 	if(!residenceExistsById(id)){
 		return printColorful("Propriedade não encontrada.\n", 1);
 	}

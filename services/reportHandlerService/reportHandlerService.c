@@ -16,10 +16,12 @@
 #include "../../services/tenantService/tenantService.h"
 #include "../../services/residenceService/residenceService.h"
 
-void generateContractsReport(Contract *selectedContracts, int itemsAmount, char dateFiltered[]){
+void generateContractsReport(Contract *selectedContracts, int itemsAmount, char dateFiltered[], char fileName[]){
     FILE *ptrArq;
     
-    ptrArq = fopen("resources/reports/contracts_report.txt", "w");
+    char filePath[256];
+    sprintf(filePath, "resources/reports/%s.txt", fileName);
+    ptrArq = fopen(filePath, "w");
     
     if(ptrArq == NULL){
         printColorful("Ocorreu um erro ao gerar relatório de contratos.\n", 1);
@@ -41,7 +43,7 @@ void generateContractsReport(Contract *selectedContracts, int itemsAmount, char 
     fprintf(ptrArq, "Desenvolvido por: Raphael e Ygor\n\n");
     
     fprintf(ptrArq, "Relatório de Contratos\n");
-    fprintf(ptrArq, "Filtrado por Data Inicial: %s\n", dateFiltered);
+    fprintf(ptrArq, "Filtrado por: %s\n", dateFiltered);
     fprintf(ptrArq, "Data e Hora da Criação do Relatório: %s\n", currentDateTime);
     fprintf(ptrArq, "___________________________________________________________\n");
     

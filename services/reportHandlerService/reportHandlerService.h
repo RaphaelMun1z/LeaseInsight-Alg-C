@@ -4,6 +4,6 @@
 // DTOs
 #include "../../dtos/dtos.h"
 
-void generateContractsReport(Contract *selectedContracts, int itemsAmount, char dateFiltered[]);
+void generateContractsReport(Contract *selectedContracts, int itemsAmount, char dateFiltered[], char fileName[]);
 
 #endif

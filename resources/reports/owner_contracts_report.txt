@@ -7,8 +7,8 @@ Copyright © 2025 LeaseInsight. Todos os direitos reservados.
 Desenvolvido por: Raphael e Ygor
 
 Relatório de Contratos
-Filtrado por: Inquilino
-Data e Hora da Criação do Relatório: 2025-03-24 21:24:48
+Filtrado por: Proprietário
+Data e Hora da Criação do Relatório: 2025-03-24 21:43:26
 ___________________________________________________________
 
 Código: 1

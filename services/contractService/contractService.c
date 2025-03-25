@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 // Utils
@@ -18,14 +19,25 @@
 
 void findAllContracts();
 Contract *findContractById(int id);
-void findContractsByOwner(int id);
-void findContractsByTenant(int id);
+void findContractsByTenantRg(char tenantRg[]);
+void findContractsByTenant(int tenantId, Contract *foundContracts);
+void findContractsByOwner(int id, Contract *foundContracts);
+void findContractsByStartDate(char startDate[], Contract *foundContracts);
+void findContractsByEndDate(char endDate[], Contract *foundContracts);
+void findContractsByStatus(int contractStatus);
 void createContract(Contract contract); 
-void changeContractStatus(int id, int status);
 void deleteContract(int id); 
 
 void printContract(Contract c);
 void printContractById(int id);
+void printContractsByTenant(int tenantId);
+void printContractsByOwner(int ownerId);
+int contractExistsById(int id);
+int getContractsAmountByStartDate(char startDate[]);
+int getContractsAmountByEndDate(char endDate[]);
+int getContractsAmountByTenant(int tenantId);
+int getContractsAmountByOwner(int ownerId);
+void changeContractStatus(int id, int status);
 
 void findAllContracts(){
 	if(registeredContractsNumber == 0)
@@ -51,7 +63,7 @@ void findContractsByTenantRg(char tenantRg[]){
 	}
 	
 	if(contractsFound == 0)
-	printColorful("Não foram encontrados contratos.\n", 4);
+	printColorful("Não foram encontrados contratos.\n\n", 4);
 }
 
 Contract *findContractById(int id){
@@ -62,6 +74,27 @@ Contract *findContractById(int id){
 	}
 	
 	return NULL;
+}
+
+void findContractsByTenant(int tenantId, Contract *foundContracts){
+	int aux = 0;
+	for (int ii = 0; ii < registeredContractsNumber; ii++) {
+		if (contracts[ii].tenantId == tenantId) {
+			foundContracts[aux] = contracts[ii];
+			aux++;
+		}
+	}
+}
+
+void findContractsByOwner(int id, Contract *foundContracts){
+	int aux = 0;
+	for (int ii = 0; ii < registeredContractsNumber; ii++) {
+		Residence *r = findResidenceById(contracts[ii].residenceId);
+		if ((*r).ownerId == id) {
+			foundContracts[aux] = contracts[ii];
+			aux++;
+		}
+	}
 }
 
 void findContractsByStartDate(char startDate[], Contract *foundContracts){
@@ -164,19 +197,24 @@ void printContract(Contract c){
 	printf("Data de término: %s\n", c.contractEndDate);
 	printf("Dia de vencimento da fatura: %d\n", c.invoiceDueDate);
 
-	return;
-
 	// Tenant
 	Tenant *t = findTenantById(c.tenantId);
 	printColorful("Inquilino:\n", 3);
 	printf("   Código inquilino: %d\n", (*t).id);
-	printf("   Status do inquilino: %d\n", (*t).tenantStatus);
+
+	char tenantStatusStr[100];
+	getTenantStatus((*t).tenantStatus, tenantStatusStr);
+	printf("   Status do inquilino: %s\n", tenantStatusStr);
 	printf("   RG do inquilino: %s\n", (*t).rg);
 	
 	// Residence
 	Residence *r = findResidenceById(c.residenceId);
 	printColorful("Propriedade:\n", 3);
 	printf("   Código da propriedade: %d\n", (*r).id);
+
+	char occupancyStatusStr[100];
+	getResidenceOccupancyStatus((*r).occupancyStatus, occupancyStatusStr);
+	printf("   Status de ocupação da propriedade: %s\n", occupancyStatusStr);
 	printf("   Endereço da propriedade: %s, %d, %s, %s, %s, %s\n", (*r).address.street, (*r).address.number, (*r).address.complement, (*r).address.district, (*r).address.city, (*r).address.state);
 
 	// Owner
@@ -197,12 +235,11 @@ void printContractById(int id){
 	printContract(*c);
 }
 
-void findContractsByOwner(int ownerId){
+void printContractsByTenant(int tenantId){
 	int contractsFound = 0;
 	
 	for (int ii = 0; ii < registeredContractsNumber; ii++){
-		Residence *r = findResidenceById(contracts[ii].residenceId);
-		if((*r).ownerId == ownerId){
+		if(contracts[ii].tenantId == tenantId){
 			contractsFound++;
 			printContract(contracts[ii]);
 		}
@@ -212,11 +249,12 @@ void findContractsByOwner(int ownerId){
 	return printColorful("Não há contratos registrados.\n", 4);
 }
 
-void findContractsByTenant(int tenantId){
+void printContractsByOwner(int ownerId){
 	int contractsFound = 0;
 	
 	for (int ii = 0; ii < registeredContractsNumber; ii++){
-		if(contracts[ii].tenantId == tenantId){
+		Residence *r = findResidenceById(contracts[ii].residenceId);
+		if((*r).ownerId == ownerId){
 			contractsFound++;
 			printContract(contracts[ii]);
 		}
@@ -250,6 +288,31 @@ int getContractsAmountByEndDate(char endDate[]){
 	return contractsFound;
 }
 
+int getContractsAmountByTenant(int tenantId){
+	int contractsFound = 0;
+	
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
+		if(contracts[ii].tenantId == tenantId){
+			contractsFound++;
+		}
+	}
+	
+	return contractsFound;
+}
+
+int getContractsAmountByOwner(int ownerId){
+	int contractsFound = 0;
+	
+	for (int ii = 0; ii < registeredContractsNumber; ii++){
+		Residence *r = findResidenceById(contracts[ii].residenceId);
+		if((*r).ownerId == ownerId){
+			contractsFound++;
+		}
+	}
+	
+	return contractsFound;
+}
+
 void findContractsByStatus(int contractStatus){
 	int contractsFound = 0;
 	
@@ -265,6 +328,11 @@ void findContractsByStatus(int contractStatus){
 }
 
 void changeContractStatus(int id, int newStatus){
+	if(newStatus == -1){
+		printColorful("Operação cancelada.\n", 1);
+		return;
+	}
+
 	if(newStatus < 1 || newStatus > 3)
 	return printColorful("Valor de status desconhecido.\n", 1);
 	
